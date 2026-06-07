@@ -103,6 +103,36 @@ if ('serviceWorker' in navigator) {
 
   select { background: #1e293b; color: #e2e8f0; border: 1px solid #334155; border-radius: 8px; padding: 8px 12px; font-size: 14px; font-family: inherit; width: 100%; margin-top: 4px; }
   .btn-install { width: 100%; padding: 13px; background: transparent; border: 2px solid #06b6d4; border-radius: 10px; color: #06b6d4; font-size: 15px; font-weight: 700; cursor: pointer; font-family: inherit; margin-top: 10px; }
+
+  /* PROGRESS SCREEN */
+  .nav-tabs { display: flex; gap: 0; margin-bottom: 20px; border-radius: 10px; overflow: hidden; border: 1px solid #1e293b; }
+  .nav-tab { flex: 1; padding: 10px 0; text-align: center; font-size: 13px; font-weight: 600; cursor: pointer; background: #0f172a; color: #64748b; border: none; font-family: inherit; transition: all 0.15s; }
+  .nav-tab.active { background: linear-gradient(135deg,#0891b2,#7c3aed); color: #fff; }
+
+  .mastery-badge { display: inline-block; padding: 6px 16px; border-radius: 20px; font-size: 13px; font-weight: 700; margin-bottom: 6px; }
+  .mastery-beginner { background: #1e293b; color: #94a3b8; }
+  .mastery-competent { background: #1c3a5e; color: #60a5fa; }
+  .mastery-proficient { background: #1a3a2a; color: #34d399; }
+  .mastery-expert { background: #3b2a0a; color: #fbbf24; }
+
+  .stat-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid #1e293b; }
+  .stat-label { font-size: 13px; color: #94a3b8; }
+  .stat-val { font-size: 15px; font-weight: 700; color: #e2e8f0; }
+
+  .topic-row { margin-bottom: 12px; }
+  .topic-name { display: flex; justify-content: space-between; font-size: 12px; color: #94a3b8; margin-bottom: 4px; }
+  .topic-bar-bg { background: #1e293b; border-radius: 99px; height: 8px; overflow: hidden; }
+  .topic-bar-fill { height: 100%; border-radius: 99px; transition: width 0.5s ease; }
+
+  .streak-box { text-align: center; padding: 16px; background: #0f172a; border-radius: 12px; border: 1px solid #1e293b; margin-bottom: 12px; }
+  .streak-num { font-size: 42px; font-weight: 800; color: #f59e0b; font-family: monospace; }
+  .streak-label { font-size: 12px; color: #64748b; margin-top: 2px; }
+
+  .btn-weak { width: 100%; padding: 12px; background: #450a0a; border: 1px solid #ef4444; border-radius: 10px; color: #fca5a5; font-size: 14px; font-weight: 700; cursor: pointer; font-family: inherit; margin-top: 8px; }
+  .btn-weak:hover { background: #7f1d1d; }
+  .btn-progress { background: transparent; border: 1px solid #334155; color: #94a3b8; border-radius: 8px; padding: 6px 14px; cursor: pointer; font-size: 12px; font-family: inherit; }
+  .empty-progress { text-align: center; padding: 30px 0; color: #475569; font-size: 14px; }
+
 </style>
 </head>
 <body>
@@ -114,6 +144,15 @@ if ('serviceWorker' in navigator) {
     <h1>ECMO Exam Simulator</h1>
     <p>200 questions from the ELSO Red Book — fully offline</p>
   </div>
+
+  <!-- NAV TABS -->
+  <div class="nav-tabs">
+    <button class="nav-tab active" onclick="showTab('tab-exam')">📝 Exam</button>
+    <button class="nav-tab" onclick="showTab('tab-progress')">📊 My Progress</button>
+  </div>
+
+  <!-- EXAM TAB -->
+  <div id="tab-exam">
 
   <div class="card">
     <span class="label">Topic</span>
@@ -164,6 +203,57 @@ if ('serviceWorker' in navigator) {
   <button class="btn-main" onclick="startExam()">Start Exam</button>
   <button class="btn-install" id="btn-install" style="display:none" onclick="installApp()">⬇️ Install App — Add to Home Screen</button>
   <div class="source-note">Source: ELSO Red Book 6th Ed. · MacLaren, Brodie, Lorusso, Peek, Thiagarajan, Vercaemst</div>
+  </div><!-- end tab-exam -->
+
+  <!-- PROGRESS TAB -->
+  <div id="tab-progress" style="display:none">
+    <div class="streak-box">
+      <div class="streak-num" id="streak-num">0</div>
+      <div class="streak-label">Day Streak 🔥</div>
+    </div>
+
+    <div class="card">
+      <div style="text-align:center;margin-bottom:16px">
+        <div class="mastery-badge mastery-beginner" id="mastery-badge">Beginner</div>
+        <div style="font-size:13px;color:#64748b;margin-top:4px" id="mastery-sub">Keep going — you're just getting started</div>
+      </div>
+      <div class="stat-row">
+        <span class="stat-label">Total Questions Answered</span>
+        <span class="stat-val" id="stat-total">0</span>
+      </div>
+      <div class="stat-row">
+        <span class="stat-label">Overall Accuracy</span>
+        <span class="stat-val" id="stat-accuracy">—</span>
+      </div>
+      <div class="stat-row">
+        <span class="stat-label">Exams Completed</span>
+        <span class="stat-val" id="stat-exams">0</span>
+      </div>
+      <div class="stat-row">
+        <span class="stat-label">Best Score</span>
+        <span class="stat-val" id="stat-best">—</span>
+      </div>
+      <div class="stat-row" style="border:none">
+        <span class="stat-label">Last Studied</span>
+        <span class="stat-val" id="stat-last">Never</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <span class="label" style="margin-bottom:14px">Performance by Topic</span>
+      <div id="topic-breakdown">
+        <div class="empty-progress">No data yet — complete an exam to see your topic breakdown</div>
+      </div>
+    </div>
+
+    <button class="btn-weak" id="btn-weak" onclick="startWeakExam()" style="display:none">
+      🎯 Practice Weak Topics
+    </button>
+
+    <div style="text-align:center;margin-top:14px">
+      <button class="btn-progress" onclick="resetProgress()">Reset All Progress</button>
+    </div>
+  </div><!-- end tab-progress -->
 </div>
 
 <!-- EXAM SCREEN -->
@@ -200,6 +290,9 @@ if ('serviceWorker' in navigator) {
     <div class="score-btns">
       <button class="btn-retry" onclick="retryExam()">Retry Same</button>
       <button class="btn-new" onclick="goSetup()">New Exam</button>
+    </div>
+    <div style="text-align:center;margin-top:12px">
+      <button class="btn-progress" onclick="goSetup();setTimeout(()=>showTab('tab-progress'),100)">📊 View My Progress</button>
     </div>
   </div>
 </div>
@@ -2249,7 +2342,7 @@ function handleAnswer(selected, correctText, exp) {
   if (isCorrect) score++;
 
   const q = examQuestions[currentIdx];
-  results.push({ q: q.q, correct: isCorrect, selected, correct_ans: correctText });
+  results.push({ q: q.q, correct: isCorrect, selected, correct_ans: correctText, topic: q.topic });
 
   // Style buttons
   document.querySelectorAll(".opt-btn").forEach(btn => {
@@ -2301,6 +2394,9 @@ function showScore() {
   const pct = Math.round(score / total * 100);
   const grade = pct >= 90 ? "Excellent" : pct >= 75 ? "Good" : pct >= 60 ? "Pass" : "Needs Review";
   const color = pct >= 90 ? "#22c55e" : pct >= 75 ? "#06b6d4" : pct >= 60 ? "#f59e0b" : "#ef4444";
+
+  // Save progress
+  updateProgress(results, total);
 
   document.getElementById("score-emoji").textContent = pct >= 75 ? "🎯" : "📚";
   document.getElementById("score-pct").textContent = pct + "%";
@@ -2367,6 +2463,181 @@ window.addEventListener('appinstalled', () => {
   const btn = document.getElementById('btn-install');
   if (btn) btn.style.display = 'none';
 });
+
+// ── PROGRESS TRACKING ────────────────────────────────────────────────────────
+const PROGRESS_KEY = 'ecmo_exam_progress';
+
+function loadProgress() {
+  try {
+    const raw = localStorage.getItem(PROGRESS_KEY);
+    if (!raw) return defaultProgress();
+    return JSON.parse(raw);
+  } catch(e) { return defaultProgress(); }
+}
+
+function defaultProgress() {
+  return {
+    totalAnswered: 0,
+    totalCorrect: 0,
+    examsCompleted: 0,
+    bestScore: null,
+    lastStudied: null,
+    streak: 0,
+    lastStreakDate: null,
+    topics: {}
+  };
+}
+
+function saveProgress(p) {
+  try { localStorage.setItem(PROGRESS_KEY, JSON.stringify(p)); } catch(e) {}
+}
+
+function updateProgress(examResults, examTotal) {
+  const p = loadProgress();
+  const correct = examResults.filter(r => r.correct).length;
+  const pct = Math.round(correct / examTotal * 100);
+
+  p.totalAnswered += examTotal;
+  p.totalCorrect += correct;
+  p.examsCompleted += 1;
+  if (p.bestScore === null || pct > p.bestScore) p.bestScore = pct;
+  p.lastStudied = new Date().toISOString();
+
+  // Streak
+  const today = new Date().toDateString();
+  const lastDate = p.lastStreakDate ? new Date(p.lastStreakDate).toDateString() : null;
+  const yesterday = new Date(Date.now() - 86400000).toDateString();
+  if (lastDate === today) {
+    // same day — no change
+  } else if (lastDate === yesterday) {
+    p.streak += 1;
+  } else if (lastDate !== today) {
+    p.streak = 1;
+  }
+  p.lastStreakDate = new Date().toISOString();
+
+  // Topic breakdown
+  examResults.forEach(r => {
+    const t = r.topic || 'General';
+    if (!p.topics[t]) p.topics[t] = { answered: 0, correct: 0 };
+    p.topics[t].answered += 1;
+    if (r.correct) p.topics[t].correct += 1;
+  });
+
+  saveProgress(p);
+}
+
+function getMasteryLevel(pct, total) {
+  if (total < 10) return { label: 'Beginner', cls: 'mastery-beginner', sub: 'Keep going — you\'re just getting started' };
+  if (pct >= 90) return { label: 'Expert', cls: 'mastery-expert', sub: 'Outstanding mastery of ECMO — ELSO-ready' };
+  if (pct >= 75) return { label: 'Proficient', cls: 'mastery-proficient', sub: 'Strong knowledge — keep refining weak areas' };
+  if (pct >= 60) return { label: 'Competent', cls: 'mastery-competent', sub: 'Good foundation — focus on weak topics' };
+  return { label: 'Developing', cls: 'mastery-beginner', sub: 'Keep practicing — consistency is key' };
+}
+
+function getBarColor(pct) {
+  if (pct >= 80) return '#22c55e';
+  if (pct >= 60) return '#06b6d4';
+  if (pct >= 40) return '#f59e0b';
+  return '#ef4444';
+}
+
+function renderProgress() {
+  const p = loadProgress();
+  const overallPct = p.totalAnswered > 0 ? Math.round(p.totalCorrect / p.totalAnswered * 100) : 0;
+  const mastery = getMasteryLevel(overallPct, p.totalAnswered);
+
+  document.getElementById('streak-num').textContent = p.streak || 0;
+  document.getElementById('stat-total').textContent = p.totalAnswered;
+  document.getElementById('stat-accuracy').textContent = p.totalAnswered > 0 ? overallPct + '%' : '—';
+  document.getElementById('stat-exams').textContent = p.examsCompleted;
+  document.getElementById('stat-best').textContent = p.bestScore !== null ? p.bestScore + '%' : '—';
+
+  if (p.lastStudied) {
+    const d = new Date(p.lastStudied);
+    const today = new Date().toDateString();
+    const ls = d.toDateString() === today ? 'Today' : d.toLocaleDateString();
+    document.getElementById('stat-last').textContent = ls;
+  } else {
+    document.getElementById('stat-last').textContent = 'Never';
+  }
+
+  const badge = document.getElementById('mastery-badge');
+  badge.textContent = mastery.label;
+  badge.className = 'mastery-badge ' + mastery.cls;
+  document.getElementById('mastery-sub').textContent = mastery.sub;
+
+  // Topic breakdown
+  const container = document.getElementById('topic-breakdown');
+  const topics = Object.entries(p.topics);
+  if (topics.length === 0) {
+    container.innerHTML = '<div class="empty-progress">No data yet — complete an exam to see your topic breakdown</div>';
+    document.getElementById('btn-weak').style.display = 'none';
+  } else {
+    // Sort by accuracy ascending (weakest first)
+    topics.sort((a, b) => {
+      const aP = a[1].answered > 0 ? a[1].correct / a[1].answered : 0;
+      const bP = b[1].answered > 0 ? b[1].correct / b[1].answered : 0;
+      return aP - bP;
+    });
+    container.innerHTML = topics.map(([topic, data]) => {
+      const pct = data.answered > 0 ? Math.round(data.correct / data.answered * 100) : 0;
+      const color = getBarColor(pct);
+      const icon = pct >= 80 ? '✅' : pct >= 60 ? '🔵' : pct >= 40 ? '⚠️' : '❌';
+      return `<div class="topic-row">
+        <div class="topic-name">
+          <span>${icon} ${topic}</span>
+          <span style="color:${color};font-weight:700">${pct}% (${data.correct}/${data.answered})</span>
+        </div>
+        <div class="topic-bar-bg">
+          <div class="topic-bar-fill" style="width:${pct}%;background:${color}"></div>
+        </div>
+      </div>`;
+    }).join('');
+
+    // Show weak topics button if any topic <60%
+    const hasWeak = topics.some(([,d]) => d.answered >= 3 && (d.correct/d.answered) < 0.6);
+    document.getElementById('btn-weak').style.display = hasWeak ? 'block' : 'none';
+  }
+}
+
+function showTab(tabId) {
+  document.getElementById('tab-exam').style.display = tabId === 'tab-exam' ? 'block' : 'none';
+  document.getElementById('tab-progress').style.display = tabId === 'tab-progress' ? 'block' : 'none';
+  document.querySelectorAll('.nav-tab').forEach((t, i) => {
+    t.classList.toggle('active', (i === 0 && tabId === 'tab-exam') || (i === 1 && tabId === 'tab-progress'));
+  });
+  if (tabId === 'tab-progress') renderProgress();
+}
+
+function startWeakExam() {
+  const p = loadProgress();
+  // Find weakest topics (>= 3 answered, <60% accuracy)
+  const weakTopics = Object.entries(p.topics)
+    .filter(([,d]) => d.answered >= 3 && (d.correct/d.answered) < 0.6)
+    .map(([t]) => t);
+  if (weakTopics.length === 0) { alert('No weak topics found!'); return; }
+
+  // Filter questions from weak topics
+  let pool = QUESTIONS.filter(q => weakTopics.includes(q.topic));
+  pool = shuffle(pool);
+  examQuestions = pool.slice(0, Math.min(10, pool.length));
+  currentIdx = 0; score = 0; results = [];
+  showTab('tab-exam');
+  showScreen('screen-exam');
+  renderQuestion();
+}
+
+function resetProgress() {
+  if (confirm('Reset all progress data? This cannot be undone.')) {
+    localStorage.removeItem(PROGRESS_KEY);
+    renderProgress();
+  }
+}
+
+// Initialize tab visibility
+document.getElementById('tab-exam').style.display = 'block';
+document.getElementById('tab-progress').style.display = 'none';
 </script>
 </body>
 </html>
