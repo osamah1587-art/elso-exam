@@ -112,7 +112,7 @@ if ('serviceWorker' in navigator) {
   <div class="logo">
     <div class="logo-badge">ELSO Red Book · 6th Edition</div>
     <h1>ECMO Exam Simulator</h1>
-    <p>100 questions from the ELSO Red Book — fully offline</p>
+    <p>200 questions from the ELSO Red Book — fully offline</p>
   </div>
 
   <div class="card">
@@ -129,6 +129,15 @@ if ('serviceWorker' in navigator) {
       <div class="chip" data-val="va">VA ECMO – Cardiac</div>
       <div class="chip" data-val="ecpr">ECPR</div>
       <div class="chip" data-val="anticoag">Anticoagulation</div>
+      <div class="chip" data-val="neonatal">Neonatal ECMO</div>
+      <div class="chip" data-val="pediatric">Pediatric ECMO</div>
+      <div class="chip" data-val="transport">Transport on ECMO</div>
+      <div class="chip" data-val="nutrition">Nutrition on ECMO</div>
+      <div class="chip" data-val="monitoring">Monitoring on ECMO</div>
+      <div class="chip" data-val="special">Special Populations</div>
+      <div class="chip" data-val="outcomes">ECMO Outcomes</div>
+      <div class="chip" data-val="ethics">ECMO Ethics</div>
+      <div class="chip" data-val="rehab">Rehabilitation on ECMO</div>
     </div>
   </div>
 
@@ -1209,6 +1218,926 @@ const QUESTIONS = [
     ],
     ans: 1,
     exp: "Nosocomial infection rate increases with duration of ECLS. Prolonged ECMO (>2 weeks) significantly increases risk of VAP, bloodstream infections, and cannula-site infections. Duration minimization is a key goal."
+  },
+
+  // ══════════════════════════════════════════════════════════════════════════
+  // BATCH 2 — Neonatal, Pediatric, Transport, Nutrition, Monitoring, Advanced
+  // ══════════════════════════════════════════════════════════════════════════
+
+  // ── NEONATAL ECMO ─────────────────────────────────────────────────────────
+  {
+    topic: "Neonatal ECMO", difficulty: "basic",
+    q: "The most common indication for neonatal ECMO is:",
+    opts: ["Congenital heart disease","Meconium aspiration syndrome (MAS) and persistent pulmonary hypertension of the newborn (PPHN)","Neonatal sepsis","Prematurity"],
+    ans: 1,
+    exp: "Meconium aspiration syndrome and persistent pulmonary hypertension of the newborn (PPHN) are the leading indications for neonatal ECMO, representing failure of pulmonary vasodilation and hypoxic respiratory failure."
+  },
+  {
+    topic: "Neonatal ECMO", difficulty: "basic",
+    q: "What is the minimum gestational age typically required for neonatal ECMO?",
+    opts: ["28 weeks","32 weeks","34 weeks","40 weeks"],
+    ans: 2,
+    exp: "Gestational age ≥34 weeks is the standard minimum for neonatal ECMO. Premature infants <34 weeks have fragile germinal matrix vessels with very high risk of intracranial hemorrhage on anticoagulation."
+  },
+  {
+    topic: "Neonatal ECMO", difficulty: "basic",
+    q: "What is the minimum weight typically required for neonatal ECMO candidacy?",
+    opts: ["1 kg","2 kg","3 kg","4 kg"],
+    ans: 1,
+    exp: "Neonates weighing ≥2 kg are generally considered candidates for ECMO. Below this threshold, cannula sizes become technically prohibitive and bleeding risk significantly increases."
+  },
+  {
+    topic: "Neonatal ECMO", difficulty: "intermediate",
+    q: "Congenital diaphragmatic hernia (CDH) on ECMO has which characteristic prognosis compared to other neonatal ECMO indications?",
+    opts: [
+      "Best prognosis — nearly 100% survival",
+      "Worst prognosis among neonatal ECMO indications — survival ~50%",
+      "Same prognosis as MAS",
+      "Only used as bridge to surgery, not for respiratory support"
+    ],
+    ans: 1,
+    exp: "CDH has the worst prognosis among neonatal ECMO indications with survival ~50%, due to pulmonary hypoplasia (lungs cannot recover fully). Compare to MAS where survival exceeds 90% on ECMO."
+  },
+  {
+    topic: "Neonatal ECMO", difficulty: "intermediate",
+    q: "The oxygenation index (OI) threshold commonly used as a criterion for neonatal ECMO referral is:",
+    opts: ["OI >10","OI >20","OI >40","OI >60"],
+    ans: 2,
+    exp: "OI = (MAP × FiO2 × 100) / PaO2. OI >40 (some centers use >35) despite optimal therapy is a standard threshold for neonatal ECMO referral, indicating severe respiratory failure with high mortality risk."
+  },
+  {
+    topic: "Neonatal ECMO", difficulty: "intermediate",
+    q: "In neonatal VA ECMO, the right common carotid artery is ligated after cannulation. What is the long-term concern?",
+    opts: [
+      "No long-term concern — collateral circulation is adequate",
+      "Potential right hemisphere cerebral ischemia and neurodevelopmental impact — requires long-term neurological follow-up",
+      "Recurrent neck infections",
+      "Tracheal compression"
+    ],
+    ans: 1,
+    exp: "Carotid artery ligation in neonatal VA ECMO raises concern for right hemisphere ischemia and neurodevelopmental sequelae. Some centers attempt carotid reconstruction after decannulation. Long-term neurodevelopmental follow-up is essential."
+  },
+  {
+    topic: "Neonatal ECMO", difficulty: "advanced",
+    q: "Which neonatal condition is an absolute contraindication to ECMO?",
+    opts: [
+      "Gestational age 35 weeks",
+      "Lethal chromosomal abnormality or condition incompatible with meaningful survival",
+      "Birth weight 2.1 kg",
+      "Mild intraventricular hemorrhage grade I"
+    ],
+    ans: 1,
+    exp: "Lethal chromosomal abnormalities (e.g., Trisomy 13, 18) or conditions incompatible with survival are absolute contraindications. Grade III-IV IVH is also a contraindication due to risk of hemorrhage extension on anticoagulation."
+  },
+  {
+    topic: "Neonatal ECMO", difficulty: "advanced",
+    q: "Persistent pulmonary hypertension of the newborn (PPHN) refractory to iNO is managed with ECMO because:",
+    opts: [
+      "ECMO directly dilates pulmonary vessels",
+      "ECMO provides gas exchange support allowing time for pulmonary vascular resistance to normalize",
+      "ECMO eliminates the need for iNO",
+      "ECMO reverses the underlying cardiac defect"
+    ],
+    ans: 1,
+    exp: "ECMO supports oxygenation while the elevated pulmonary vascular resistance naturally decreases over days. It provides a bridge to recovery — the lungs and pulmonary vasculature recover spontaneously with time and supportive care."
+  },
+
+  // ── PEDIATRIC ECMO ────────────────────────────────────────────────────────
+  {
+    topic: "Pediatric ECMO", difficulty: "basic",
+    q: "The most common indication for pediatric ECMO (1 month – 18 years) is:",
+    opts: ["Respiratory failure","Cardiac failure — congenital heart disease and post-cardiac surgery","Septic shock","Trauma"],
+    ans: 1,
+    exp: "Cardiac failure, predominantly related to congenital heart disease and post-cardiac surgery low output syndrome, is the most common indication for pediatric ECMO, accounting for ~50% of pediatric ECMO runs."
+  },
+  {
+    topic: "Pediatric ECMO", difficulty: "intermediate",
+    q: "Pediatric ECPR (extracorporeal CPR) outcomes are generally:",
+    opts: [
+      "Worse than adult ECPR",
+      "Better than adult ECPR — especially for in-hospital cardiac arrest in congenital heart disease",
+      "Identical to adult ECPR",
+      "Not recommended in children"
+    ],
+    ans: 1,
+    exp: "Pediatric ECPR, particularly for IHCA in children with congenital heart disease, has better outcomes than adult ECPR. Survival with good neurological outcome can reach 40–50% in select pediatric IHCA patients."
+  },
+  {
+    topic: "Pediatric ECMO", difficulty: "intermediate",
+    q: "Which viral myocarditis in children has the best ECMO recovery potential?",
+    opts: ["CMV myocarditis","Adenoviral myocarditis","Enteroviral (coxsackievirus) myocarditis","EBV myocarditis"],
+    ans: 2,
+    exp: "Enteroviral (coxsackievirus B) myocarditis in children has the best recovery potential on VA ECMO. Most cases recover myocardial function within 1–2 weeks, making ECMO a true bridge-to-recovery strategy."
+  },
+  {
+    topic: "Pediatric ECMO", difficulty: "advanced",
+    q: "Single ventricle physiology (e.g., hypoplastic left heart syndrome) on ECMO post-Norwood procedure presents unique challenges because:",
+    opts: [
+      "These patients cannot receive ECMO",
+      "Pulmonary and systemic circulation compete — Qp:Qs balance is critical and standard ECMO management differs significantly",
+      "These patients always require VV ECMO",
+      "Anticoagulation is not needed"
+    ],
+    ans: 1,
+    exp: "Single ventricle patients have parallel pulmonary and systemic circuits. Over-oxygenation drops PVR → excessive Qp → systemic steal. Management requires careful balancing of Qp:Qs, often targeting SaO2 75–85% rather than normal."
+  },
+
+  // ── TRANSPORT ECMO ────────────────────────────────────────────────────────
+  {
+    topic: "Transport on ECMO", difficulty: "basic",
+    q: "Which ECMO device is most commonly used for inter-hospital transport?",
+    opts: ["CentriMag","RotaFlow","Maquet Cardiohelp (HLS system)","Biomedicus"],
+    ans: 2,
+    exp: "The Maquet Cardiohelp (HLS — Heart-Lung Support system) is the most widely used transport ECMO device. It is compact, battery-powered, integrates pump and oxygenator, and is designed for mobile use."
+  },
+  {
+    topic: "Transport on ECMO", difficulty: "intermediate",
+    q: "A patient requiring inter-hospital ECMO transport should ideally be cannulated:",
+    opts: [
+      "At the receiving ECMO center after transfer",
+      "At the referring hospital before transfer — transported on ECMO support",
+      "In the ambulance during transfer",
+      "Only if the transfer is <30 minutes"
+    ],
+    ans: 1,
+    exp: "Patients should be cannulated and stabilized on ECMO at the referring hospital before transport. Transferring a deteriorating patient without ECMO support carries prohibitive risk. The ECMO team travels to the referring center."
+  },
+  {
+    topic: "Transport on ECMO", difficulty: "intermediate",
+    q: "What is the primary safety concern during ECMO transport by air (helicopter/fixed-wing)?",
+    opts: [
+      "Temperature changes",
+      "Altitude-related gas expansion in the circuit, battery life, vibration, and limited space for emergencies",
+      "Noise interference with monitors",
+      "Fuel consumption"
+    ],
+    ans: 1,
+    exp: "Air transport concerns: altitude causes gas expansion (air emboli risk if any air in circuit), battery life limitation, vibration effects on circuit, limited space for emergency interventions, and pressure changes affecting oxygenator function."
+  },
+  {
+    topic: "Transport on ECMO", difficulty: "advanced",
+    q: "During ECMO transport, which parameter must be continuously monitored to detect circuit problems early?",
+    opts: [
+      "Patient temperature only",
+      "ECMO flow, pre/post-membrane pressures, SvO2, and battery/power status",
+      "Blood glucose only",
+      "Urine output only"
+    ],
+    ans: 1,
+    exp: "Continuous monitoring during transport: ECMO flow rate, pre-membrane and post-membrane pressures (detect clot), SvO2 (detect inadequate support), and power/battery status (prevent pump failure). Plus standard vital signs."
+  },
+
+  // ── NUTRITION ON ECMO ─────────────────────────────────────────────────────
+  {
+    topic: "Nutrition on ECMO", difficulty: "basic",
+    q: "What is the preferred route of nutrition in stable ECMO patients?",
+    opts: ["Total parenteral nutrition (TPN)","Enteral nutrition via nasogastric or post-pyloric tube","Oral feeding","No nutrition for first 72 hours"],
+    ans: 1,
+    exp: "Enteral nutrition is preferred in ECMO patients when hemodynamically feasible. It preserves gut integrity, reduces infection risk, and is associated with better outcomes compared to TPN."
+  },
+  {
+    topic: "Nutrition on ECMO", difficulty: "intermediate",
+    q: "ECMO circuits affect drug pharmacokinetics. Which class of drugs is most significantly sequestered by PMP oxygenator circuits?",
+    opts: ["Beta-blockers","Lipophilic drugs — including sedatives (fentanyl, midazolam) and some antibiotics","Water-soluble antibiotics","Vasopressors"],
+    ans: 1,
+    exp: "Lipophilic drugs are significantly sequestered by PMP hollow fiber circuits. Fentanyl, midazolam, propofol, and lipophilic antibiotics (e.g., voriconazole) can be adsorbed to circuit surfaces, requiring higher doses."
+  },
+  {
+    topic: "Nutrition on ECMO", difficulty: "intermediate",
+    q: "Caloric targets on ECMO are generally:",
+    opts: [
+      "Hypocaloric (50% of target) in all patients",
+      "25–30 kcal/kg/day with adequate protein 1.2–2.0 g/kg/day",
+      ">40 kcal/kg/day to overcome hypermetabolism",
+      "TPN-based 3500 kcal/day regardless of weight"
+    ],
+    ans: 1,
+    exp: "Standard targets on ECMO: 25–30 kcal/kg/day total energy and 1.2–2.0 g/kg/day protein. Overfeeding is harmful. Protein delivery is particularly important for muscle preservation during prolonged ECMO."
+  },
+  {
+    topic: "Nutrition on ECMO", difficulty: "advanced",
+    q: "Propofol infusion in ECMO patients carries a specific risk not typically seen at standard ICU doses. What is it?",
+    opts: [
+      "Circuit thrombosis",
+      "Propofol infusion syndrome (PRIS) — especially with prolonged high-dose infusion; also significant circuit sequestration requiring dose escalation",
+      "Oxygenator damage",
+      "Hemolysis"
+    ],
+    ans: 1,
+    exp: "Propofol is highly lipophilic and adsorbed by ECMO circuits, often requiring dose escalation. Higher doses increase risk of propofol infusion syndrome (PRIS) — metabolic acidosis, rhabdomyolysis, cardiac failure. Consider alternative sedation."
+  },
+
+  // ── MONITORING ON ECMO ────────────────────────────────────────────────────
+  {
+    topic: "Monitoring on ECMO", difficulty: "basic",
+    q: "SvO2 monitoring in the ECMO circuit drainage cannula reflects:",
+    opts: [
+      "Post-oxygenator oxygen saturation",
+      "Mixed venous oxygen saturation — indicating adequacy of oxygen delivery relative to consumption",
+      "Arterial oxygen saturation",
+      "Circuit anticoagulation status"
+    ],
+    ans: 1,
+    exp: "SvO2 in the drainage cannula reflects mixed venous saturation. Target >65–70% on ECMO. Low SvO2 indicates inadequate DO2 (increase flow, transfuse, reduce VO2). High SvO2 may indicate recirculation in VV ECMO."
+  },
+  {
+    topic: "Monitoring on ECMO", difficulty: "basic",
+    q: "Near-infrared spectroscopy (NIRS) during ECMO is used to monitor:",
+    opts: [
+      "Circuit oxygenator function",
+      "Regional tissue oxygen saturation — brain (cerebral NIRS) and limbs",
+      "Anticoagulation levels",
+      "ECMO pump speed"
+    ],
+    ans: 1,
+    exp: "NIRS monitors regional tissue oxygen saturation non-invasively. Cerebral NIRS detects brain hypoperfusion/ischemia. Limb NIRS detects lower extremity ischemia in peripheral VA ECMO — a key safety monitoring tool."
+  },
+  {
+    topic: "Monitoring on ECMO", difficulty: "intermediate",
+    q: "Continuous EEG monitoring during ECMO is indicated primarily for:",
+    opts: [
+      "Monitoring cardiac rhythm",
+      "Detection of subclinical seizures — common in ECMO patients, especially neonates and post-cardiac arrest",
+      "Monitoring depth of sedation",
+      "Detecting circuit air embolism"
+    ],
+    ans: 1,
+    exp: "Subclinical seizures are common in ECMO patients (especially neonates and post-ECPR adults) and cannot be detected clinically due to neuromuscular blockade or sedation. Continuous EEG or aEEG monitoring is recommended."
+  },
+  {
+    topic: "Monitoring on ECMO", difficulty: "intermediate",
+    q: "Transcranial Doppler (TCD) during VA ECMO is used to:",
+    opts: [
+      "Measure cardiac output",
+      "Detect cerebral microemboli and assess cerebral blood flow velocity",
+      "Monitor oxygenator function",
+      "Detect limb ischemia"
+    ],
+    ans: 1,
+    exp: "TCD detects cerebral microemboli (gaseous or solid) and assesses cerebral blood flow velocity. In VA ECMO, high embolic load detected by TCD predicts stroke risk and may prompt circuit inspection or change."
+  },
+  {
+    topic: "Monitoring on ECMO", difficulty: "advanced",
+    q: "What does a rising lactate AFTER ECMO initiation indicate?",
+    opts: [
+      "Successful ECMO support — lactate always rises initially",
+      "Inadequate ECMO flow, persistent shock, complications (bleeding, limb ischemia, bowel ischemia), or irreversible organ failure",
+      "Normal ECMO circuit function",
+      "Hyperglycemia"
+    ],
+    ans: 1,
+    exp: "Rising lactate after ECMO initiation is a warning sign. Causes: inadequate ECMO flow (increase support), ongoing hemorrhage, limb ischemia (check DLPC), mesenteric ischemia, or irreversible pre-ECMO organ damage. Lactate clearance is the key outcome marker."
+  },
+
+  // ── SPECIAL POPULATIONS ───────────────────────────────────────────────────
+  {
+    topic: "Special Populations", difficulty: "intermediate",
+    q: "ECMO in pregnancy: what is the primary indication?",
+    opts: [
+      "Elective caesarean section support",
+      "Severe peripartum cardiomyopathy or refractory respiratory failure (H1N1, amniotic fluid embolism)",
+      "Pre-eclampsia management",
+      "Routine obstetric care"
+    ],
+    ans: 1,
+    exp: "ECMO in pregnancy is primarily used for severe peripartum cardiomyopathy, amniotic fluid embolism causing cardiac arrest, or refractory respiratory failure (e.g., H1N1 ARDS). It has been successfully used in both antepartum and postpartum settings."
+  },
+  {
+    topic: "Special Populations", difficulty: "intermediate",
+    q: "Hypothermia-associated cardiac arrest is a particularly favorable indication for ECPR because:",
+    opts: [
+      "Cold temperatures enhance ECMO circuit function",
+      "Hypothermia provides profound cerebral protection — full neurological recovery possible even after prolonged arrest",
+      "Hypothermic patients require no anticoagulation",
+      "ECMO rewarms patients faster than other methods"
+    ],
+    ans: 1,
+    exp: "Hypothermic cardiac arrest (core temp <30°C) provides exceptional cerebral protection. Full neurological recovery has been documented after hours of cardiac arrest in severely hypothermic patients on ECMO rewarming — ECPR is strongly indicated."
+  },
+  {
+    topic: "Special Populations", difficulty: "intermediate",
+    q: "Drug toxicity-related cardiac arrest is an excellent ECPR indication because:",
+    opts: [
+      "Drugs enhance ECMO circuit function",
+      "The cardiac toxicity is reversible once the drug is metabolized or eliminated — ECMO bridges to recovery",
+      "These patients have better coagulation",
+      "Drug overdose patients never need anticoagulation"
+    ],
+    ans: 1,
+    exp: "Drug toxicity (e.g., tricyclic antidepressants, beta-blockers, calcium channel blockers, cocaine) causes reversible cardiac toxicity. ECMO maintains perfusion while the drug is metabolized — excellent neurological recovery is achievable."
+  },
+  {
+    topic: "Special Populations", difficulty: "advanced",
+    q: "ECMO for COVID-19 ARDS: which patient characteristic predicts poor outcome?",
+    opts: [
+      "Age <50 years",
+      "Pre-ECMO mechanical ventilation >10–14 days, obesity grade III, immunosuppression",
+      "PaO2/FiO2 <80",
+      "Bilateral infiltrates on CXR"
+    ],
+    ans: 1,
+    exp: "Poor ECMO outcomes in COVID-19 ARDS are predicted by: prolonged pre-ECMO ventilation (>10–14 days), severe obesity (BMI >40), immunosuppression, and multiple organ failure. ELSO published specific COVID-19 ECMO guidelines."
+  },
+
+  // ── WEANING ADVANCED ──────────────────────────────────────────────────────
+  {
+    topic: "VV ECMO – Respiratory", difficulty: "advanced",
+    q: "During a VV ECMO sweep gas trial, if the patient develops hypercapnia (PaCO2 >60 mmHg) but maintains SpO2 >90%, this indicates:",
+    opts: [
+      "Ready for decannulation — CO2 retention is acceptable",
+      "Native lung cannot handle CO2 elimination independently — weaning criteria not met",
+      "Circuit malfunction",
+      "Need to increase ECMO blood flow"
+    ],
+    ans: 1,
+    exp: "During sweep gas trial, both oxygenation (SpO2 >90%) AND ventilation (PaCO2 <60 mmHg, pH >7.30) must be adequate. Hypercapnia despite adequate oxygenation means the native lung cannot handle CO2 — weaning criteria not fully met."
+  },
+  {
+    topic: "VA ECMO – Cardiac", difficulty: "advanced",
+    q: "A patient fails VA ECMO weaning attempts despite 3 weeks of support. The next appropriate step is:",
+    opts: [
+      "Continue ECMO indefinitely",
+      "Transition to durable mechanical circulatory support (LVAD) or list for heart transplantation",
+      "Immediate decannulation regardless",
+      "Add a second ECMO pump"
+    ],
+    ans: 1,
+    exp: "Failure to wean from VA ECMO after adequate time (typically 2–3 weeks) necessitates escalation — either durable LVAD implantation (bridge to transplant or destination therapy) or direct listing for heart transplantation."
+  },
+
+  // ── CIRCUIT MANAGEMENT ADVANCED ───────────────────────────────────────────
+  {
+    topic: "Circuit & Oxygenator", difficulty: "intermediate",
+    q: "What is the typical lifespan of a modern PMP oxygenator before requiring elective replacement?",
+    opts: ["24–48 hours","3–5 days","2–4 weeks","3–6 months"],
+    ans: 2,
+    exp: "Modern PMP oxygenators typically last 2–4 weeks before requiring elective replacement due to progressive plasma leakage or thrombosis. Some last longer with good anticoagulation. Emergency replacement is done when signs of failure appear."
+  },
+  {
+    topic: "Circuit & Oxygenator", difficulty: "intermediate",
+    q: "Plasma leakage from the oxygenator is identified by:",
+    opts: [
+      "Rising pre-membrane pressure",
+      "Visible yellow/pink fluid in the gas outlet port of the oxygenator",
+      "Falling ECMO flow",
+      "Rising arterial PO2"
+    ],
+    ans: 1,
+    exp: "Plasma leakage (sweep gas contamination with plasma proteins) appears as yellow or pink fluid in the gas outlet. It indicates membrane integrity failure and heralds oxygenator failure — elective replacement should be planned."
+  },
+  {
+    topic: "Circuit & Oxygenator", difficulty: "advanced",
+    q: "During a circuit change, the minimum preparation required includes:",
+    opts: [
+      "Only a new pump head",
+      "Complete pre-primed backup circuit, trained team, blood products available, clear role assignment",
+      "Only a new oxygenator",
+      "Additional anticoagulation dose only"
+    ],
+    ans: 1,
+    exp: "Emergency circuit change requires: pre-primed complete backup circuit, trained team with assigned roles (clamp, swap, restart), blood products immediately available, vasopressors/inotropes ready, and clear communication protocol."
+  },
+
+  // ── ECMO OUTCOMES ─────────────────────────────────────────────────────────
+  {
+    topic: "ECMO Outcomes", difficulty: "basic",
+    q: "According to ELSO registry data, overall survival to hospital discharge for adult VV ECMO is approximately:",
+    opts: ["20–30%","50–60%","80–90%","95–100%"],
+    ans: 1,
+    exp: "ELSO registry data shows approximately 55–60% survival to hospital discharge for adult VV ECMO (respiratory). Outcomes vary significantly by indication and center volume."
+  },
+  {
+    topic: "ECMO Outcomes", difficulty: "basic",
+    q: "According to ELSO registry data, overall survival to hospital discharge for adult VA ECMO is approximately:",
+    opts: ["10–15%","40–50%","70–80%","90–95%"],
+    ans: 1,
+    exp: "Adult VA ECMO survival to hospital discharge is approximately 40–50% per ELSO registry. This is lower than VV ECMO due to the severity of underlying cardiac disease and associated organ failure."
+  },
+  {
+    topic: "ECMO Outcomes", difficulty: "intermediate",
+    q: "Center volume is an important predictor of ECMO outcomes because:",
+    opts: [
+      "High-volume centers have better equipment",
+      "Higher volume correlates with improved team experience, protocols, and rescue capabilities leading to better survival",
+      "Low-volume centers charge more",
+      "Center volume has no effect on outcomes"
+    ],
+    ans: 1,
+    exp: "Higher ECMO center volume is consistently associated with better survival. Experienced teams develop optimized protocols, rapid response to complications, and efficient crisis management — all translating to improved outcomes."
+  },
+  {
+    topic: "ECMO Outcomes", difficulty: "intermediate",
+    q: "Lactate clearance on ECMO is defined as adequate when:",
+    opts: [
+      "Lactate drops by any amount at 6 hours",
+      "Lactate decreases ≥10–20% per hour or normalizes (<2 mmol/L) within 12–24 hours of ECMO initiation",
+      "Lactate reaches 5 mmol/L at 48 hours",
+      "Lactate is unchanged at 24 hours"
+    ],
+    ans: 1,
+    exp: "Adequate lactate clearance (≥10–20% per hour or normalization within 12–24 hours) is the most important early prognostic marker on ECMO. Failure to clear lactate at 24 hours predicts poor survival and guides escalation decisions."
+  },
+
+  // ── ECMO PROGRAM STRUCTURE ────────────────────────────────────────────────
+  {
+    topic: "ECMO Program", difficulty: "basic",
+    q: "The ELSO organization primarily serves which function?",
+    opts: [
+      "Regulatory body that approves ECMO centers",
+      "International registry, education, and guideline development organization for ECLS",
+      "Manufacturer of ECMO equipment",
+      "Insurance provider for ECMO procedures"
+    ],
+    ans: 1,
+    exp: "ELSO (Extracorporeal Life Support Organization) is an international consortium that maintains the ELSO registry (world's largest ECMO database), publishes guidelines, provides education, and promotes ECLS research."
+  },
+  {
+    topic: "ECMO Program", difficulty: "intermediate",
+    q: "Minimum recommended team composition for a bedside ECMO run includes:",
+    opts: [
+      "Only the attending physician",
+      "Physician, ECMO specialist/perfusionist, bedside nurse, and respiratory therapist",
+      "Two nurses only",
+      "Perfusionist only"
+    ],
+    ans: 1,
+    exp: "A complete ECMO bedside team includes: physician (management decisions), ECMO specialist/perfusionist (circuit management), bedside nurse (patient care), and respiratory therapist (ventilator management). Clear roles prevent errors."
+  },
+  {
+    topic: "ECMO Program", difficulty: "intermediate",
+    q: "ECMO specialists (perfusionists/nurses) should maintain competency through:",
+    opts: [
+      "Annual reading of the ELSO Red Book only",
+      "Regular simulation training, minimum case volume, competency assessments, and emergency drills",
+      "One annual certification exam only",
+      "No formal competency maintenance required"
+    ],
+    ans: 1,
+    exp: "ECMO specialist competency requires: regular simulation-based training (especially crisis management), maintaining minimum ECMO case volume, structured competency assessments, and regular emergency scenario drills."
+  },
+
+  // ── ECMO AND RENAL FAILURE ────────────────────────────────────────────────
+  {
+    topic: "Adverse Effects", difficulty: "intermediate",
+    q: "Acute kidney injury (AKI) on ECMO occurs in approximately what percentage of patients?",
+    opts: ["5–10%","20–30%","50–70%","90–100%"],
+    ans: 2,
+    exp: "AKI occurs in 50–70% of ECMO patients due to pre-existing shock, hemolysis, inflammatory activation, and non-pulsatile flow. CRRT is required in 30–50% of ECMO runs."
+  },
+  {
+    topic: "Adverse Effects", difficulty: "intermediate",
+    q: "Non-pulsatile flow in VA ECMO affects the kidneys by:",
+    opts: [
+      "Increasing renal blood flow",
+      "Reducing renal perfusion pressure and activating RAAS — contributing to AKI",
+      "Having no effect on renal function",
+      "Causing direct tubular toxicity"
+    ],
+    ans: 1,
+    exp: "Non-pulsatile VA ECMO flow reduces mean arterial pulsatility → activates renin-angiotensin-aldosterone system (RAAS) → renal vasoconstriction. Combined with pre-existing shock and hemoglobinuria, this contributes significantly to ECMO-associated AKI."
+  },
+
+  // ── ECMO AND INFECTION ────────────────────────────────────────────────────
+  {
+    topic: "Adverse Effects", difficulty: "intermediate",
+    q: "The most common organism causing circuit-related bloodstream infection in ECMO is:",
+    opts: ["Staphylococcus aureus","Candida species and coagulase-negative Staphylococci","Pseudomonas aeruginosa","Streptococcus pneumoniae"],
+    ans: 1,
+    exp: "Coagulase-negative Staphylococci (CNS) and Candida species are the most common organisms in ECMO-associated bloodstream infections, reflecting skin flora introduction at cannulation sites and prolonged central access."
+  },
+  {
+    topic: "Adverse Effects", difficulty: "advanced",
+    q: "Antifungal prophylaxis during ECMO is considered because:",
+    opts: [
+      "All ECMO patients develop fungal infections",
+      "Prolonged ECMO with broad-spectrum antibiotics, TPN, and immunosuppression creates high Candida risk — some centers use fluconazole prophylaxis",
+      "Antifungals improve oxygenator function",
+      "Fungal infections are impossible on ECMO"
+    ],
+    ans: 1,
+    exp: "Risk factors for invasive candidiasis on ECMO: prolonged duration, broad-spectrum antibiotics, TPN use, renal replacement therapy, immunosuppression. Some centers use fluconazole prophylaxis for runs >7–10 days, though evidence is limited."
+  },
+
+  // ── SEDATION AND ANALGESIA ────────────────────────────────────────────────
+  {
+    topic: "Sedation on ECMO", difficulty: "intermediate",
+    q: "Why is sedation management particularly challenging in ECMO patients?",
+    opts: [
+      "ECMO patients are always deeply sedated by protocol",
+      "Circuit sequestration of lipophilic drugs increases required doses; drug monitoring is essential to avoid under/over-sedation",
+      "Sedatives are contraindicated on ECMO",
+      "ECMO eliminates the need for sedation"
+    ],
+    ans: 1,
+    exp: "Lipophilic sedatives (fentanyl, midazolam, propofol) are adsorbed by ECMO circuits — often requiring 2–4× standard doses initially. Over time, saturation occurs and levels may rise. Dose titration guided by clinical assessment and drug levels is essential."
+  },
+  {
+    topic: "Sedation on ECMO", difficulty: "intermediate",
+    q: "Dexmedetomidine as a sedative agent in ECMO patients offers which advantage?",
+    opts: [
+      "Strong circuit sequestration — predictable levels",
+      "Preserves respiratory drive and allows awake/ambulatory ECMO — particularly valuable for VV ECMO bridge-to-transplant",
+      "Eliminates need for analgesia",
+      "No drug interactions on ECMO"
+    ],
+    ans: 1,
+    exp: "Dexmedetomidine provides sedation while preserving spontaneous breathing and allowing patient cooperation. This makes it ideal for awake VV ECMO protocols (ambulatory ECMO), where maintaining respiratory effort and mobility improves transplant outcomes."
+  },
+
+  // ── ECMO ETHICS ───────────────────────────────────────────────────────────
+  {
+    topic: "ECMO Ethics", difficulty: "intermediate",
+    q: "When should goals-of-care discussions occur in ECMO patients?",
+    opts: [
+      "Only at the time of ECMO decannulation",
+      "Early — ideally before initiation and regularly throughout the ECMO run as prognosis evolves",
+      "Only if family requests them",
+      "After 30 days of ECMO"
+    ],
+    ans: 1,
+    exp: "Goals-of-care discussions should occur before ECMO initiation (when possible), within 24–48 hours of initiation, and regularly thereafter as clinical trajectory becomes clearer. Early communication prevents futile ECMO runs and supports families."
+  },
+  {
+    topic: "ECMO Ethics", difficulty: "advanced",
+    q: "Withdrawal of ECMO support in a patient with no recovery potential is ethically:",
+    opts: [
+      "Never permissible — ECMO must continue indefinitely",
+      "Permissible when continuation is futile — equivalent to withdrawing other life support after shared decision-making with family and team",
+      "Only permissible if the patient requested it before losing capacity",
+      "A criminal act in all jurisdictions"
+    ],
+    ans: 1,
+    exp: "ECMO withdrawal is ethically equivalent to withdrawing mechanical ventilation or vasopressors when continuation is futile. It requires: team consensus, clear communication with family, palliative care involvement, and documentation of decision-making process."
+  },
+
+  // ── ECMO AND REHABILITATION ───────────────────────────────────────────────
+  {
+    topic: "Rehabilitation on ECMO", difficulty: "intermediate",
+    q: "Early mobilization during VV ECMO is associated with:",
+    opts: [
+      "High cannula dislodgement rate — should be avoided",
+      "Improved physical function, reduced ICU-acquired weakness, and better post-transplant outcomes when done safely",
+      "No clinical benefit",
+      "Increased mortality"
+    ],
+    ans: 1,
+    exp: "Early mobilization (sitting, standing, ambulation) during VV ECMO is safe when performed by experienced teams with proper cannula securement. It reduces ICU-acquired weakness, maintains physical conditioning, and improves outcomes particularly in bridge-to-transplant patients."
+  },
+  {
+    topic: "Rehabilitation on ECMO", difficulty: "intermediate",
+    q: "Criteria for safely initiating mobilization in a VV ECMO patient include:",
+    opts: [
+      "Any VV ECMO patient can be mobilized immediately",
+      "Hemodynamic stability, adequate ECMO flow, secure cannulas, cooperative patient, experienced team present",
+      "Mobilization requires decannulation first",
+      "Only passive range of motion is permitted"
+    ],
+    ans: 1,
+    exp: "Safe mobilization criteria: hemodynamic stability (MAP >65 without escalating vasopressors), adequate ECMO flow, properly secured cannulas, cooperative and communicating patient, and a dedicated experienced physiotherapy/ECMO team present throughout."
+  },
+
+  // ── ADDITIONAL PHYSIOLOGY ─────────────────────────────────────────────────
+  {
+    topic: "Physiology", difficulty: "advanced",
+    q: "In VV ECMO, why does increasing native cardiac output NOT always improve oxygenation?",
+    opts: [
+      "Higher cardiac output reduces ECMO flow automatically",
+      "Higher cardiac output increases the fraction of non-ECMO blood (deoxygenated) mixing with ECMO-oxygenated blood, potentially diluting SaO2",
+      "Native cardiac output has no effect on oxygenation on VV ECMO",
+      "Higher cardiac output causes recirculation"
+    ],
+    ans: 1,
+    exp: "Counterintuitively, higher native CO on VV ECMO can dilute the oxygenated ECMO return with deoxygenated native venous blood. The fraction of total CO provided by ECMO (ECMO flow/total CO) determines how much oxygenation improvement occurs."
+  },
+  {
+    topic: "Physiology", difficulty: "advanced",
+    q: "The Fick principle applied to ECMO states that:",
+    opts: [
+      "ECMO flow equals cardiac output",
+      "VO2 = CO × (CaO2 − CvO2) × 10 — ECMO flow must be sufficient to provide adequate DO2 to meet VO2",
+      "SvO2 always equals 75% on ECMO",
+      "PaO2 determines cardiac output"
+    ],
+    ans: 1,
+    exp: "The Fick principle: VO2 = CO × (CaO2 − CvO2) × 10. On ECMO, total 'cardiac output' = native CO + ECMO flow. ECMO flow must be set to ensure total DO2 exceeds VO2 by sufficient margin (SvO2 >65–70%)."
+  },
+  {
+    topic: "Physiology", difficulty: "intermediate",
+    q: "In VA ECMO, mean arterial pressure (MAP) is primarily determined by:",
+    opts: [
+      "ECMO blood flow only",
+      "The combination of ECMO flow (cardiac output) × systemic vascular resistance (SVR)",
+      "Sweep gas settings",
+      "Oxygenator type"
+    ],
+    ans: 1,
+    exp: "MAP = CO × SVR. In VA ECMO, CO is largely provided by the pump. MAP is therefore determined by ECMO flow rate and SVR. Vasopressors increase SVR → increase MAP at same flow. High SVR increases LV afterload."
+  },
+
+  // ── ADVANCED NOMENCLATURE ─────────────────────────────────────────────────
+  {
+    topic: "Nomenclature", difficulty: "advanced",
+    q: "What is the difference between ECMO and ECLS?",
+    opts: [
+      "They are identical terms",
+      "ECLS is the broader term encompassing all extracorporeal support; ECMO specifically refers to systems providing both oxygenation and CO2 removal",
+      "ECMO is only for neonates",
+      "ECLS only refers to cardiac support"
+    ],
+    ans: 1,
+    exp: "ECLS (Extracorporeal Life Support) is the umbrella term for all extracorporeal cardiopulmonary support systems. ECMO is a subset providing membrane oxygenation. ECCO2R (another subset) focuses primarily on CO2 removal without full oxygenation support."
+  },
+  {
+    topic: "Nomenclature", difficulty: "intermediate",
+    q: "VVA ECMO configuration refers to:",
+    opts: [
+      "Two venous drainage cannulas and one arterial return",
+      "One venous drainage and two returns — one venous and one arterial — for combined respiratory and cardiac support",
+      "Three venous cannulas",
+      "Venoarterial ECMO via axillary access only"
+    ],
+    ans: 1,
+    exp: "VVA ECMO has one drainage cannula and two return cannulas (one venous for respiratory support, one arterial for cardiac support). It differs from VAV where there are two drainage cannulas and one return."
+  },
+
+  // ── ADDITIONAL CRISIS MANAGEMENT ──────────────────────────────────────────
+  {
+    topic: "Crisis Management", difficulty: "intermediate",
+    q: "Sudden loss of ECMO flow with low pre-membrane pressure suggests:",
+    opts: [
+      "Oxygenator thrombosis",
+      "Pump failure or severe hypovolemia causing venous collapse",
+      "Arterial cannula obstruction",
+      "Air in the arterial limb"
+    ],
+    ans: 1,
+    exp: "Low pre-membrane pressure with low flow suggests pump failure (no output) or venous collapse (insufficient preload). Distinguish from oxygenator clot which shows HIGH pre-membrane pressure. Check pump function and volume status immediately."
+  },
+  {
+    topic: "Crisis Management", difficulty: "advanced",
+    q: "A patient on VA ECMO suddenly loses all pulses and the monitor shows VF. The ECMO is still running. What is the correct immediate action?",
+    opts: [
+      "Start chest compressions and defibrillate immediately — treat as standard ACLS",
+      "Increase ECMO flow to maximum, defibrillate promptly, continue ECMO — CPR may not be needed if ECMO flow is adequate",
+      "Stop ECMO and start CPR",
+      "Decannulate and start CPR"
+    ],
+    ans: 1,
+    exp: "VA ECMO running at adequate flow maintains organ perfusion even during VF. Priority: maximize ECMO flow → defibrillate promptly → treat reversible cause (check ACT, electrolytes, ischemia). Chest compressions may not be needed if ECMO maintains adequate MAP."
+  },
+
+  // ── ADDITIONAL CANNULATION ────────────────────────────────────────────────
+  {
+    topic: "Cannulation", difficulty: "advanced",
+    q: "In femoral VA ECMO, the optimal arterial cannula tip position is:",
+    opts: [
+      "In the thoracic aorta",
+      "In the descending aorta at the level of the diaphragm — avoiding renal arteries",
+      "In the femoral artery only",
+      "In the iliac artery"
+    ],
+    ans: 1,
+    exp: "The arterial return cannula tip should be in the descending thoracic aorta (just above the diaphragm), confirmed by CXR. Too proximal risks aortic arch interference; too distal risks competitive flow issues with visceral arteries."
+  },
+  {
+    topic: "Cannulation", difficulty: "intermediate",
+    q: "Which imaging modality is preferred for real-time cannula guidance during ECMO insertion?",
+    opts: [
+      "CT scan",
+      "Transesophageal echocardiography (TEE) or transthoracic echo (TTE) combined with fluoroscopy",
+      "MRI",
+      "Chest X-ray only"
+    ],
+    ans: 1,
+    exp: "TEE provides real-time visualization of guidewires, dilators, and cannula tips in cardiac chambers and great vessels. Fluoroscopy assists with vessel access. TTE can be used when TEE is not available. CXR confirms final position."
+  },
+
+  // ── ADDITIONAL ANTICOAGULATION ────────────────────────────────────────────
+  {
+    topic: "Anticoagulation", difficulty: "intermediate",
+    q: "Anti-Xa monitoring vs ACT monitoring for heparin in ECMO — what is the advantage of anti-Xa?",
+    opts: [
+      "Anti-Xa is cheaper and faster",
+      "Anti-Xa directly measures heparin effect on Factor Xa — more specific and less affected by hemodilution, hypothermia, and thrombocytopenia than ACT",
+      "ACT is more specific for heparin effect",
+      "Both tests are equivalent in all situations"
+    ],
+    ans: 1,
+    exp: "Anti-Xa levels directly measure heparin's inhibitory effect on Factor Xa, making them more specific. ACT is affected by hemodilution, thrombocytopenia, hypothermia, and platelet dysfunction — common in ECMO patients. Anti-Xa target: 0.3–0.7 IU/mL."
+  },
+  {
+    topic: "Anticoagulation", difficulty: "advanced",
+    q: "Heparin resistance during ECMO is defined as:",
+    opts: [
+      "ACT >300 seconds",
+      "Failure to achieve target ACT/anti-Xa despite escalating heparin doses — often due to antithrombin III (AT III) deficiency",
+      "Patient allergy to heparin",
+      "Low platelet count on heparin"
+    ],
+    ans: 1,
+    exp: "Heparin resistance occurs when therapeutic anticoagulation cannot be achieved despite high heparin doses. The most common cause on ECMO is AT III deficiency (heparin requires AT III to work). Treatment: fresh frozen plasma or AT III concentrate."
+  },
+
+  // ── ADDITIONAL VA ECMO ────────────────────────────────────────────────────
+  {
+    topic: "VA ECMO – Cardiac", difficulty: "intermediate",
+    q: "The IABP (intra-aortic balloon pump) combined with VA ECMO primarily provides:",
+    opts: [
+      "Significant LV unloading comparable to Impella",
+      "Modest LV afterload reduction and coronary perfusion enhancement — less effective than Impella for LV unloading",
+      "RV support",
+      "Additional oxygenation"
+    ],
+    ans: 1,
+    exp: "IABP in combination with VA ECMO provides modest LV afterload reduction (diastolic augmentation + systolic unloading) and improves coronary perfusion. However, it provides significantly less LV unloading than Impella and is insufficient for severe LV distension."
+  },
+  {
+    topic: "VA ECMO – Cardiac", difficulty: "advanced",
+    q: "The ECMO-SELLA trial investigated:",
+    opts: [
+      "VV ECMO vs conventional ventilation in ARDS",
+      "Early vs late LV unloading with Impella in VA ECMO for cardiogenic shock",
+      "ECPR outcomes in OHCA",
+      "Anticoagulation targets in VA ECMO"
+    ],
+    ans: 1,
+    exp: "ECMO-SELLA was a randomized trial examining early (immediate) vs delayed LV unloading with Impella CP in patients on VA ECMO for cardiogenic shock. Results informed timing strategies for combined ECMO + Impella (ECPELLA) therapy."
+  },
+  {
+    topic: "VA ECMO – Cardiac", difficulty: "intermediate",
+    q: "ECPELLA refers to:",
+    opts: [
+      "A new type of ECMO circuit",
+      "Combined use of VA ECMO and Impella simultaneously for maximal cardiac support and LV unloading",
+      "An anticoagulation protocol",
+      "Emergency ECMO cannulation technique"
+    ],
+    ans: 1,
+    exp: "ECPELLA = VA ECMO + Impella. VA ECMO provides systemic circulatory support while Impella directly unloads the LV. This combination provides maximal hemodynamic support and actively prevents LV distension in severe cardiogenic shock."
+  },
+
+  // ── ADDITIONAL VV ECMO ────────────────────────────────────────────────────
+  {
+    topic: "VV ECMO – Respiratory", difficulty: "intermediate",
+    q: "The CESAR trial (2009) demonstrated that:",
+    opts: [
+      "VV ECMO had no benefit over conventional ventilation",
+      "Transfer to an ECMO-capable center (with ECMO available if needed) improved 6-month survival without severe disability",
+      "ECMO should be used for all ARDS patients",
+      "ECMO caused more harm than conventional ventilation"
+    ],
+    ans: 1,
+    exp: "CESAR showed that transfer to an ECMO center improved 6-month survival without severe disability (63% vs 47%). Notably, not all transferred patients received ECMO — the benefit may partly reflect superior overall critical care at ECMO centers."
+  },
+  {
+    topic: "VV ECMO – Respiratory", difficulty: "advanced",
+    q: "Inhaled nitric oxide (iNO) before VV ECMO initiation serves which purpose?",
+    opts: [
+      "Replaces the need for ECMO",
+      "Reduces pulmonary vascular resistance and RV afterload — a rescue measure while ECMO is being prepared, or in patients with refractory hypoxemia and RV failure",
+      "Improves oxygenator performance",
+      "Anticoagulates the pulmonary circuit"
+    ],
+    ans: 1,
+    exp: "iNO selectively dilates ventilated lung segments, improving V/Q matching and reducing RV afterload. In severe ARDS with RV failure, iNO can provide temporary improvement while ECMO is being set up or as an adjunct to ECMO."
+  },
+
+  // ── ADDITIONAL ADVERSE EFFECTS ────────────────────────────────────────────
+  {
+    topic: "Adverse Effects", difficulty: "advanced",
+    q: "Acquired von Willebrand syndrome (AVWS) in ECMO is caused by:",
+    opts: [
+      "Heparin destroying vWF",
+      "High shear stress from the centrifugal pump cleaving large vWF multimers — reducing platelet adhesion and worsening bleeding",
+      "Thrombocytopenia reducing vWF release",
+      "Antibiotic use on ECMO"
+    ],
+    ans: 1,
+    exp: "AVWS in ECMO: high shear stress from centrifugal pump cleaves large vWF multimers (most hemostatically active). This impairs platelet adhesion and contributes to bleeding despite normal platelet count. Diagnosed with vWF multimer analysis."
+  },
+  {
+    topic: "Adverse Effects", difficulty: "advanced",
+    q: "Thrombocytopenia in ECMO should prompt evaluation for HIT when:",
+    opts: [
+      "Platelet count drops below 150 at any time",
+      "Platelet count drops >50% from baseline after day 4 of heparin, especially with new thrombosis",
+      "Platelets are below 50 at any time on ECMO",
+      "Any platelet drop in the first 24 hours"
+    ],
+    ans: 1,
+    exp: "HIT probability is assessed by the 4T score: Thrombocytopenia (>50% drop), Timing (day 4–10 of heparin), Thrombosis (new clot), other causes absence. Day 1–3 platelet drop suggests hemodilution/consumption, not HIT. Confirm with anti-PF4 ELISA."
+  },
+
+  // ── ADDITIONAL MONITORING ─────────────────────────────────────────────────
+  {
+    topic: "Monitoring on ECMO", difficulty: "intermediate",
+    q: "Point-of-care testing (POCT) is preferred over laboratory testing for anticoagulation monitoring on ECMO because:",
+    opts: [
+      "POCT is more accurate than laboratory tests",
+      "Rapid turnaround allows timely dose adjustments — critical in dynamic ECMO patients where anticoagulation needs change frequently",
+      "Laboratory tests cannot measure ACT",
+      "POCT is cheaper"
+    ],
+    ans: 1,
+    exp: "ACT can be measured at bedside within minutes using POCT, enabling rapid heparin dose adjustments. Laboratory anti-Xa results take 60–90 minutes — too slow for emergent situations. Best practice uses both: POCT for rapid adjustment, anti-Xa for accuracy."
+  },
+
+  // ── FINAL MIXED QUESTIONS ─────────────────────────────────────────────────
+  {
+    topic: "Physiology", difficulty: "intermediate",
+    q: "In a patient on VV ECMO with SvO2 of 55% at the drainage cannula, what is the most appropriate immediate action?",
+    opts: [
+      "Reduce sweep gas flow",
+      "Increase ECMO blood flow, check hemoglobin (transfuse if <10), reduce metabolic demand, check for recirculation",
+      "Reduce ECMO flow",
+      "Increase vasopressor dose only"
+    ],
+    ans: 1,
+    exp: "SvO2 <65% indicates inadequate DO2. Systematic approach: (1) increase ECMO flow to maximum tolerated, (2) transfuse if Hgb <10 g/dL, (3) treat fever/agitation to reduce VO2, (4) check for recirculation, (5) optimize native lung function."
+  },
+  {
+    topic: "VA ECMO – Cardiac", difficulty: "basic",
+    q: "Which vasopressor is generally preferred in VA ECMO for cardiogenic shock?",
+    opts: [
+      "High-dose norepinephrine (>0.5 mcg/kg/min)",
+      "Low-dose norepinephrine to maintain MAP 65–75 mmHg — high doses increase afterload and worsen LV distension",
+      "Vasopressin as first-line agent",
+      "Phenylephrine — pure alpha agonist preferred"
+    ],
+    ans: 1,
+    exp: "Low-dose norepinephrine to maintain MAP 65–75 mmHg is preferred. High-dose vasopressors increase SVR → worsen LV afterload → risk LV distension. Target the minimum vasopressor needed to achieve adequate MAP."
+  },
+  {
+    topic: "Nomenclature", difficulty: "basic",
+    q: "In ECMO documentation, 'VV femoro-jugular' means:",
+    opts: [
+      "Femoral artery return and jugular vein drainage",
+      "Femoral vein drainage and internal jugular vein return",
+      "Both cannulas in the femoral vein",
+      "Femoral vein drainage and femoral artery return"
+    ],
+    ans: 1,
+    exp: "VV femoro-jugular ECMO: drainage cannula in the femoral vein (tip at IVC-RA junction) and return cannula in the internal jugular vein (tip toward tricuspid valve). This configuration maximizes separation between drainage and return, minimizing recirculation."
+  },
+  {
+    topic: "Circuit & Oxygenator", difficulty: "intermediate",
+    q: "What is the purpose of the 'recirculation bridge' in an ECMO circuit?",
+    opts: [
+      "It connects the arterial and venous limbs to allow circuit priming and emergency bypass of the patient",
+      "It increases ECMO flow",
+      "It allows CO2 to recirculate",
+      "It measures circuit pressure"
+    ],
+    ans: 0,
+    exp: "The recirculation bridge (trial-off loop) connects the arterial and venous limbs of the circuit. It allows the circuit to be kept running during cannula clamping for weaning trials, circuit changes, or brief patient disconnection — maintaining circuit patency."
+  },
+  {
+    topic: "ECMO Outcomes", difficulty: "advanced",
+    q: "The 'survival gap' in ECMO refers to:",
+    opts: [
+      "Difference in survival between VV and VA ECMO",
+      "Patients who survive ECMO but die before hospital discharge — highlighting the importance of post-ECMO ICU management",
+      "Survival difference between centers",
+      "Time gap between ECMO initiation and recovery"
+    ],
+    ans: 1,
+    exp: "The survival gap describes patients who are successfully weaned from ECMO but subsequently die before hospital discharge (10–20% of weaned patients). This highlights that ECMO decannulation is not the endpoint — comprehensive post-ECMO ICU management is equally critical."
+  },
+  {
+    topic: "Neonatal ECMO", difficulty: "intermediate",
+    q: "Intraventricular hemorrhage (IVH) risk in neonatal ECMO is highest in which group?",
+    opts: [
+      "Term neonates >37 weeks",
+      "Premature neonates <34 weeks — fragile germinal matrix vessels cannot tolerate systemic anticoagulation",
+      "Neonates >4 kg",
+      "Neonates with cardiac disease only"
+    ],
+    ans: 1,
+    exp: "Premature neonates <34 weeks have fragile germinal matrix vasculature highly susceptible to hemorrhage under anticoagulation. IVH grade III-IV is a contraindication to ECMO. This is the primary reason gestational age ≥34 weeks is required."
+  },
+  {
+    topic: "ECMO Ethics", difficulty: "intermediate",
+    q: "Informed consent for emergent ECMO is:",
+    opts: [
+      "Always required before initiation — ECMO cannot proceed without it",
+      "May be deferred in life-threatening emergencies — retrospective consent or surrogate consent obtained as soon as possible",
+      "Never required for ECMO",
+      "Only required for VV ECMO, not VA ECMO"
+    ],
+    ans: 1,
+    exp: "In life-threatening emergencies requiring immediate ECMO, initiating support can precede formal informed consent under emergency implied consent doctrine. Consent from the patient (if capacitated) or surrogate is obtained as soon as practically possible."
+  },
+  {
+    topic: "Rehabilitation on ECMO", difficulty: "advanced",
+    q: "Post-ECMO survivors commonly experience which long-term complication?",
+    opts: [
+      "No long-term complications",
+      "Post-intensive care syndrome (PICS) — cognitive impairment, psychological disorders (PTSD, anxiety, depression), and physical deconditioning",
+      "Only physical deconditioning",
+      "Permanent dependence on supplemental oxygen"
+    ],
+    ans: 1,
+    exp: "Post-intensive care syndrome (PICS) affects the majority of ECMO survivors: cognitive impairment (memory, attention), psychological sequelae (PTSD 25–30%, depression, anxiety), and physical deconditioning. Long-term multidisciplinary follow-up is essential."
   }
 ];
 
@@ -1257,7 +2186,18 @@ function startExam() {
       vv: "VV ECMO – Respiratory",
       va: "VA ECMO – Cardiac",
       ecpr: "ECPR",
-      anticoag: "Anticoagulation"
+      anticoag: "Anticoagulation",
+      neonatal: "Neonatal ECMO",
+      pediatric: "Pediatric ECMO",
+      transport: "Transport on ECMO",
+      nutrition: "Nutrition on ECMO",
+      monitoring: "Monitoring on ECMO",
+      special: "Special Populations",
+      outcomes: "ECMO Outcomes",
+      ethics: "ECMO Ethics",
+      rehab: "Rehabilitation on ECMO",
+      sedation: "Sedation on ECMO",
+      program: "ECMO Program",
     };
     pool = pool.filter(q => q.topic === topicMap[config.topic]);
   }
