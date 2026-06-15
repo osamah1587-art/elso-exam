@@ -10,31 +10,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="theme-color" content="#020817" id="meta-theme">
 <link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgMjAwIj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgcng9IjQwIiBmaWxsPSIjMDIwODE3Ii8+PGNpcmNsZSBjeD0iMTAwIiBjeT0iMTAwIiByPSI3NSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJ1cmwoI2cpIiBzdHJva2Utd2lkdGg9IjgiLz48dGV4dCB4PSI1MCUiIHk9IjQ4JSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXdlaWdodD0iOTAwIiBmb250LXNpemU9IjQ4IiBmaWxsPSIjMDZiNmQ0Ij5FQ01PPC90ZXh0Pjx0ZXh0IHg9IjUwJSIgeT0iNjglIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtd2VpZ2h0PSI3MDAiIGZvbnQtc2l6ZT0iMjAiIGZpbGw9IiNhNzhiZmEiPkVYQU08L3RleHQ+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJnIiB4MT0iMCUiIHkxPSIwJSIgeDI9IjEwMCUiIHkyPSIxMDAlIj48c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjMDZiNmQ0Ii8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjOGI1Y2Y2Ii8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PC9zdmc+">
-<script>
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    const manifest = {
-      name: 'ECMO Exam Simulator',
-      short_name: 'ECMO Exam',
-      start_url: '.',
-      display: 'standalone',
-      background_color: '#020817',
-      theme_color: '#020817',
-      icons: [{
-        src: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgMjAwIj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgcng9IjQwIiBmaWxsPSIjMDIwODE3Ii8+PGNpcmNsZSBjeD0iMTAwIiBjeT0iMTAwIiByPSI3NSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJ1cmwoI2cpIiBzdHJva2Utd2lkdGg9IjgiLz48dGV4dCB4PSI1MCUiIHk9IjQ4JSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXdlaWdodD0iOTAwIiBmb250LXNpemU9IjQ4IiBmaWxsPSIjMDZiNmQ0Ij5FQ01PPC90ZXh0Pjx0ZXh0IHg9IjUwJSIgeT0iNjglIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtd2VpZ2h0PSI3MDAiIGZvbnQtc2l6ZT0iMjAiIGZpbGw9IiNhNzhiZmEiPkVYQU08L3RleHQ+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJnIiB4MT0iMCUiIHkxPSIwJSIgeDI9IjEwMCUiIHkyPSIxMDAlIj48c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjMDZiNmQ0Ii8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjOGI1Y2Y2Ii8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PC9zdmc+",
-        sizes: "192x192",
-        type: "image/svg+xml"
-      }]
-    };
-    const blob = new Blob([JSON.stringify(manifest)], {type: 'application/json'});
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement('link');
-    link.rel = 'manifest';
-    link.href = url;
-    document.head.appendChild(link);
-  });
-}
-</script>
+<link rel="manifest" href="manifest.json">
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
 
