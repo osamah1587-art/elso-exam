@@ -8,7 +8,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="ECMO Exam">
 <meta name="mobile-web-app-capable" content="yes">
-<meta name="theme-color" content="#020817">
+<meta name="theme-color" content="#020817" id="meta-theme">
 <link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgMjAwIj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgcng9IjQwIiBmaWxsPSIjMDIwODE3Ii8+PGNpcmNsZSBjeD0iMTAwIiBjeT0iMTAwIiByPSI3NSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJ1cmwoI2cpIiBzdHJva2Utd2lkdGg9IjgiLz48dGV4dCB4PSI1MCUiIHk9IjQ4JSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXdlaWdodD0iOTAwIiBmb250LXNpemU9IjQ4IiBmaWxsPSIjMDZiNmQ0Ij5FQ01PPC90ZXh0Pjx0ZXh0IHg9IjUwJSIgeT0iNjglIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtd2VpZ2h0PSI3MDAiIGZvbnQtc2l6ZT0iMjAiIGZpbGw9IiNhNzhiZmEiPkVYQU08L3RleHQ+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJnIiB4MT0iMCUiIHkxPSIwJSIgeDI9IjEwMCUiIHkyPSIxMDAlIj48c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjMDZiNmQ0Ii8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjOGI1Y2Y2Ii8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PC9zdmc+">
 <script>
 if ('serviceWorker' in navigator) {
@@ -37,16 +37,93 @@ if ('serviceWorker' in navigator) {
 </script>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { background: #020817; color: #e2e8f0; font-family: 'Segoe UI', system-ui, sans-serif; min-height: 100vh; }
+
+  /* ── DARK MODE (default) ── */
+  body {
+    background: #020817;
+    color: #e2e8f0;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    min-height: 100vh;
+    transition: background .25s, color .25s;
+  }
+
+  /* ── LIGHT MODE ── */
+  body.light { background: #F0F4F8; color: #1A202C; }
+  body.light .card { background: #FFFFFF; border-color: #CBD5E0; }
+  body.light .chip { background: #E2E8F0; border-color: #CBD5E0; color: #4A5568; }
+  body.light .chip.active { background: linear-gradient(135deg,#06b6d4,#8b5cf6); border-color: transparent; color: #fff; }
+  body.light .label { color: #4A5568; }
+  body.light .logo p { color: #718096; }
+  body.light .source-note { color: #A0AEC0; }
+  body.light .btn-exit { background: #EDF2F7; border-color: #CBD5E0; color: #4A5568; }
+  body.light .progress-info { color: #718096; }
+  body.light .progress-bar { background: #E2E8F0; }
+  body.light .q-meta { color: #718096; }
+  body.light .q-text { color: #1A202C; }
+  body.light .opt-btn { background: #EDF2F7; border-color: #CBD5E0; color: #1A202C; }
+  body.light .opt-btn:hover:not(:disabled) { border-color: #3b82f6; background: #EBF8FF; }
+  body.light .opt-btn.correct { background: #F0FFF4; border-color: #22c55e; color: #276749; }
+  body.light .opt-btn.wrong { background: #FFF5F5; border-color: #ef4444; color: #9B2C2C; }
+  body.light .opt-btn.reveal { background: #F7FAFC; border-color: #E2E8F0; color: #A0AEC0; }
+  body.light .explanation { background: #EBF8FF; border-color: #90CDF4; color: #2C5282; }
+  body.light .explanation strong { color: #2B6CB0; }
+  body.light .stat-row { border-color: #E2E8F0; }
+  body.light .stat-label { color: #718096; }
+  body.light .stat-val { color: #1A202C; }
+  body.light .nav-tab { background: #EDF2F7; color: #718096; border-color: #E2E8F0; }
+  body.light .nav-tab.active { background: linear-gradient(135deg,#0891b2,#7c3aed); color: #fff; }
+  body.light .topic-bar-bg { background: #E2E8F0; }
+  body.light .streak-box { background: #FFFFFF; border-color: #E2E8F0; }
+  body.light .streak-label { color: #718096; }
+  body.light .mastery-beginner { background: #EDF2F7; color: #718096; }
+  body.light .mastery-competent { background: #EBF8FF; color: #2C5282; }
+  body.light .mastery-proficient { background: #F0FFF4; color: #276749; }
+  body.light .mastery-expert { background: #FFFFF0; color: #744210; }
+  body.light .review-item { border-color: #E2E8F0; }
+  body.light .review-q { color: #1A202C; }
+  body.light .review-ans { color: #718096; }
+  body.light .btn-progress { background: #EDF2F7; border-color: #CBD5E0; color: #4A5568; }
+  body.light select { background: #EDF2F7; color: #1A202C; border-color: #CBD5E0; }
+  body.light .empty-progress { color: #A0AEC0; }
+  body.light .topbar { background: #FFFFFF; border-bottom: 1px solid #E2E8F0; }
+  body.light .topbar-title { color: #0891b2; }
+
+  /* Theme toggle button */
+  .theme-toggle {
+    position: fixed;
+    top: 12px;
+    right: 16px;
+    z-index: 999;
+    background: rgba(30,41,59,0.85);
+    border: 1px solid #334155;
+    border-radius: 20px;
+    padding: 6px 12px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    color: #94a3b8;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    backdrop-filter: blur(8px);
+    transition: all .2s;
+  }
+  body.light .theme-toggle {
+    background: rgba(255,255,255,0.9);
+    border-color: #CBD5E0;
+    color: #4A5568;
+  }
+  .theme-toggle:hover { opacity: .85; }
 
   .screen { display: none; padding: 20px; max-width: 700px; margin: 0 auto; }
   .screen.active { display: block; }
 
   /* SETUP */
   .logo { text-align: center; padding: 30px 0 24px; }
-  .logo-badge { display: inline-block; background: linear-gradient(135deg,#06b6d4,#8b5cf6); border-radius: 20px; padding: 4px 14px; font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 12px; }
+  .logo-badge { display: inline-block; background: linear-gradient(135deg,#06b6d4,#8b5cf6); border-radius: 20px; padding: 4px 14px; font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 12px; color:#fff; }
   .logo h1 { font-size: 26px; font-weight: 800; background: linear-gradient(135deg,#06b6d4,#a78bfa); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 6px; }
   .logo p { color: #64748b; font-size: 13px; }
+  body.light .logo h1 { background: linear-gradient(135deg,#0891b2,#7c3aed); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 
   .card { background: #0f172a; border-radius: 16px; padding: 22px; border: 1px solid #1e293b; margin-bottom: 16px; }
 
@@ -72,6 +149,7 @@ if ('serviceWorker' in navigator) {
 
   .q-meta { font-size: 11px; color: #64748b; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
   .q-text { font-size: 17px; color: #f1f5f9; font-weight: 500; line-height: 1.55; margin-bottom: 20px; }
+  body.light .q-text { color: #1A202C; }
 
   .options { display: flex; flex-direction: column; gap: 10px; }
   .opt-btn { border-radius: 10px; padding: 13px 16px; text-align: left; font-size: 14px; line-height: 1.4; cursor: pointer; font-family: inherit; border: 2px solid #334155; background: #1e293b; color: #e2e8f0; transition: all 0.18s; }
@@ -132,10 +210,15 @@ if ('serviceWorker' in navigator) {
   .btn-weak:hover { background: #7f1d1d; }
   .btn-progress { background: transparent; border: 1px solid #334155; color: #94a3b8; border-radius: 8px; padding: 6px 14px; cursor: pointer; font-size: 12px; font-family: inherit; }
   .empty-progress { text-align: center; padding: 30px 0; color: #475569; font-size: 14px; }
-
 </style>
 </head>
 <body>
+
+<!-- Theme Toggle Button (always visible) -->
+<button class="theme-toggle" id="theme-toggle-btn" onclick="toggleTheme()">
+  <span id="theme-icon">☀️</span>
+  <span id="theme-label">Light</span>
+</button>
 
 <!-- SETUP SCREEN -->
 <div id="screen-setup" class="screen active">
@@ -145,15 +228,12 @@ if ('serviceWorker' in navigator) {
     <p>200 questions from the ELSO Red Book — fully offline</p>
   </div>
 
-  <!-- NAV TABS -->
   <div class="nav-tabs">
     <button class="nav-tab active" onclick="showTab('tab-exam')">📝 Exam</button>
     <button class="nav-tab" onclick="showTab('tab-progress')">📊 My Progress</button>
   </div>
 
-  <!-- EXAM TAB -->
   <div id="tab-exam">
-
   <div class="card">
     <span class="label">Topic</span>
     <div class="chips" id="topic-chips">
@@ -203,57 +283,31 @@ if ('serviceWorker' in navigator) {
   <button class="btn-main" onclick="startExam()">Start Exam</button>
   <button class="btn-install" id="btn-install" style="display:none" onclick="installApp()">⬇️ Install App — Add to Home Screen</button>
   <div class="source-note">Source: ELSO Red Book 6th Ed. · MacLaren, Brodie, Lorusso, Peek, Thiagarajan, Vercaemst</div>
-  </div><!-- end tab-exam -->
+  </div>
 
-  <!-- PROGRESS TAB -->
   <div id="tab-progress" style="display:none">
     <div class="streak-box">
       <div class="streak-num" id="streak-num">0</div>
       <div class="streak-label">Day Streak 🔥</div>
     </div>
-
     <div class="card">
       <div style="text-align:center;margin-bottom:16px">
         <div class="mastery-badge mastery-beginner" id="mastery-badge">Beginner</div>
         <div style="font-size:13px;color:#64748b;margin-top:4px" id="mastery-sub">Keep going — you're just getting started</div>
       </div>
-      <div class="stat-row">
-        <span class="stat-label">Total Questions Answered</span>
-        <span class="stat-val" id="stat-total">0</span>
-      </div>
-      <div class="stat-row">
-        <span class="stat-label">Overall Accuracy</span>
-        <span class="stat-val" id="stat-accuracy">—</span>
-      </div>
-      <div class="stat-row">
-        <span class="stat-label">Exams Completed</span>
-        <span class="stat-val" id="stat-exams">0</span>
-      </div>
-      <div class="stat-row">
-        <span class="stat-label">Best Score</span>
-        <span class="stat-val" id="stat-best">—</span>
-      </div>
-      <div class="stat-row" style="border:none">
-        <span class="stat-label">Last Studied</span>
-        <span class="stat-val" id="stat-last">Never</span>
-      </div>
+      <div class="stat-row"><span class="stat-label">Total Questions Answered</span><span class="stat-val" id="stat-total">0</span></div>
+      <div class="stat-row"><span class="stat-label">Overall Accuracy</span><span class="stat-val" id="stat-accuracy">—</span></div>
+      <div class="stat-row"><span class="stat-label">Exams Completed</span><span class="stat-val" id="stat-exams">0</span></div>
+      <div class="stat-row"><span class="stat-label">Best Score</span><span class="stat-val" id="stat-best">—</span></div>
+      <div class="stat-row" style="border:none"><span class="stat-label">Last Studied</span><span class="stat-val" id="stat-last">Never</span></div>
     </div>
-
     <div class="card">
       <span class="label" style="margin-bottom:14px">Performance by Topic</span>
-      <div id="topic-breakdown">
-        <div class="empty-progress">No data yet — complete an exam to see your topic breakdown</div>
-      </div>
+      <div id="topic-breakdown"><div class="empty-progress">No data yet — complete an exam to see your topic breakdown</div></div>
     </div>
-
-    <button class="btn-weak" id="btn-weak" onclick="startWeakExam()" style="display:none">
-      🎯 Practice Weak Topics
-    </button>
-
-    <div style="text-align:center;margin-top:14px">
-      <button class="btn-progress" onclick="resetProgress()">Reset All Progress</button>
-    </div>
-  </div><!-- end tab-progress -->
+    <button class="btn-weak" id="btn-weak" onclick="startWeakExam()" style="display:none">🎯 Practice Weak Topics</button>
+    <div style="text-align:center;margin-top:14px"><button class="btn-progress" onclick="resetProgress()">Reset All Progress</button></div>
+  </div>
 </div>
 
 <!-- EXAM SCREEN -->
@@ -267,7 +321,6 @@ if ('serviceWorker' in navigator) {
     <span id="score-counter">Score: 0</span>
   </div>
   <div class="progress-bar"><div class="progress-fill" id="progress-fill" style="width:10%"></div></div>
-
   <div class="card">
     <div class="q-meta" id="q-meta">Physiology · Intermediate</div>
     <div class="q-text" id="q-text">Question text</div>
@@ -298,1950 +351,84 @@ if ('serviceWorker' in navigator) {
 </div>
 
 <script>
-// ─── QUESTION BANK (100 questions from ELSO Red Book 6th Edition) ─────────────
-const QUESTIONS = [
-  // ── NOMENCLATURE ──────────────────────────────────────────────────────────
-  {
-    topic: "Nomenclature", difficulty: "basic",
-    q: "What does the term ECLS stand for?",
-    opts: ["Extracorporeal Life Support","Extracorporeal Lung System","External Cardiac Life Support","Extracorporeal Liver Support"],
-    ans: 0,
-    exp: "ECLS = Extracorporeal Life Support. It is the broad term encompassing all extracorporeal cardiopulmonary support. ECMO is a subset of ECLS."
-  },
-  {
-    topic: "Nomenclature", difficulty: "basic",
-    q: "According to the ELSO Maastricht Treaty, which term specifically refers to systems primarily targeted at CO2 removal?",
-    opts: ["ECMO","ECLS","ECCO2R","VV ECMO"],
-    ans: 2,
-    exp: "ECCO2R (Extracorporeal Carbon Dioxide Removal) is the correct term for systems primarily targeting CO2 removal, while ECMO targets oxygenation and/or cardiac support."
-  },
-  {
-    topic: "Nomenclature", difficulty: "basic",
-    q: "In VV ECMO, where does the oxygenated blood return?",
-    opts: ["Femoral artery","Aorta","Venous circulation","Left ventricle"],
-    ans: 2,
-    exp: "In VV (veno-venous) ECMO, oxygenated blood returns to the venous circulation. It provides gas exchange support only — it does NOT support cardiac output."
-  },
-  {
-    topic: "Nomenclature", difficulty: "intermediate",
-    q: "What is the key physiological difference between VV ECMO and VA ECMO?",
-    opts: [
-      "VV ECMO supports gas exchange only; VA ECMO supports both gas exchange and cardiac output",
-      "VA ECMO supports gas exchange only; VV ECMO supports cardiac output",
-      "Both provide equal cardiac and respiratory support",
-      "VV ECMO provides higher flow rates than VA ECMO"
-    ],
-    ans: 0,
-    exp: "VV ECMO provides gas exchange support only and relies on the native cardiac output to deliver oxygenated blood to tissues. VA ECMO provides both oxygenation and hemodynamic support."
-  },
-  {
-    topic: "Nomenclature", difficulty: "intermediate",
-    q: "The Avalon bicaval double-lumen cannula for VV ECMO is typically placed in which vessel?",
-    opts: ["Right femoral vein","Left subclavian vein","Right internal jugular vein","Left femoral vein"],
-    ans: 2,
-    exp: "The Avalon bicaval double-lumen cannula is placed in the right internal jugular vein. It drains blood from both the SVC and IVC and returns oxygenated blood directed toward the tricuspid valve."
-  },
-  {
-    topic: "Nomenclature", difficulty: "advanced",
-    q: "In a VAV ECMO configuration, what is the primary clinical indication?",
-    opts: [
-      "Isolated respiratory failure",
-      "Isolated cardiac failure",
-      "Combined respiratory and cardiac failure requiring both gas exchange and hemodynamic support",
-      "Bridge to lung transplantation only"
-    ],
-    ans: 2,
-    exp: "VAV (veno-arterio-venous) ECMO uses two return cannulas — one venous and one arterial — to provide simultaneous respiratory and cardiac support. It is used when both gas exchange and cardiac output support are needed."
-  },
-  {
-    topic: "Nomenclature", difficulty: "intermediate",
-    q: "What does the SCAI staging system classify?",
-    opts: ["ECMO circuit complications","Severity of cardiogenic shock","VV ECMO weaning readiness","Anticoagulation targets"],
-    ans: 1,
-    exp: "The SCAI (Society for Cardiovascular Angiography and Interventions) staging system classifies cardiogenic shock severity into 5 stages: A (At risk), B (Beginning), C (Classic), D (Deteriorating), E (Extremis)."
-  },
+// ── THEME TOGGLE ──────────────────────────────────────────────────────────────
+function toggleTheme(){
+  const isLight = document.body.classList.toggle('light');
+  localStorage.setItem('ecmo_theme', isLight ? 'light' : 'dark');
+  document.getElementById('theme-icon').textContent = isLight ? '🌙' : '☀️';
+  document.getElementById('theme-label').textContent = isLight ? 'Dark' : 'Light';
+  document.getElementById('meta-theme').content = isLight ? '#F0F4F8' : '#020817';
+}
 
-  // ── CIRCUIT ───────────────────────────────────────────────────────────────
-  {
-    topic: "Circuit & Oxygenator", difficulty: "basic",
-    q: "What type of pump is most commonly used in modern adult ECLS circuits?",
-    opts: ["Roller pump","Centrifugal pump","Axial flow pump","Diaphragm pump"],
-    ans: 1,
-    exp: "Centrifugal pumps (magnetically levitated) are standard in modern adult ECLS. Examples include RotaFlow, CentriMag, and CardioHelp. Roller pumps are still used in neonatal ECLS."
-  },
-  {
-    topic: "Circuit & Oxygenator", difficulty: "basic",
-    q: "What material are modern ECMO membrane lungs (oxygenators) made from?",
-    opts: ["Silicone","Polyurethane","Polymethylpentene (PMP) hollow fiber","Polycarbonate"],
-    ans: 2,
-    exp: "Modern oxygenators use polymethylpentene (PMP) hollow fiber membranes. Gas diffuses across the membrane — O2 in, CO2 out — without direct blood-gas contact."
-  },
-  {
-    topic: "Circuit & Oxygenator", difficulty: "basic",
-    q: "What does increasing the sweep gas flow rate primarily affect in a VV ECMO patient?",
-    opts: ["Increases blood flow","Decreases PaCO2","Increases PaO2","Reduces circuit pressure"],
-    ans: 1,
-    exp: "Increasing sweep gas flow primarily increases CO2 removal, thereby decreasing PaCO2. To increase PaO2, you increase ECMO blood flow or the FiO2 of the sweep gas."
-  },
-  {
-    topic: "Circuit & Oxygenator", difficulty: "intermediate",
-    q: "A rising pre-membrane pressure with a normal post-membrane pressure in the ECMO circuit suggests:",
-    opts: [
-      "Membrane lung thrombosis",
-      "Hypovolemia causing circuit chatter",
-      "Increased circuit resistance proximal to the oxygenator",
-      "Cannula malposition"
-    ],
-    ans: 0,
-    exp: "A rising delta P (pre-membrane minus post-membrane pressure >50 mmHg) indicates increasing resistance across the membrane lung, most commonly due to thrombosis within the oxygenator."
-  },
-  {
-    topic: "Circuit & Oxygenator", difficulty: "intermediate",
-    q: "What is 'circuit chatter' in ECMO?",
-    opts: [
-      "High-frequency vibration of the tubing due to high flow",
-      "Intermittent collapse of the venous drainage limb due to inadequate preload",
-      "Clot formation in the oxygenator",
-      "Air entrainment in the arterial return limb"
-    ],
-    ans: 1,
-    exp: "Circuit chatter refers to intermittent collapse of the venous drainage tubing due to inadequate venous return. Causes include hypovolemia, cannula malposition, or excessive pump speed."
-  },
-  {
-    topic: "Circuit & Oxygenator", difficulty: "intermediate",
-    q: "What is the purpose of the bladder box (servo-regulation) in an ECMO circuit?",
-    opts: [
-      "Monitors oxygenator function",
-      "Stops the pump if venous drainage pressure becomes excessively negative",
-      "Regulates sweep gas flow",
-      "Controls anticoagulation delivery"
-    ],
-    ans: 1,
-    exp: "The bladder box provides servo-regulation — it detects excessively negative venous pressure and automatically reduces or stops the pump to prevent venous collapse and air entrainment."
-  },
-  {
-    topic: "Circuit & Oxygenator", difficulty: "advanced",
-    q: "The normal pressure drop across a functioning membrane lung is:",
-    opts: ["<10 mmHg","<50 mmHg","50–100 mmHg",">100 mmHg"],
-    ans: 1,
-    exp: "A normal delta P across the membrane lung is less than 50 mmHg. Values above 50 mmHg suggest progressive thrombosis within the oxygenator and may require circuit change."
-  },
-  {
-    topic: "Circuit & Oxygenator", difficulty: "advanced",
-    q: "What is the role of the sweep gas FiO2 in ECMO management?",
-    opts: [
-      "Controls PaCO2 of the patient",
-      "Determines post-membrane oxygenation and affects the patient's SaO2",
-      "Regulates blood pump speed",
-      "Has no clinical effect in VV ECMO"
-    ],
-    ans: 1,
-    exp: "The FiO2 of the sweep gas controls the post-membrane PO2, which directly affects how much oxygen is loaded onto blood passing through the membrane lung, influencing the patient's SaO2."
-  },
-
-  // ── CANNULATION ───────────────────────────────────────────────────────────
-  {
-    topic: "Cannulation", difficulty: "basic",
-    q: "In peripheral femoral VA ECMO, the arterial return cannula is typically placed in the:",
-    opts: ["Common femoral vein","Common femoral artery","Internal jugular vein","Subclavian artery"],
-    ans: 1,
-    exp: "In peripheral VA ECMO, the arterial return cannula is placed in the common femoral artery (retrograde perfusion), while the venous drainage cannula is placed in the femoral vein."
-  },
-  {
-    topic: "Cannulation", difficulty: "basic",
-    q: "What is the primary purpose of a distal limb perfusion cannula (DLPC) in peripheral VA ECMO?",
-    opts: [
-      "Increase ECMO flow",
-      "Prevent ipsilateral lower limb ischemia",
-      "Monitor arterial blood pressure",
-      "Provide venous drainage"
-    ],
-    ans: 1,
-    exp: "A DLPC (typically 6–8 Fr) is inserted in the superficial femoral artery distal to the arterial return cannula to maintain antegrade blood flow to the leg and prevent limb ischemia — a mandatory practice."
-  },
-  {
-    topic: "Cannulation", difficulty: "intermediate",
-    q: "In peripheral VA ECMO via femoral access, which monitoring method best detects early limb ischemia?",
-    opts: [
-      "Daily CBC",
-      "Hourly clinical assessment plus NIRS or Doppler of the foot",
-      "Twice-daily serum lactate",
-      "Continuous ECG monitoring"
-    ],
-    ans: 1,
-    exp: "Hourly clinical assessment of the cannulated limb combined with NIRS (near-infrared spectroscopy) or Doppler ultrasound of the foot is the recommended approach for early detection of limb ischemia."
-  },
-  {
-    topic: "Cannulation", difficulty: "intermediate",
-    q: "What is the recommended cannula tip position for VV ECMO drainage via the femoral vein?",
-    opts: [
-      "Mid-femoral vein",
-      "Iliac vein",
-      "IVC-right atrium junction",
-      "Right ventricle"
-    ],
-    ans: 2,
-    exp: "The drainage cannula tip should be positioned at the IVC-right atrium junction, confirmed by CXR or echocardiography, to maximize venous drainage and minimize recirculation."
-  },
-  {
-    topic: "Cannulation", difficulty: "intermediate",
-    q: "What advantage does the axillary artery approach offer over femoral artery cannulation for VA ECMO?",
-    opts: [
-      "Higher blood flow rates",
-      "Antegrade perfusion, reduced limb ischemia risk, and allows patient mobility",
-      "Easier cannulation technique",
-      "Lower anticoagulation requirements"
-    ],
-    ans: 1,
-    exp: "Axillary artery cannulation provides antegrade perfusion (reducing upper body hypoxia in Harlequin syndrome), avoids leg ischemia, and allows patient mobility — key advantages over femoral access."
-  },
-  {
-    topic: "Cannulation", difficulty: "advanced",
-    q: "Typical cannula sizes for adult VV ECMO are:",
-    opts: [
-      "Drainage 10–15 Fr, return 8–10 Fr",
-      "Drainage 23–27 Fr, return 19–21 Fr",
-      "Drainage 30–35 Fr, return 25–28 Fr",
-      "Drainage 15–18 Fr, return 12–15 Fr"
-    ],
-    ans: 1,
-    exp: "Adult VV ECMO typically uses a 23–27 Fr drainage cannula and 19–21 Fr return cannula for adequate flow. Alternatively, a bicaval double-lumen cannula (e.g., Avalon) can be used via the right IJV."
-  },
-  {
-    topic: "Cannulation", difficulty: "advanced",
-    q: "Transthoracic (central) VA ECMO cannulation connects which structures?",
-    opts: [
-      "Femoral artery and femoral vein",
-      "Ascending aorta (return) and right atrium (drainage)",
-      "Pulmonary artery and left atrium",
-      "Subclavian artery and right atrium"
-    ],
-    ans: 1,
-    exp: "Central VA ECMO uses the ascending aorta for arterial return and the right atrium for venous drainage. It is a surgical approach typically used post-cardiotomy or when peripheral access is inadequate."
-  },
-
-  // ── PHYSIOLOGY ────────────────────────────────────────────────────────────
-  {
-    topic: "Physiology", difficulty: "basic",
-    q: "What is the normal resting oxygen consumption (VO2) in adults?",
-    opts: ["1 cc/kg/min","3 cc/kg/min","10 cc/kg/min","0.5 cc/kg/min"],
-    ans: 1,
-    exp: "Normal adult resting VO2 is approximately 3 cc/kg/min (~120 cc/min/m2). This is the benchmark for metabolic rate and guides ECMO flow targets."
-  },
-  {
-    topic: "Physiology", difficulty: "basic",
-    q: "Oxygen delivery (DO2) is calculated as:",
-    opts: [
-      "VO2 / SvO2",
-      "Cardiac Output × CaO2 × 10",
-      "Hemoglobin × SaO2",
-      "ECMO flow × FiO2"
-    ],
-    ans: 1,
-    exp: "DO2 (cc/min) = Cardiac Output (L/min) × CaO2 (cc/dL) × 10. Normal DO2 is ~600 cc/min/m2. CaO2 = (Hb × SaO2 × 1.34) + (PaO2 × 0.003)."
-  },
-  {
-    topic: "Physiology", difficulty: "basic",
-    q: "What does a low SvO2 on ECMO drainage indicate?",
-    opts: [
-      "Adequate oxygen delivery",
-      "Increased oxygen extraction — tissues not getting enough O2",
-      "Circuit thrombosis",
-      "Recirculation"
-    ],
-    ans: 1,
-    exp: "SvO2 below 65–70% indicates increased oxygen extraction by tissues, reflecting inadequate DO2 — either from low ECMO flow, low hemoglobin, or high metabolic demand."
-  },
-  {
-    topic: "Physiology", difficulty: "intermediate",
-    q: "What is the 'Harlequin syndrome' (North-South syndrome) in femoral VA ECMO?",
-    opts: [
-      "Thrombosis of the femoral artery cannula",
-      "Upper body perfused by desaturated native cardiac output while lower body receives oxygenated ECMO blood",
-      "Excessive recirculation in VV ECMO",
-      "LV distension due to increased afterload"
-    ],
-    ans: 1,
-    exp: "In femoral VA ECMO, native cardiac output (potentially desaturated from failing lungs) perfuses the upper body retrogradely while ECMO-oxygenated blood perfuses the lower body — creating a differential hypoxemia. Monitor right radial ABG."
-  },
-  {
-    topic: "Physiology", difficulty: "intermediate",
-    q: "How do you monitor for Harlequin syndrome in a patient on femoral VA ECMO?",
-    opts: [
-      "Left radial artery ABG",
-      "Right radial artery ABG or right-hand pulse oximetry",
-      "Femoral artery ABG",
-      "Central venous saturation"
-    ],
-    ans: 1,
-    exp: "The right radial artery reflects blood from the right subclavian/brachiocephalic — which comes from the native cardiac output (pre-ECMO). A low right radial SpO2 or PaO2 confirms Harlequin syndrome."
-  },
-  {
-    topic: "Physiology", difficulty: "intermediate",
-    q: "Recirculation in VV ECMO means:",
-    opts: [
-      "Blood flows backward through the pump",
-      "Oxygenated return blood re-enters the drainage cannula before reaching systemic circulation",
-      "Native lung blood recirculates through the ECMO oxygenator twice",
-      "CO2 builds up in the membrane lung"
-    ],
-    ans: 1,
-    exp: "Recirculation occurs when oxygenated blood from the return cannula is immediately suctioned back into the drainage cannula, reducing effective ECMO support. Minimum 10 cm separation between cannulas is recommended."
-  },
-  {
-    topic: "Physiology", difficulty: "advanced",
-    q: "In VV ECMO, the patient's PaO2 depends primarily on:",
-    opts: [
-      "ECMO pump speed alone",
-      "ECMO blood flow, native cardiac output, hemoglobin, and degree of recirculation",
-      "Sweep gas FiO2 alone",
-      "Vasopressor dose"
-    ],
-    ans: 1,
-    exp: "PaO2 on VV ECMO is determined by the interaction of ECMO blood flow (delivering oxygenated blood), native cardiac output (mixing oxygenated/deoxygenated blood), hemoglobin concentration, recirculation fraction, and VO2."
-  },
-  {
-    topic: "Physiology", difficulty: "advanced",
-    q: "Why does VA ECMO increase LV afterload?",
-    opts: [
-      "It increases heart rate",
-      "Retrograde arterial flow increases aortic root pressure, opposing LV ejection",
-      "It reduces venous preload dramatically",
-      "It activates the renin-angiotensin system"
-    ],
-    ans: 1,
-    exp: "Femoral VA ECMO returns blood retrogradely into the aorta, increasing aortic root pressure. This increased afterload opposes LV ejection, can prevent aortic valve opening, and may cause LV distension and pulmonary edema."
-  },
-
-  // ── ADVERSE EFFECTS ───────────────────────────────────────────────────────
-  {
-    topic: "Adverse Effects", difficulty: "basic",
-    q: "What is the most common complication of ECLS?",
-    opts: ["Stroke","Bleeding","Circuit thrombosis","Pneumothorax"],
-    ans: 1,
-    exp: "Bleeding is the most common complication of ECLS, occurring at cannula sites, surgical wounds, and intracranial locations. It results from systemic anticoagulation, platelet consumption, and coagulopathy."
-  },
-  {
-    topic: "Adverse Effects", difficulty: "basic",
-    q: "What laboratory finding best indicates hemolysis in an ECMO patient?",
-    opts: [
-      "Elevated serum creatinine",
-      "Elevated plasma free hemoglobin (>50 mg/dL), elevated LDH, pink/dark urine",
-      "Low platelet count",
-      "Elevated troponin"
-    ],
-    ans: 1,
-    exp: "Hemolysis is indicated by plasma free hemoglobin >50 mg/dL, elevated LDH, decreased haptoglobin, and pink or dark urine (hemoglobinuria). Causes include high pump RPM, kinked tubing, or circuit clot."
-  },
-  {
-    topic: "Adverse Effects", difficulty: "intermediate",
-    q: "LV distension during VA ECMO is best managed initially by:",
-    opts: [
-      "Stopping ECMO immediately",
-      "LV unloading using Impella, IABP, or surgical LV vent",
-      "Increasing ECMO flow",
-      "Adding a second drainage cannula"
-    ],
-    ans: 1,
-    exp: "LV distension from increased afterload on VA ECMO is treated with LV unloading. Impella provides the most effective direct LV drainage. IABP provides modest unloading. Surgical LV vent or atrial septostomy are alternatives."
-  },
-  {
-    topic: "Adverse Effects", difficulty: "intermediate",
-    q: "When should HIT (heparin-induced thrombocytopenia) be suspected in an ECMO patient?",
-    opts: [
-      "Platelet count <200 on day 1",
-      "Platelet drop >50% or to <100 after ≥4 days of heparin exposure",
-      "Platelet count <50 at any time",
-      "Any thrombotic event during ECMO"
-    ],
-    ans: 1,
-    exp: "HIT is suspected when platelets drop >50% or fall below 100 × 10^9/L after 4+ days of heparin. Confirm with HIT antibody (ELISA) + functional assay (serotonin release assay). Switch anticoagulation to argatroban or bivalirudin."
-  },
-  {
-    topic: "Adverse Effects", difficulty: "intermediate",
-    q: "What sign indicates the aortic valve is NOT opening during VA ECMO?",
-    opts: [
-      "Rising arterial pulse pressure",
-      "Loss of pulsatility on the arterial waveform",
-      "Falling CVP",
-      "Increasing ECMO flow"
-    ],
-    ans: 1,
-    exp: "Loss of arterial pulsatility (flat waveform) during VA ECMO indicates the aortic valve is not opening. This risks LV stasis and thrombus formation. Inotropes or LV unloading may restore aortic valve opening."
-  },
-  {
-    topic: "Adverse Effects", difficulty: "advanced",
-    q: "Which of the following correctly describes the mechanism of platelet dysfunction during ECLS?",
-    opts: [
-      "Heparin directly destroys platelets",
-      "Blood-polymer surface contact activates platelets → consumption, degranulation, and microemboli formation",
-      "Centrifugal pump creates excess platelet production",
-      "Membrane lung absorbs platelets via direct binding"
-    ],
-    ans: 1,
-    exp: "Blood contact with non-endothelial polymer surfaces activates platelets via GPIb-IX-V and GPIIb-IIIa pathways. This leads to platelet consumption, activation, degranulation, and microemboli formation — reducing circulating platelet count."
-  },
-  {
-    topic: "Adverse Effects", difficulty: "advanced",
-    q: "What is the minimum target platelet count in a bleeding ECMO patient?",
-    opts: [">20,000",">50,000–80,000",">150,000",">200,000"],
-    ans: 1,
-    exp: "In bleeding ECMO patients, platelets should be maintained >100,000. In stable ECMO patients without bleeding, the target is >50,000–80,000. Platelet transfusion should be guided by clinical context."
-  },
-
-  // ── CRISIS MANAGEMENT ─────────────────────────────────────────────────────
-  {
-    topic: "Crisis Management", difficulty: "basic",
-    q: "What is the FIRST action when air embolism is detected in the ECMO circuit?",
-    opts: [
-      "Increase pump speed",
-      "Immediately clamp the circuit",
-      "Remove the venous drainage cannula",
-      "Administer 100% oxygen"
-    ],
-    ans: 1,
-    exp: "Immediate clamping of the circuit is the first step to prevent air from entering the patient. Then place the patient head-down (Trendelenburg), aspirate air, and troubleshoot the source (usually a loose connection)."
-  },
-  {
-    topic: "Crisis Management", difficulty: "basic",
-    q: "What causes 'circuit chatter' and how is it managed?",
-    opts: [
-      "High arterial pressure; managed by reducing ECMO flow",
-      "Insufficient venous return causing drainage line collapse; managed by volume, repositioning, or reducing pump speed",
-      "Oxygenator clotting; managed by circuit change",
-      "Air in the circuit; managed by clamping"
-    ],
-    ans: 1,
-    exp: "Chatter is caused by insufficient venous return (hypovolemia, cannula malposition, excessive pump speed). Management: give volume, check cannula position, and/or reduce pump RPM."
-  },
-  {
-    topic: "Crisis Management", difficulty: "intermediate",
-    q: "Signs of membrane lung failure include all of the following EXCEPT:",
-    opts: [
-      "Rising pre-membrane pressure",
-      "Visible clot in the membrane lung",
-      "Falling post-membrane PO2",
-      "Decreasing arterial pulse pressure"
-    ],
-    ans: 3,
-    exp: "Membrane lung failure is indicated by rising pre-membrane pressure, visible clot, and falling post-membrane PO2 — requiring urgent circuit change. Arterial pulse pressure changes reflect cardiac function, not membrane lung failure."
-  },
-  {
-    topic: "Crisis Management", difficulty: "intermediate",
-    q: "During ECMO, a sudden drop in ECMO flow with rising pre-membrane pressure most likely indicates:",
-    opts: [
-      "Hypovolemia",
-      "Oxygenator or circuit thrombosis causing obstruction",
-      "Septic shock",
-      "Aortic valve regurgitation"
-    ],
-    ans: 1,
-    exp: "A drop in flow with rising pre-membrane pressure indicates increasing circuit resistance, most commonly due to thrombosis in the oxygenator or circuit. Emergency circuit change may be required."
-  },
-  {
-    topic: "Crisis Management", difficulty: "advanced",
-    q: "During a pump failure emergency on ECMO, what is the immediate action?",
-    opts: [
-      "Decannulate immediately",
-      "Switch to hand-crank or backup pump immediately while maintaining patient ventilation",
-      "Increase vasopressor infusions",
-      "Call for emergency surgery"
-    ],
-    ans: 1,
-    exp: "Pump failure requires immediate switch to hand-cranking the centrifugal pump or activating a backup pump. Maintain patient ventilation and initiate the center's circuit emergency protocol. Do not decannulate until stable."
-  },
-
-  // ── VV ECMO – RESPIRATORY ─────────────────────────────────────────────────
-  {
-    topic: "VV ECMO – Respiratory", difficulty: "basic",
-    q: "The primary indication for VV ECMO in adults is:",
-    opts: [
-      "Cardiogenic shock",
-      "Severe ARDS refractory to optimal conventional management",
-      "Pulmonary embolism",
-      "Post-cardiac arrest"
-    ],
-    ans: 1,
-    exp: "VV ECMO is primarily indicated for severe ARDS with PaO2/FiO2 <80 mmHg despite optimal ventilation (lung-protective settings, prone positioning, NMB), as per EOLIA trial criteria."
-  },
-  {
-    topic: "VV ECMO – Respiratory", difficulty: "basic",
-    q: "What PaO2/FiO2 ratio threshold (with FiO2 1.0 and PEEP ≥10) is a typical indication for VV ECMO referral in ARDS?",
-    opts: ["<200 mmHg","<150 mmHg","<80 mmHg","<50 mmHg"],
-    ans: 2,
-    exp: "PaO2/FiO2 <80 mmHg on FiO2 1.0 with PEEP ≥10 cmH2O despite optimal conventional therapy (including prone positioning) is a standard threshold for VV ECMO referral in severe ARDS."
-  },
-  {
-    topic: "VV ECMO – Respiratory", difficulty: "intermediate",
-    q: "What are the recommended lung-protective ventilator settings for a patient on VV ECMO?",
-    opts: [
-      "Vt 8 mL/kg, PEEP 15, RR 20, FiO2 1.0",
-      "Vt 4 mL/kg IBW, PEEP 10, RR 10, FiO2 0.3–0.5, Pplat <25 cmH2O",
-      "Vt 6 mL/kg, PEEP 5, RR 12, FiO2 0.6",
-      "Pressure support only, no set rate"
-    ],
-    ans: 1,
-    exp: "Ultra-protective ventilation on VV ECMO: Vt 4 mL/kg IBW, PEEP ~10 cmH2O, RR 10/min, FiO2 0.3–0.5, Pplat <25 cmH2O. The goal is lung rest while ECMO provides gas exchange."
-  },
-  {
-    topic: "VV ECMO – Respiratory", difficulty: "intermediate",
-    q: "The EOLIA trial (2018) investigated VV ECMO for severe ARDS. What was its main finding?",
-    opts: [
-      "VV ECMO significantly reduced 60-day mortality",
-      "No significant difference in 60-day mortality but 28% crossover rate; meta-analysis suggests benefit",
-      "VV ECMO increased mortality in severe ARDS",
-      "VV ECMO had no effect on ventilator settings"
-    ],
-    ans: 1,
-    exp: "EOLIA did not reach statistical significance for its primary endpoint (60-day mortality), but a 28% crossover to ECMO in the control arm confounded results. Subsequent Bayesian analysis and meta-analysis suggest a survival benefit."
-  },
-  {
-    topic: "VV ECMO – Respiratory", difficulty: "intermediate",
-    q: "How is weaning from VV ECMO performed?",
-    opts: [
-      "Abruptly stopping ECMO flow",
-      "Gradually reducing ECMO blood flow to minimum and/or reducing sweep gas to near-zero, then trialing decannulation",
-      "Increasing ventilator settings first",
-      "Reducing anticoagulation then decannulating"
-    ],
-    ans: 1,
-    exp: "VV ECMO weaning involves a sweep gas trial (set to 0) to assess native lung function. If oxygenation and ventilation remain adequate over 30–60 minutes, the patient is ready for decannulation. Flow is not reduced below 1.5–2 L/min due to clot risk."
-  },
-  {
-    topic: "VV ECMO – Respiratory", difficulty: "advanced",
-    q: "A patient on VV ECMO has persistently low SpO2 despite maximum ECMO flow and sweep gas. What should you check first?",
-    opts: [
-      "Start vasopressors",
-      "Check for recirculation, hemoglobin level, native lung status, and cannula position",
-      "Add a second oxygenator",
-      "Convert to VA ECMO"
-    ],
-    ans: 1,
-    exp: "Troubleshoot low SpO2 systematically: (1) recirculation (reposition cannulas), (2) Hgb <10 (transfuse), (3) inadequate native cardiac output, (4) high VO2 (treat fever/agitation), (5) cannula malposition."
-  },
-  {
-    topic: "VV ECMO – Respiratory", difficulty: "advanced",
-    q: "What is the Murray score used for in ECMO?",
-    opts: [
-      "Predicting VA ECMO weaning success",
-      "Assessing severity of ARDS to help identify patients who may benefit from ECMO referral",
-      "Scoring anticoagulation adequacy",
-      "Grading circuit thrombosis"
-    ],
-    ans: 1,
-    exp: "The Murray Lung Injury Score assesses ARDS severity (PaO2/FiO2, PEEP, compliance, CXR). A Murray score >3 or pH <7.20 unresponsive to ventilator adjustments is used as a criterion for ECMO referral."
-  },
-
-  // ── VA ECMO – CARDIAC ─────────────────────────────────────────────────────
-  {
-    topic: "VA ECMO – Cardiac", difficulty: "basic",
-    q: "What is the hemodynamic definition of cardiogenic shock?",
-    opts: [
-      "SBP <90 mmHg for >30 min + CI <2.2 L/min/m2 + PCWP >15 mmHg",
-      "Heart rate >120 bpm with any hypotension",
-      "Need for any vasopressor infusion",
-      "Troponin elevation with hypotension"
-    ],
-    ans: 0,
-    exp: "Classic hemodynamic criteria for cardiogenic shock include SBP <90 mmHg for >30 min, CI <2.2 L/min/m2, and elevated filling pressures (PCWP >15 mmHg) — though compensatory mechanisms may preserve BP even with severe hypoperfusion."
-  },
-  {
-    topic: "VA ECMO – Cardiac", difficulty: "basic",
-    q: "SCAI Stage E cardiogenic shock (Extremis) is characterized by:",
-    opts: [
-      "Mild hypotension responding to fluids",
-      "Cardiac arrest or refractory hemodynamic collapse despite maximal support",
-      "Stable hemodynamics requiring only oral medications",
-      "Elevated BNP without hemodynamic compromise"
-    ],
-    ans: 1,
-    exp: "SCAI Stage E (Extremis) represents cardiac arrest or peri-arrest state with refractory hemodynamic collapse despite maximum interventions. This is the indication for ECPR."
-  },
-  {
-    topic: "VA ECMO – Cardiac", difficulty: "intermediate",
-    q: "Arterial lactate ≥10 mmol/L at VA ECMO initiation indicates:",
-    opts: [
-      "Excellent prognosis",
-      "Poor prognosis — late initiation with established end-organ damage",
-      "Adequate tissue perfusion",
-      "Need for higher ECMO flow only"
-    ],
-    ans: 1,
-    exp: "Lactate ≥10 mmol/L at ECMO initiation identifies patients with likely irreversible end-organ damage and poor outcomes. Lactate clearance at 12–24 hours is a key prognostic marker after ECMO initiation."
-  },
-  {
-    topic: "VA ECMO – Cardiac", difficulty: "intermediate",
-    q: "Which condition is an absolute contraindication to VA ECMO for cardiac failure?",
-    opts: [
-      "Age >65 years",
-      "Severe aortic valve regurgitation",
-      "Elevated creatinine",
-      "Recent CABG"
-    ],
-    ans: 1,
-    exp: "Severe aortic regurgitation is a contraindication because VA ECMO increases LV afterload — if the aortic valve is incompetent, blood will regurgitate back into the LV causing severe distension and pulmonary edema."
-  },
-  {
-    topic: "VA ECMO – Cardiac", difficulty: "intermediate",
-    q: "Post-cardiotomy cardiogenic shock is defined as:",
-    opts: [
-      "Shock occurring 30 days after cardiac surgery",
-      "Inability to wean from cardiopulmonary bypass or low cardiac output state after cardiac surgery",
-      "Cardiac arrest during cardiac catheterization",
-      "Troponin elevation after any surgery"
-    ],
-    ans: 1,
-    exp: "Post-cardiotomy shock is the inability to wean from CPB or severe low cardiac output state after cardiac surgery — one of the most common indications for VA ECMO, with reasonable recovery potential."
-  },
-  {
-    topic: "VA ECMO – Cardiac", difficulty: "intermediate",
-    q: "Fulminant myocarditis on VA ECMO has which characteristic prognosis?",
-    opts: [
-      "Very poor — almost universal mortality",
-      "Excellent recovery potential — VA ECMO as bridge to myocardial recovery",
-      "Requires immediate heart transplantation",
-      "No role for ECMO in myocarditis"
-    ],
-    ans: 1,
-    exp: "Fulminant myocarditis has excellent recovery potential on VA ECMO because the myocardial inflammation is often reversible. ECMO provides hemodynamic support while the myocardium recovers — bridge to recovery strategy."
-  },
-  {
-    topic: "VA ECMO – Cardiac", difficulty: "advanced",
-    q: "A patient on femoral VA ECMO develops pulmonary edema with a non-opening aortic valve on echo. The best management is:",
-    opts: [
-      "Increase ECMO flow",
-      "LV unloading with Impella and/or inotropes to restore aortic valve opening",
-      "Convert to VV ECMO",
-      "Immediate decannulation"
-    ],
-    ans: 1,
-    exp: "Non-opening aortic valve on VA ECMO indicates LV stasis — risk of thrombus and pulmonary edema. LV unloading with Impella (direct LV drainage) is most effective. Inotropes can also help restore valve opening."
-  },
-  {
-    topic: "VA ECMO – Cardiac", difficulty: "advanced",
-    q: "During VA ECMO weaning, which echocardiographic finding best indicates readiness for decannulation?",
-    opts: [
-      "Normal RV size",
-      "LVEF ≥20–25% with aortic valve opening and no significant LV dilation at reduced flow",
-      "Absence of pericardial effusion",
-      "Normal mitral valve function"
-    ],
-    ans: 1,
-    exp: "Weaning readiness on VA ECMO requires LVEF ≥20–25%, aortic valve opening on most beats, no significant LV dilation, and hemodynamic stability (MAP ≥65, CI ≥2.0) while on reduced ECMO support."
-  },
-  {
-    topic: "VA ECMO – Cardiac", difficulty: "advanced",
-    q: "What anticoagulation target is typically used for VA ECMO compared to VV ECMO?",
-    opts: [
-      "Lower ACT target (120–140 sec) in VA ECMO due to bleeding risk",
-      "Higher ACT target (160–200 sec) in VA ECMO due to higher thrombotic risk from low-flow aorta",
-      "No anticoagulation needed in VA ECMO",
-      "Same target for both configurations"
-    ],
-    ans: 1,
-    exp: "VA ECMO requires a higher anticoagulation target (ACT 160–200 sec or anti-Xa 0.3–0.7 IU/mL) compared to VV ECMO due to the higher risk of thrombosis in the low-flow aortic root and LV."
-  },
-  {
-    topic: "VA ECMO – Cardiac", difficulty: "intermediate",
-    q: "Massive pulmonary embolism is an indication for VA ECMO because:",
-    opts: [
-      "ECMO treats the clot directly",
-      "VA ECMO provides hemodynamic support (RV offloading) while definitive therapy (thrombolysis or embolectomy) is performed",
-      "ECMO provides anticoagulation automatically",
-      "VV ECMO is preferred for massive PE"
-    ],
-    ans: 1,
-    exp: "In massive PE with hemodynamic collapse, VA ECMO supports RV failure and prevents cardiovascular collapse, buying time for systemic thrombolysis, catheter-directed therapy, or surgical embolectomy."
-  },
-
-  // ── ECPR ──────────────────────────────────────────────────────────────────
-  {
-    topic: "ECPR", difficulty: "basic",
-    q: "ECPR is defined as:",
-    opts: [
-      "Emergency cardiac surgery for refractory arrest",
-      "Application of VA ECMO in patients with cardiac arrest in whom conventional CPR fails to achieve ROSC",
-      "Extracorporeal CPR training program",
-      "Use of mechanical CPR devices alone"
-    ],
-    ans: 1,
-    exp: "ECPR = rapid deployment of VA ECMO to restore assisted circulation in patients with refractory cardiac arrest (no ROSC after conventional CPR). It provides circulatory support while treating the reversible cause."
-  },
-  {
-    topic: "ECPR", difficulty: "basic",
-    q: "What is the maximum recommended 'no-flow' interval (time without any CPR) for ECPR candidacy?",
-    opts: ["1 minute","5 minutes","15 minutes","30 minutes"],
-    ans: 1,
-    exp: "A no-flow interval of ≤5 minutes (witnessed arrest with immediate bystander CPR) is a key inclusion criterion for ECPR. Longer no-flow times lead to irreversible neurological injury."
-  },
-  {
-    topic: "ECPR", difficulty: "intermediate",
-    q: "Which initial cardiac rhythm has the best prognosis for ECPR in out-of-hospital cardiac arrest?",
-    opts: ["Asystole","PEA","VF/pVT","Complete heart block"],
-    ans: 2,
-    exp: "VF/pVT (ventricular fibrillation/pulseless ventricular tachycardia) is associated with the best ECPR outcomes as these rhythms indicate viable myocardium and are more likely to have a reversible cause."
-  },
-  {
-    topic: "ECPR", difficulty: "intermediate",
-    q: "What is the target 'door to ECMO flow' time in an ECPR protocol?",
-    opts: ["<120 minutes","<60 minutes","<30 minutes","<10 minutes"],
-    ans: 1,
-    exp: "Door-to-ECMO flow should be <60 minutes. Every minute without restoration of circulation worsens neurological outcome. Highly organized protocols and trained teams are essential to achieve this target."
-  },
-  {
-    topic: "ECPR", difficulty: "intermediate",
-    q: "Reversible causes to target in ECPR include all of the following EXCEPT:",
-    opts: [
-      "Acute myocardial infarction",
-      "Massive pulmonary embolism",
-      "End-stage metastatic malignancy",
-      "Drug toxicity"
-    ],
-    ans: 2,
-    exp: "ECPR bridges to recovery or definitive treatment. End-stage metastatic malignancy is a contraindication, not a reversible cause. Reversible targets include AMI, PE, hypothermia, myocarditis, and drug toxicity."
-  },
-  {
-    topic: "ECPR", difficulty: "advanced",
-    q: "After successful ECPR, what is the standard post-resuscitation bundle?",
-    opts: [
-      "High-dose steroids and immediate extubation",
-      "Coronary angiography ± PCI, targeted temperature management (33–36°C), treat reversible cause, neurological monitoring",
-      "Immediate decannulation from ECMO",
-      "Empiric broad-spectrum antibiotics only"
-    ],
-    ans: 1,
-    exp: "Post-ECPR bundle: (1) urgent coronary angiography ± PCI for suspected ACS, (2) targeted temperature management 33–36°C, (3) treat underlying reversible cause, (4) daily neurological assessment and monitoring."
-  },
-  {
-    topic: "ECPR", difficulty: "advanced",
-    q: "The RESCUE-IHCA score was developed to:",
-    opts: [
-      "Guide anticoagulation dosing in ECPR",
-      "Predict hospital mortality for in-hospital cardiac arrest (IHCA) patients treated with ECPR",
-      "Assess ECMO circuit function during ECPR",
-      "Determine optimal cannula size for ECPR"
-    ],
-    ans: 1,
-    exp: "The RESCUE-IHCA score predicts hospital mortality for IHCA patients undergoing ECPR. It incorporates patient characteristics (age, rhythm, renal function, patient type) and arrest duration — achieving ~72% prediction ability."
-  },
-  {
-    topic: "ECPR", difficulty: "advanced",
-    q: "Which ETCO2 value during CPR is used as a positive predictor for ECPR candidacy?",
-    opts: [">5 mmHg",">10 mmHg",">20 mmHg",">30 mmHg"],
-    ans: 1,
-    exp: "ETCO2 >10 mmHg (1.3 kPa) during CPR before ECMO cannulation is used as a positive predictor, reflecting some degree of effective circulation and metabolic activity — associated with better ECPR outcomes."
-  },
-
-  // ── ANTICOAGULATION ───────────────────────────────────────────────────────
-  {
-    topic: "Anticoagulation", difficulty: "basic",
-    q: "What is the most commonly used anticoagulant in ECLS?",
-    opts: ["Warfarin","Bivalirudin","Unfractionated heparin (UFH)","Rivaroxaban"],
-    ans: 2,
-    exp: "Unfractionated heparin (UFH) is the standard anticoagulant for ECLS due to its rapid onset, reversibility with protamine, and well-established monitoring with ACT and anti-Xa levels."
-  },
-  {
-    topic: "Anticoagulation", difficulty: "basic",
-    q: "What is the standard ACT target range for VV ECMO?",
-    opts: ["100–120 sec","160–180 sec","200–250 sec","250–300 sec"],
-    ans: 1,
-    exp: "The typical ACT target for VV ECMO is 160–180 seconds, or anti-Xa 0.3–0.5 IU/mL. VA ECMO may require slightly higher targets (160–200 sec) due to greater thrombotic risk."
-  },
-  {
-    topic: "Anticoagulation", difficulty: "intermediate",
-    q: "A patient on ECMO develops HIT. Which anticoagulant should replace heparin?",
-    opts: [
-      "Warfarin",
-      "Argatroban or bivalirudin (direct thrombin inhibitors)",
-      "Low molecular weight heparin",
-      "Aspirin"
-    ],
-    ans: 1,
-    exp: "HIT requires immediate cessation of all heparin and switching to a direct thrombin inhibitor. Argatroban (dose-adjusted in liver failure, monitor aPTT) or bivalirudin (short half-life, useful with frequent interruptions) are standard alternatives."
-  },
-  {
-    topic: "Anticoagulation", difficulty: "intermediate",
-    q: "What is the recommended target fibrinogen level during ECLS to reduce bleeding?",
-    opts: [">0.5 g/L",">1.5 g/L",">3.0 g/L",">4.0 g/L"],
-    ans: 1,
-    exp: "Fibrinogen should be maintained >1.5 g/L during ECLS. Replacement is with cryoprecipitate (which contains fibrinogen, factor VIII, and vWF). Low fibrinogen increases bleeding risk significantly."
-  },
-  {
-    topic: "Anticoagulation", difficulty: "intermediate",
-    q: "ROTEM/TEG on ECMO is used for:",
-    opts: [
-      "Monitoring pump speed",
-      "Point-of-care assessment of coagulation to guide transfusion and anticoagulation",
-      "Detecting oxygenator failure",
-      "Measuring anti-Xa levels"
-    ],
-    ans: 1,
-    exp: "ROTEM (rotational thromboelastometry) and TEG (thromboelastography) provide global viscoelastic assessment of coagulation, allowing targeted therapy for bleeding or thrombosis on ECMO — reducing unnecessary transfusions."
-  },
-  {
-    topic: "Anticoagulation", difficulty: "advanced",
-    q: "Argatroban monitoring in HIT requires adjustment in which organ failure?",
-    opts: ["Renal failure","Liver failure","Both renal and liver failure","No adjustment needed"],
-    ans: 1,
-    exp: "Argatroban is hepatically metabolized. In liver failure, clearance is significantly reduced and doses must be reduced (typically by 75%). Renal failure does not require dose adjustment for argatroban."
-  },
-  {
-    topic: "Anticoagulation", difficulty: "advanced",
-    q: "What finding on ECMO circuit inspection suggests impending oxygenator thrombosis requiring circuit change?",
-    opts: [
-      "Dark membrane color",
-      "Rising delta P (pre- minus post-membrane pressure), visible clot, hemolysis, rising LDH",
-      "Dropping ACT below target",
-      "Increased sweep gas flow requirement"
-    ],
-    ans: 1,
-    exp: "Oxygenator thrombosis presents with rising delta P (>50 mmHg), visible fibrin/clot in the membrane, hemolysis, and rising LDH. An emergency circuit change is required before complete oxygenator failure."
-  },
-
-  // ── ADDITIONAL MIXED ──────────────────────────────────────────────────────
-  {
-    topic: "Physiology", difficulty: "intermediate",
-    q: "What ECMO blood flow rate is typically targeted in adult patients?",
-    opts: ["1–2 L/min","4–6 L/min (60–80 mL/kg/min)","8–10 L/min","10–15 L/min"],
-    ans: 1,
-    exp: "Adult ECMO flow is typically 4–6 L/min (60–80 mL/kg/min), targeting SvO2 >70% and normalizing lactate. This represents near-full cardiac output support in most adults."
-  },
-  {
-    topic: "VA ECMO – Cardiac", difficulty: "intermediate",
-    q: "In VA ECMO for cardiogenic shock, what MAP target is generally recommended?",
-    opts: ["45–55 mmHg","65–75 mmHg","85–95 mmHg",">100 mmHg"],
-    ans: 1,
-    exp: "MAP 65–75 mmHg is the standard target in VA ECMO for cardiogenic shock — sufficient for organ perfusion while minimizing LV afterload. Higher MAP increases afterload and may worsen LV distension."
-  },
-  {
-    topic: "VV ECMO – Respiratory", difficulty: "advanced",
-    q: "Awake, ambulatory VV ECMO is used as:",
-    opts: [
-      "Definitive treatment for ARDS",
-      "A bridge to lung transplantation in selected patients avoiding ventilator-induced deconditioning",
-      "Standard care for all VV ECMO patients",
-      "A technique to reduce anticoagulation requirements"
-    ],
-    ans: 1,
-    exp: "Ambulatory VV ECMO in awake, non-intubated patients is an established bridge-to-transplant strategy. It avoids ventilator-induced lung injury and deconditioning, and has been associated with improved post-transplant outcomes."
-  },
-  {
-    topic: "Cannulation", difficulty: "basic",
-    q: "The Seldinger technique used for ECMO cannulation involves:",
-    opts: [
-      "Surgical cutdown to expose the vessel",
-      "Needle puncture → guidewire → dilators → cannula insertion over wire",
-      "Direct percutaneous puncture with large-bore needle only",
-      "Venous cutdown followed by surgical repair"
-    ],
-    ans: 1,
-    exp: "The Seldinger technique: needle puncture of vessel → insert guidewire through needle → remove needle → sequential dilation → advance cannula over wire. Standard for percutaneous ECMO cannulation."
-  },
-  {
-    topic: "Circuit & Oxygenator", difficulty: "basic",
-    q: "What is the key difference between centrifugal pumps and roller pumps in ECMO?",
-    opts: [
-      "Centrifugal pumps are preload-dependent; roller pumps are preload-independent",
-      "Roller pumps generate higher maximum flows",
-      "Centrifugal pumps are only used in neonates",
-      "There is no clinically relevant difference"
-    ],
-    ans: 0,
-    exp: "Centrifugal pumps are preload-dependent and afterload-sensitive — they will reduce flow if resistance rises (safety feature). Roller pumps are occlusive and preload-independent, used mainly in neonatal ECLS."
-  },
-  {
-    topic: "Adverse Effects", difficulty: "intermediate",
-    q: "Causes of hemolysis in ECMO include all of the following EXCEPT:",
-    opts: [
-      "High pump RPM",
-      "Kinked drainage tubing",
-      "Circuit thrombosis",
-      "Low sweep gas flow"
-    ],
-    ans: 3,
-    exp: "Hemolysis is caused by mechanical trauma to RBCs from high shear stress (high RPM), kinked tubing, or clot in the circuit. Low sweep gas flow affects CO2 removal but does not cause hemolysis."
-  },
-  {
-    topic: "ECPR", difficulty: "intermediate",
-    q: "High-quality uninterrupted CPR during ECPR setup is:",
-    opts: [
-      "Optional if ECMO is being initiated",
-      "Mandatory — it is the basis for successful ECPR and neurological preservation",
-      "Contraindicated as it delays cannulation",
-      "Only needed for OHCA, not IHCA"
-    ],
-    ans: 1,
-    exp: "Uninterrupted high-quality CPR is the foundation of ECPR. ECMO cannot compensate for poor CPR quality. Mechanical CPR devices (e.g., LUCAS, AutoPulse) help maintain quality during cannulation."
-  },
-  {
-    topic: "VA ECMO – Cardiac", difficulty: "advanced",
-    q: "Bridging strategies in VA ECMO for cardiac failure include all EXCEPT:",
-    opts: [
-      "Bridge to recovery",
-      "Bridge to durable VAD (LVAD/BiVAD)",
-      "Bridge to heart transplantation",
-      "Bridge to VV ECMO"
-    ],
-    ans: 3,
-    exp: "The three VA ECMO bridging strategies are: bridge to recovery (myocardial recovery), bridge to durable VAD, and bridge to heart transplant. Converting to VV ECMO is not a bridging strategy for cardiac failure."
-  },
-  {
-    topic: "Physiology", difficulty: "basic",
-    q: "Normal oxygen extraction ratio (O2ER) at rest is approximately:",
-    opts: ["5–10%","25%","50%","75%"],
-    ans: 1,
-    exp: "Normal O2ER = VO2/DO2 ≈ 25% at rest. Tissues use ~25% of delivered oxygen, leaving ~75% in venous blood (SvO2 ~75%). In shock or on ECMO, O2ER may rise to >50%, reflecting inadequate DO2."
-  },
-  {
-    topic: "VV ECMO – Respiratory", difficulty: "intermediate",
-    q: "Prone positioning during VV ECMO is:",
-    opts: [
-      "Absolutely contraindicated due to cannula dislodgement risk",
-      "Feasible and improves oxygenation when performed by experienced teams",
-      "Routinely performed in all VV ECMO patients",
-      "Only possible in pediatric patients"
-    ],
-    ans: 1,
-    exp: "Prone positioning during VV ECMO is feasible and has been shown to improve oxygenation. It requires an experienced team, careful cannula securement, and a structured proning protocol — but is not absolutely contraindicated."
-  },
-  {
-    topic: "Anticoagulation", difficulty: "basic",
-    q: "How should bleeding from ECMO cannulation sites be initially managed?",
-    opts: [
-      "Immediately stop all anticoagulation and decannulate",
-      "Direct sustained pressure, review anticoagulation targets, consider topical hemostatic agents",
-      "Increase ECMO flow to dilute bleeding",
-      "Switch to bivalirudin immediately"
-    ],
-    ans: 1,
-    exp: "Initial management of cannula site bleeding: direct pressure (15–30 min), review and potentially lower anticoagulation targets, correct coagulopathy (platelets, fibrinogen, FFP), and consider topical hemostatic agents."
-  },
-  {
-    topic: "Circuit & Oxygenator", difficulty: "advanced",
-    q: "A CRRT circuit can be added to the ECMO circuit. The correct position for the CRRT return is:",
-    opts: [
-      "Into the pre-pump (venous drainage) segment",
-      "Into the post-pump/post-oxygenator (arterial) segment to return filtered blood",
-      "Into a separate central venous catheter only",
-      "Into the sweep gas inlet"
-    ],
-    ans: 1,
-    exp: "CRRT return should connect to the post-oxygenator (arterial) limb of the ECMO circuit, ensuring filtered blood is returned after the pump and oxygenator. Drainage from the pre-pump venous limb minimizes pump speed effects on CRRT."
-  },
-  {
-    topic: "Adverse Effects", difficulty: "advanced",
-    q: "Neurological injury during VA ECMO most commonly presents as:",
-    opts: [
-      "Peripheral neuropathy",
-      "Thromboembolic stroke or intracranial hemorrhage",
-      "Spinal cord infarction",
-      "Peripheral nerve palsy from cannula compression"
-    ],
-    ans: 1,
-    exp: "Neurological injury on VA ECMO is predominantly thromboembolic stroke (from circuit emboli, atrial thrombus, or LV stasis) or intracranial hemorrhage (from systemic anticoagulation). Daily neurological monitoring is essential."
-  },
-  {
-    topic: "VV ECMO – Respiratory", difficulty: "intermediate",
-    q: "Which of the following is a RELATIVE contraindication for VV ECMO in ARDS?",
-    opts: [
-      "pH <7.20 on lung-protective ventilation",
-      "Mechanical ventilation >7–10 days at injurious settings",
-      "Murray score >3",
-      "PaO2/FiO2 <80 on FiO2 1.0"
-    ],
-    ans: 1,
-    exp: "Mechanical ventilation >7–10 days at high injurious settings is a relative contraindication, suggesting established fibroproliferative ARDS with poor recovery potential. It is not absolute but significantly reduces expected benefit."
-  },
-  {
-    topic: "VA ECMO – Cardiac", difficulty: "intermediate",
-    q: "In ACS-related cardiogenic shock on VA ECMO, early coronary angiography is:",
-    opts: [
-      "Contraindicated due to anticoagulation",
-      "Recommended — revascularization prior to or concurrent with ECMO initiation improves outcomes",
-      "Deferred for 72 hours after ECMO stabilization",
-      "Only indicated if ECG shows STEMI"
-    ],
-    ans: 1,
-    exp: "Early coronary angiography ± PCI is recommended in ACS-related cardiogenic shock as treating the culprit lesion is central to recovery. ECMO provides hemodynamic stability to allow revascularization."
-  },
-  {
-    topic: "Crisis Management", difficulty: "advanced",
-    q: "During an emergency circuit change, what must be continuously maintained?",
-    opts: [
-      "ECMO flow at all times",
-      "Patient oxygenation and ventilation (manual bagging if needed) and hemodynamic support",
-      "Anticoagulation infusion",
-      "Sweep gas flow"
-    ],
-    ans: 1,
-    exp: "During circuit change, ECMO flow is necessarily interrupted. Priorities are: maintain ventilation (manual bagging), maintain hemodynamic support (CPR if needed, vasopressors), and perform the change rapidly with a practiced team."
-  },
-  {
-    topic: "Nomenclature", difficulty: "advanced",
-    q: "PA (pulmonary artery) cannulation in ECMO is used to create which configuration?",
-    opts: [
-      "VV ECMO",
-      "A right ventricular assist device (RVAD) — draining the right ventricle and returning to the pulmonary artery",
-      "VA ECMO",
-      "ECCO2R only"
-    ],
-    ans: 1,
-    exp: "Pulmonary artery cannulation creates an RVAD configuration: drainage from the right atrium/RV, return to the pulmonary artery. This provides right heart support without oxygenation support."
-  },
-  {
-    topic: "Physiology", difficulty: "advanced",
-    q: "During VA ECMO, why is it important for the aortic valve to open at least intermittently?",
-    opts: [
-      "To maintain normal blood pressure",
-      "To prevent LV stasis and thrombus formation within the LV",
-      "To reduce ECMO circuit resistance",
-      "To allow weaning from vasopressors"
-    ],
-    ans: 1,
-    exp: "If the aortic valve never opens on VA ECMO, blood stagnates in the LV → thrombus formation → systemic embolization. Inotropes, LV unloading, or reducing ECMO flow can restore aortic valve opening."
-  },
-  {
-    topic: "Adverse Effects", difficulty: "intermediate",
-    q: "Nosocomial infection risk on ECMO increases with:",
-    opts: [
-      "Higher ECMO flow rates",
-      "Longer duration of ECLS",
-      "Use of centrifugal vs roller pumps",
-      "Higher anticoagulation targets"
-    ],
-    ans: 1,
-    exp: "Nosocomial infection rate increases with duration of ECLS. Prolonged ECMO (>2 weeks) significantly increases risk of VAP, bloodstream infections, and cannula-site infections. Duration minimization is a key goal."
-  },
-
-  // ══════════════════════════════════════════════════════════════════════════
-  // BATCH 2 — Neonatal, Pediatric, Transport, Nutrition, Monitoring, Advanced
-  // ══════════════════════════════════════════════════════════════════════════
-
-  // ── NEONATAL ECMO ─────────────────────────────────────────────────────────
-  {
-    topic: "Neonatal ECMO", difficulty: "basic",
-    q: "The most common indication for neonatal ECMO is:",
-    opts: ["Congenital heart disease","Meconium aspiration syndrome (MAS) and persistent pulmonary hypertension of the newborn (PPHN)","Neonatal sepsis","Prematurity"],
-    ans: 1,
-    exp: "Meconium aspiration syndrome and persistent pulmonary hypertension of the newborn (PPHN) are the leading indications for neonatal ECMO, representing failure of pulmonary vasodilation and hypoxic respiratory failure."
-  },
-  {
-    topic: "Neonatal ECMO", difficulty: "basic",
-    q: "What is the minimum gestational age typically required for neonatal ECMO?",
-    opts: ["28 weeks","32 weeks","34 weeks","40 weeks"],
-    ans: 2,
-    exp: "Gestational age ≥34 weeks is the standard minimum for neonatal ECMO. Premature infants <34 weeks have fragile germinal matrix vessels with very high risk of intracranial hemorrhage on anticoagulation."
-  },
-  {
-    topic: "Neonatal ECMO", difficulty: "basic",
-    q: "What is the minimum weight typically required for neonatal ECMO candidacy?",
-    opts: ["1 kg","2 kg","3 kg","4 kg"],
-    ans: 1,
-    exp: "Neonates weighing ≥2 kg are generally considered candidates for ECMO. Below this threshold, cannula sizes become technically prohibitive and bleeding risk significantly increases."
-  },
-  {
-    topic: "Neonatal ECMO", difficulty: "intermediate",
-    q: "Congenital diaphragmatic hernia (CDH) on ECMO has which characteristic prognosis compared to other neonatal ECMO indications?",
-    opts: [
-      "Best prognosis — nearly 100% survival",
-      "Worst prognosis among neonatal ECMO indications — survival ~50%",
-      "Same prognosis as MAS",
-      "Only used as bridge to surgery, not for respiratory support"
-    ],
-    ans: 1,
-    exp: "CDH has the worst prognosis among neonatal ECMO indications with survival ~50%, due to pulmonary hypoplasia (lungs cannot recover fully). Compare to MAS where survival exceeds 90% on ECMO."
-  },
-  {
-    topic: "Neonatal ECMO", difficulty: "intermediate",
-    q: "The oxygenation index (OI) threshold commonly used as a criterion for neonatal ECMO referral is:",
-    opts: ["OI >10","OI >20","OI >40","OI >60"],
-    ans: 2,
-    exp: "OI = (MAP × FiO2 × 100) / PaO2. OI >40 (some centers use >35) despite optimal therapy is a standard threshold for neonatal ECMO referral, indicating severe respiratory failure with high mortality risk."
-  },
-  {
-    topic: "Neonatal ECMO", difficulty: "intermediate",
-    q: "In neonatal VA ECMO, the right common carotid artery is ligated after cannulation. What is the long-term concern?",
-    opts: [
-      "No long-term concern — collateral circulation is adequate",
-      "Potential right hemisphere cerebral ischemia and neurodevelopmental impact — requires long-term neurological follow-up",
-      "Recurrent neck infections",
-      "Tracheal compression"
-    ],
-    ans: 1,
-    exp: "Carotid artery ligation in neonatal VA ECMO raises concern for right hemisphere ischemia and neurodevelopmental sequelae. Some centers attempt carotid reconstruction after decannulation. Long-term neurodevelopmental follow-up is essential."
-  },
-  {
-    topic: "Neonatal ECMO", difficulty: "advanced",
-    q: "Which neonatal condition is an absolute contraindication to ECMO?",
-    opts: [
-      "Gestational age 35 weeks",
-      "Lethal chromosomal abnormality or condition incompatible with meaningful survival",
-      "Birth weight 2.1 kg",
-      "Mild intraventricular hemorrhage grade I"
-    ],
-    ans: 1,
-    exp: "Lethal chromosomal abnormalities (e.g., Trisomy 13, 18) or conditions incompatible with survival are absolute contraindications. Grade III-IV IVH is also a contraindication due to risk of hemorrhage extension on anticoagulation."
-  },
-  {
-    topic: "Neonatal ECMO", difficulty: "advanced",
-    q: "Persistent pulmonary hypertension of the newborn (PPHN) refractory to iNO is managed with ECMO because:",
-    opts: [
-      "ECMO directly dilates pulmonary vessels",
-      "ECMO provides gas exchange support allowing time for pulmonary vascular resistance to normalize",
-      "ECMO eliminates the need for iNO",
-      "ECMO reverses the underlying cardiac defect"
-    ],
-    ans: 1,
-    exp: "ECMO supports oxygenation while the elevated pulmonary vascular resistance naturally decreases over days. It provides a bridge to recovery — the lungs and pulmonary vasculature recover spontaneously with time and supportive care."
-  },
-
-  // ── PEDIATRIC ECMO ────────────────────────────────────────────────────────
-  {
-    topic: "Pediatric ECMO", difficulty: "basic",
-    q: "The most common indication for pediatric ECMO (1 month – 18 years) is:",
-    opts: ["Respiratory failure","Cardiac failure — congenital heart disease and post-cardiac surgery","Septic shock","Trauma"],
-    ans: 1,
-    exp: "Cardiac failure, predominantly related to congenital heart disease and post-cardiac surgery low output syndrome, is the most common indication for pediatric ECMO, accounting for ~50% of pediatric ECMO runs."
-  },
-  {
-    topic: "Pediatric ECMO", difficulty: "intermediate",
-    q: "Pediatric ECPR (extracorporeal CPR) outcomes are generally:",
-    opts: [
-      "Worse than adult ECPR",
-      "Better than adult ECPR — especially for in-hospital cardiac arrest in congenital heart disease",
-      "Identical to adult ECPR",
-      "Not recommended in children"
-    ],
-    ans: 1,
-    exp: "Pediatric ECPR, particularly for IHCA in children with congenital heart disease, has better outcomes than adult ECPR. Survival with good neurological outcome can reach 40–50% in select pediatric IHCA patients."
-  },
-  {
-    topic: "Pediatric ECMO", difficulty: "intermediate",
-    q: "Which viral myocarditis in children has the best ECMO recovery potential?",
-    opts: ["CMV myocarditis","Adenoviral myocarditis","Enteroviral (coxsackievirus) myocarditis","EBV myocarditis"],
-    ans: 2,
-    exp: "Enteroviral (coxsackievirus B) myocarditis in children has the best recovery potential on VA ECMO. Most cases recover myocardial function within 1–2 weeks, making ECMO a true bridge-to-recovery strategy."
-  },
-  {
-    topic: "Pediatric ECMO", difficulty: "advanced",
-    q: "Single ventricle physiology (e.g., hypoplastic left heart syndrome) on ECMO post-Norwood procedure presents unique challenges because:",
-    opts: [
-      "These patients cannot receive ECMO",
-      "Pulmonary and systemic circulation compete — Qp:Qs balance is critical and standard ECMO management differs significantly",
-      "These patients always require VV ECMO",
-      "Anticoagulation is not needed"
-    ],
-    ans: 1,
-    exp: "Single ventricle patients have parallel pulmonary and systemic circuits. Over-oxygenation drops PVR → excessive Qp → systemic steal. Management requires careful balancing of Qp:Qs, often targeting SaO2 75–85% rather than normal."
-  },
-
-  // ── TRANSPORT ECMO ────────────────────────────────────────────────────────
-  {
-    topic: "Transport on ECMO", difficulty: "basic",
-    q: "Which ECMO device is most commonly used for inter-hospital transport?",
-    opts: ["CentriMag","RotaFlow","Maquet Cardiohelp (HLS system)","Biomedicus"],
-    ans: 2,
-    exp: "The Maquet Cardiohelp (HLS — Heart-Lung Support system) is the most widely used transport ECMO device. It is compact, battery-powered, integrates pump and oxygenator, and is designed for mobile use."
-  },
-  {
-    topic: "Transport on ECMO", difficulty: "intermediate",
-    q: "A patient requiring inter-hospital ECMO transport should ideally be cannulated:",
-    opts: [
-      "At the receiving ECMO center after transfer",
-      "At the referring hospital before transfer — transported on ECMO support",
-      "In the ambulance during transfer",
-      "Only if the transfer is <30 minutes"
-    ],
-    ans: 1,
-    exp: "Patients should be cannulated and stabilized on ECMO at the referring hospital before transport. Transferring a deteriorating patient without ECMO support carries prohibitive risk. The ECMO team travels to the referring center."
-  },
-  {
-    topic: "Transport on ECMO", difficulty: "intermediate",
-    q: "What is the primary safety concern during ECMO transport by air (helicopter/fixed-wing)?",
-    opts: [
-      "Temperature changes",
-      "Altitude-related gas expansion in the circuit, battery life, vibration, and limited space for emergencies",
-      "Noise interference with monitors",
-      "Fuel consumption"
-    ],
-    ans: 1,
-    exp: "Air transport concerns: altitude causes gas expansion (air emboli risk if any air in circuit), battery life limitation, vibration effects on circuit, limited space for emergency interventions, and pressure changes affecting oxygenator function."
-  },
-  {
-    topic: "Transport on ECMO", difficulty: "advanced",
-    q: "During ECMO transport, which parameter must be continuously monitored to detect circuit problems early?",
-    opts: [
-      "Patient temperature only",
-      "ECMO flow, pre/post-membrane pressures, SvO2, and battery/power status",
-      "Blood glucose only",
-      "Urine output only"
-    ],
-    ans: 1,
-    exp: "Continuous monitoring during transport: ECMO flow rate, pre-membrane and post-membrane pressures (detect clot), SvO2 (detect inadequate support), and power/battery status (prevent pump failure). Plus standard vital signs."
-  },
-
-  // ── NUTRITION ON ECMO ─────────────────────────────────────────────────────
-  {
-    topic: "Nutrition on ECMO", difficulty: "basic",
-    q: "What is the preferred route of nutrition in stable ECMO patients?",
-    opts: ["Total parenteral nutrition (TPN)","Enteral nutrition via nasogastric or post-pyloric tube","Oral feeding","No nutrition for first 72 hours"],
-    ans: 1,
-    exp: "Enteral nutrition is preferred in ECMO patients when hemodynamically feasible. It preserves gut integrity, reduces infection risk, and is associated with better outcomes compared to TPN."
-  },
-  {
-    topic: "Nutrition on ECMO", difficulty: "intermediate",
-    q: "ECMO circuits affect drug pharmacokinetics. Which class of drugs is most significantly sequestered by PMP oxygenator circuits?",
-    opts: ["Beta-blockers","Lipophilic drugs — including sedatives (fentanyl, midazolam) and some antibiotics","Water-soluble antibiotics","Vasopressors"],
-    ans: 1,
-    exp: "Lipophilic drugs are significantly sequestered by PMP hollow fiber circuits. Fentanyl, midazolam, propofol, and lipophilic antibiotics (e.g., voriconazole) can be adsorbed to circuit surfaces, requiring higher doses."
-  },
-  {
-    topic: "Nutrition on ECMO", difficulty: "intermediate",
-    q: "Caloric targets on ECMO are generally:",
-    opts: [
-      "Hypocaloric (50% of target) in all patients",
-      "25–30 kcal/kg/day with adequate protein 1.2–2.0 g/kg/day",
-      ">40 kcal/kg/day to overcome hypermetabolism",
-      "TPN-based 3500 kcal/day regardless of weight"
-    ],
-    ans: 1,
-    exp: "Standard targets on ECMO: 25–30 kcal/kg/day total energy and 1.2–2.0 g/kg/day protein. Overfeeding is harmful. Protein delivery is particularly important for muscle preservation during prolonged ECMO."
-  },
-  {
-    topic: "Nutrition on ECMO", difficulty: "advanced",
-    q: "Propofol infusion in ECMO patients carries a specific risk not typically seen at standard ICU doses. What is it?",
-    opts: [
-      "Circuit thrombosis",
-      "Propofol infusion syndrome (PRIS) — especially with prolonged high-dose infusion; also significant circuit sequestration requiring dose escalation",
-      "Oxygenator damage",
-      "Hemolysis"
-    ],
-    ans: 1,
-    exp: "Propofol is highly lipophilic and adsorbed by ECMO circuits, often requiring dose escalation. Higher doses increase risk of propofol infusion syndrome (PRIS) — metabolic acidosis, rhabdomyolysis, cardiac failure. Consider alternative sedation."
-  },
-
-  // ── MONITORING ON ECMO ────────────────────────────────────────────────────
-  {
-    topic: "Monitoring on ECMO", difficulty: "basic",
-    q: "SvO2 monitoring in the ECMO circuit drainage cannula reflects:",
-    opts: [
-      "Post-oxygenator oxygen saturation",
-      "Mixed venous oxygen saturation — indicating adequacy of oxygen delivery relative to consumption",
-      "Arterial oxygen saturation",
-      "Circuit anticoagulation status"
-    ],
-    ans: 1,
-    exp: "SvO2 in the drainage cannula reflects mixed venous saturation. Target >65–70% on ECMO. Low SvO2 indicates inadequate DO2 (increase flow, transfuse, reduce VO2). High SvO2 may indicate recirculation in VV ECMO."
-  },
-  {
-    topic: "Monitoring on ECMO", difficulty: "basic",
-    q: "Near-infrared spectroscopy (NIRS) during ECMO is used to monitor:",
-    opts: [
-      "Circuit oxygenator function",
-      "Regional tissue oxygen saturation — brain (cerebral NIRS) and limbs",
-      "Anticoagulation levels",
-      "ECMO pump speed"
-    ],
-    ans: 1,
-    exp: "NIRS monitors regional tissue oxygen saturation non-invasively. Cerebral NIRS detects brain hypoperfusion/ischemia. Limb NIRS detects lower extremity ischemia in peripheral VA ECMO — a key safety monitoring tool."
-  },
-  {
-    topic: "Monitoring on ECMO", difficulty: "intermediate",
-    q: "Continuous EEG monitoring during ECMO is indicated primarily for:",
-    opts: [
-      "Monitoring cardiac rhythm",
-      "Detection of subclinical seizures — common in ECMO patients, especially neonates and post-cardiac arrest",
-      "Monitoring depth of sedation",
-      "Detecting circuit air embolism"
-    ],
-    ans: 1,
-    exp: "Subclinical seizures are common in ECMO patients (especially neonates and post-ECPR adults) and cannot be detected clinically due to neuromuscular blockade or sedation. Continuous EEG or aEEG monitoring is recommended."
-  },
-  {
-    topic: "Monitoring on ECMO", difficulty: "intermediate",
-    q: "Transcranial Doppler (TCD) during VA ECMO is used to:",
-    opts: [
-      "Measure cardiac output",
-      "Detect cerebral microemboli and assess cerebral blood flow velocity",
-      "Monitor oxygenator function",
-      "Detect limb ischemia"
-    ],
-    ans: 1,
-    exp: "TCD detects cerebral microemboli (gaseous or solid) and assesses cerebral blood flow velocity. In VA ECMO, high embolic load detected by TCD predicts stroke risk and may prompt circuit inspection or change."
-  },
-  {
-    topic: "Monitoring on ECMO", difficulty: "advanced",
-    q: "What does a rising lactate AFTER ECMO initiation indicate?",
-    opts: [
-      "Successful ECMO support — lactate always rises initially",
-      "Inadequate ECMO flow, persistent shock, complications (bleeding, limb ischemia, bowel ischemia), or irreversible organ failure",
-      "Normal ECMO circuit function",
-      "Hyperglycemia"
-    ],
-    ans: 1,
-    exp: "Rising lactate after ECMO initiation is a warning sign. Causes: inadequate ECMO flow (increase support), ongoing hemorrhage, limb ischemia (check DLPC), mesenteric ischemia, or irreversible pre-ECMO organ damage. Lactate clearance is the key outcome marker."
-  },
-
-  // ── SPECIAL POPULATIONS ───────────────────────────────────────────────────
-  {
-    topic: "Special Populations", difficulty: "intermediate",
-    q: "ECMO in pregnancy: what is the primary indication?",
-    opts: [
-      "Elective caesarean section support",
-      "Severe peripartum cardiomyopathy or refractory respiratory failure (H1N1, amniotic fluid embolism)",
-      "Pre-eclampsia management",
-      "Routine obstetric care"
-    ],
-    ans: 1,
-    exp: "ECMO in pregnancy is primarily used for severe peripartum cardiomyopathy, amniotic fluid embolism causing cardiac arrest, or refractory respiratory failure (e.g., H1N1 ARDS). It has been successfully used in both antepartum and postpartum settings."
-  },
-  {
-    topic: "Special Populations", difficulty: "intermediate",
-    q: "Hypothermia-associated cardiac arrest is a particularly favorable indication for ECPR because:",
-    opts: [
-      "Cold temperatures enhance ECMO circuit function",
-      "Hypothermia provides profound cerebral protection — full neurological recovery possible even after prolonged arrest",
-      "Hypothermic patients require no anticoagulation",
-      "ECMO rewarms patients faster than other methods"
-    ],
-    ans: 1,
-    exp: "Hypothermic cardiac arrest (core temp <30°C) provides exceptional cerebral protection. Full neurological recovery has been documented after hours of cardiac arrest in severely hypothermic patients on ECMO rewarming — ECPR is strongly indicated."
-  },
-  {
-    topic: "Special Populations", difficulty: "intermediate",
-    q: "Drug toxicity-related cardiac arrest is an excellent ECPR indication because:",
-    opts: [
-      "Drugs enhance ECMO circuit function",
-      "The cardiac toxicity is reversible once the drug is metabolized or eliminated — ECMO bridges to recovery",
-      "These patients have better coagulation",
-      "Drug overdose patients never need anticoagulation"
-    ],
-    ans: 1,
-    exp: "Drug toxicity (e.g., tricyclic antidepressants, beta-blockers, calcium channel blockers, cocaine) causes reversible cardiac toxicity. ECMO maintains perfusion while the drug is metabolized — excellent neurological recovery is achievable."
-  },
-  {
-    topic: "Special Populations", difficulty: "advanced",
-    q: "ECMO for COVID-19 ARDS: which patient characteristic predicts poor outcome?",
-    opts: [
-      "Age <50 years",
-      "Pre-ECMO mechanical ventilation >10–14 days, obesity grade III, immunosuppression",
-      "PaO2/FiO2 <80",
-      "Bilateral infiltrates on CXR"
-    ],
-    ans: 1,
-    exp: "Poor ECMO outcomes in COVID-19 ARDS are predicted by: prolonged pre-ECMO ventilation (>10–14 days), severe obesity (BMI >40), immunosuppression, and multiple organ failure. ELSO published specific COVID-19 ECMO guidelines."
-  },
-
-  // ── WEANING ADVANCED ──────────────────────────────────────────────────────
-  {
-    topic: "VV ECMO – Respiratory", difficulty: "advanced",
-    q: "During a VV ECMO sweep gas trial, if the patient develops hypercapnia (PaCO2 >60 mmHg) but maintains SpO2 >90%, this indicates:",
-    opts: [
-      "Ready for decannulation — CO2 retention is acceptable",
-      "Native lung cannot handle CO2 elimination independently — weaning criteria not met",
-      "Circuit malfunction",
-      "Need to increase ECMO blood flow"
-    ],
-    ans: 1,
-    exp: "During sweep gas trial, both oxygenation (SpO2 >90%) AND ventilation (PaCO2 <60 mmHg, pH >7.30) must be adequate. Hypercapnia despite adequate oxygenation means the native lung cannot handle CO2 — weaning criteria not fully met."
-  },
-  {
-    topic: "VA ECMO – Cardiac", difficulty: "advanced",
-    q: "A patient fails VA ECMO weaning attempts despite 3 weeks of support. The next appropriate step is:",
-    opts: [
-      "Continue ECMO indefinitely",
-      "Transition to durable mechanical circulatory support (LVAD) or list for heart transplantation",
-      "Immediate decannulation regardless",
-      "Add a second ECMO pump"
-    ],
-    ans: 1,
-    exp: "Failure to wean from VA ECMO after adequate time (typically 2–3 weeks) necessitates escalation — either durable LVAD implantation (bridge to transplant or destination therapy) or direct listing for heart transplantation."
-  },
-
-  // ── CIRCUIT MANAGEMENT ADVANCED ───────────────────────────────────────────
-  {
-    topic: "Circuit & Oxygenator", difficulty: "intermediate",
-    q: "What is the typical lifespan of a modern PMP oxygenator before requiring elective replacement?",
-    opts: ["24–48 hours","3–5 days","2–4 weeks","3–6 months"],
-    ans: 2,
-    exp: "Modern PMP oxygenators typically last 2–4 weeks before requiring elective replacement due to progressive plasma leakage or thrombosis. Some last longer with good anticoagulation. Emergency replacement is done when signs of failure appear."
-  },
-  {
-    topic: "Circuit & Oxygenator", difficulty: "intermediate",
-    q: "Plasma leakage from the oxygenator is identified by:",
-    opts: [
-      "Rising pre-membrane pressure",
-      "Visible yellow/pink fluid in the gas outlet port of the oxygenator",
-      "Falling ECMO flow",
-      "Rising arterial PO2"
-    ],
-    ans: 1,
-    exp: "Plasma leakage (sweep gas contamination with plasma proteins) appears as yellow or pink fluid in the gas outlet. It indicates membrane integrity failure and heralds oxygenator failure — elective replacement should be planned."
-  },
-  {
-    topic: "Circuit & Oxygenator", difficulty: "advanced",
-    q: "During a circuit change, the minimum preparation required includes:",
-    opts: [
-      "Only a new pump head",
-      "Complete pre-primed backup circuit, trained team, blood products available, clear role assignment",
-      "Only a new oxygenator",
-      "Additional anticoagulation dose only"
-    ],
-    ans: 1,
-    exp: "Emergency circuit change requires: pre-primed complete backup circuit, trained team with assigned roles (clamp, swap, restart), blood products immediately available, vasopressors/inotropes ready, and clear communication protocol."
-  },
-
-  // ── ECMO OUTCOMES ─────────────────────────────────────────────────────────
-  {
-    topic: "ECMO Outcomes", difficulty: "basic",
-    q: "According to ELSO registry data, overall survival to hospital discharge for adult VV ECMO is approximately:",
-    opts: ["20–30%","50–60%","80–90%","95–100%"],
-    ans: 1,
-    exp: "ELSO registry data shows approximately 55–60% survival to hospital discharge for adult VV ECMO (respiratory). Outcomes vary significantly by indication and center volume."
-  },
-  {
-    topic: "ECMO Outcomes", difficulty: "basic",
-    q: "According to ELSO registry data, overall survival to hospital discharge for adult VA ECMO is approximately:",
-    opts: ["10–15%","40–50%","70–80%","90–95%"],
-    ans: 1,
-    exp: "Adult VA ECMO survival to hospital discharge is approximately 40–50% per ELSO registry. This is lower than VV ECMO due to the severity of underlying cardiac disease and associated organ failure."
-  },
-  {
-    topic: "ECMO Outcomes", difficulty: "intermediate",
-    q: "Center volume is an important predictor of ECMO outcomes because:",
-    opts: [
-      "High-volume centers have better equipment",
-      "Higher volume correlates with improved team experience, protocols, and rescue capabilities leading to better survival",
-      "Low-volume centers charge more",
-      "Center volume has no effect on outcomes"
-    ],
-    ans: 1,
-    exp: "Higher ECMO center volume is consistently associated with better survival. Experienced teams develop optimized protocols, rapid response to complications, and efficient crisis management — all translating to improved outcomes."
-  },
-  {
-    topic: "ECMO Outcomes", difficulty: "intermediate",
-    q: "Lactate clearance on ECMO is defined as adequate when:",
-    opts: [
-      "Lactate drops by any amount at 6 hours",
-      "Lactate decreases ≥10–20% per hour or normalizes (<2 mmol/L) within 12–24 hours of ECMO initiation",
-      "Lactate reaches 5 mmol/L at 48 hours",
-      "Lactate is unchanged at 24 hours"
-    ],
-    ans: 1,
-    exp: "Adequate lactate clearance (≥10–20% per hour or normalization within 12–24 hours) is the most important early prognostic marker on ECMO. Failure to clear lactate at 24 hours predicts poor survival and guides escalation decisions."
-  },
-
-  // ── ECMO PROGRAM STRUCTURE ────────────────────────────────────────────────
-  {
-    topic: "ECMO Program", difficulty: "basic",
-    q: "The ELSO organization primarily serves which function?",
-    opts: [
-      "Regulatory body that approves ECMO centers",
-      "International registry, education, and guideline development organization for ECLS",
-      "Manufacturer of ECMO equipment",
-      "Insurance provider for ECMO procedures"
-    ],
-    ans: 1,
-    exp: "ELSO (Extracorporeal Life Support Organization) is an international consortium that maintains the ELSO registry (world's largest ECMO database), publishes guidelines, provides education, and promotes ECLS research."
-  },
-  {
-    topic: "ECMO Program", difficulty: "intermediate",
-    q: "Minimum recommended team composition for a bedside ECMO run includes:",
-    opts: [
-      "Only the attending physician",
-      "Physician, ECMO specialist/perfusionist, bedside nurse, and respiratory therapist",
-      "Two nurses only",
-      "Perfusionist only"
-    ],
-    ans: 1,
-    exp: "A complete ECMO bedside team includes: physician (management decisions), ECMO specialist/perfusionist (circuit management), bedside nurse (patient care), and respiratory therapist (ventilator management). Clear roles prevent errors."
-  },
-  {
-    topic: "ECMO Program", difficulty: "intermediate",
-    q: "ECMO specialists (perfusionists/nurses) should maintain competency through:",
-    opts: [
-      "Annual reading of the ELSO Red Book only",
-      "Regular simulation training, minimum case volume, competency assessments, and emergency drills",
-      "One annual certification exam only",
-      "No formal competency maintenance required"
-    ],
-    ans: 1,
-    exp: "ECMO specialist competency requires: regular simulation-based training (especially crisis management), maintaining minimum ECMO case volume, structured competency assessments, and regular emergency scenario drills."
-  },
-
-  // ── ECMO AND RENAL FAILURE ────────────────────────────────────────────────
-  {
-    topic: "Adverse Effects", difficulty: "intermediate",
-    q: "Acute kidney injury (AKI) on ECMO occurs in approximately what percentage of patients?",
-    opts: ["5–10%","20–30%","50–70%","90–100%"],
-    ans: 2,
-    exp: "AKI occurs in 50–70% of ECMO patients due to pre-existing shock, hemolysis, inflammatory activation, and non-pulsatile flow. CRRT is required in 30–50% of ECMO runs."
-  },
-  {
-    topic: "Adverse Effects", difficulty: "intermediate",
-    q: "Non-pulsatile flow in VA ECMO affects the kidneys by:",
-    opts: [
-      "Increasing renal blood flow",
-      "Reducing renal perfusion pressure and activating RAAS — contributing to AKI",
-      "Having no effect on renal function",
-      "Causing direct tubular toxicity"
-    ],
-    ans: 1,
-    exp: "Non-pulsatile VA ECMO flow reduces mean arterial pulsatility → activates renin-angiotensin-aldosterone system (RAAS) → renal vasoconstriction. Combined with pre-existing shock and hemoglobinuria, this contributes significantly to ECMO-associated AKI."
-  },
-
-  // ── ECMO AND INFECTION ────────────────────────────────────────────────────
-  {
-    topic: "Adverse Effects", difficulty: "intermediate",
-    q: "The most common organism causing circuit-related bloodstream infection in ECMO is:",
-    opts: ["Staphylococcus aureus","Candida species and coagulase-negative Staphylococci","Pseudomonas aeruginosa","Streptococcus pneumoniae"],
-    ans: 1,
-    exp: "Coagulase-negative Staphylococci (CNS) and Candida species are the most common organisms in ECMO-associated bloodstream infections, reflecting skin flora introduction at cannulation sites and prolonged central access."
-  },
-  {
-    topic: "Adverse Effects", difficulty: "advanced",
-    q: "Antifungal prophylaxis during ECMO is considered because:",
-    opts: [
-      "All ECMO patients develop fungal infections",
-      "Prolonged ECMO with broad-spectrum antibiotics, TPN, and immunosuppression creates high Candida risk — some centers use fluconazole prophylaxis",
-      "Antifungals improve oxygenator function",
-      "Fungal infections are impossible on ECMO"
-    ],
-    ans: 1,
-    exp: "Risk factors for invasive candidiasis on ECMO: prolonged duration, broad-spectrum antibiotics, TPN use, renal replacement therapy, immunosuppression. Some centers use fluconazole prophylaxis for runs >7–10 days, though evidence is limited."
-  },
-
-  // ── SEDATION AND ANALGESIA ────────────────────────────────────────────────
-  {
-    topic: "Sedation on ECMO", difficulty: "intermediate",
-    q: "Why is sedation management particularly challenging in ECMO patients?",
-    opts: [
-      "ECMO patients are always deeply sedated by protocol",
-      "Circuit sequestration of lipophilic drugs increases required doses; drug monitoring is essential to avoid under/over-sedation",
-      "Sedatives are contraindicated on ECMO",
-      "ECMO eliminates the need for sedation"
-    ],
-    ans: 1,
-    exp: "Lipophilic sedatives (fentanyl, midazolam, propofol) are adsorbed by ECMO circuits — often requiring 2–4× standard doses initially. Over time, saturation occurs and levels may rise. Dose titration guided by clinical assessment and drug levels is essential."
-  },
-  {
-    topic: "Sedation on ECMO", difficulty: "intermediate",
-    q: "Dexmedetomidine as a sedative agent in ECMO patients offers which advantage?",
-    opts: [
-      "Strong circuit sequestration — predictable levels",
-      "Preserves respiratory drive and allows awake/ambulatory ECMO — particularly valuable for VV ECMO bridge-to-transplant",
-      "Eliminates need for analgesia",
-      "No drug interactions on ECMO"
-    ],
-    ans: 1,
-    exp: "Dexmedetomidine provides sedation while preserving spontaneous breathing and allowing patient cooperation. This makes it ideal for awake VV ECMO protocols (ambulatory ECMO), where maintaining respiratory effort and mobility improves transplant outcomes."
-  },
-
-  // ── ECMO ETHICS ───────────────────────────────────────────────────────────
-  {
-    topic: "ECMO Ethics", difficulty: "intermediate",
-    q: "When should goals-of-care discussions occur in ECMO patients?",
-    opts: [
-      "Only at the time of ECMO decannulation",
-      "Early — ideally before initiation and regularly throughout the ECMO run as prognosis evolves",
-      "Only if family requests them",
-      "After 30 days of ECMO"
-    ],
-    ans: 1,
-    exp: "Goals-of-care discussions should occur before ECMO initiation (when possible), within 24–48 hours of initiation, and regularly thereafter as clinical trajectory becomes clearer. Early communication prevents futile ECMO runs and supports families."
-  },
-  {
-    topic: "ECMO Ethics", difficulty: "advanced",
-    q: "Withdrawal of ECMO support in a patient with no recovery potential is ethically:",
-    opts: [
-      "Never permissible — ECMO must continue indefinitely",
-      "Permissible when continuation is futile — equivalent to withdrawing other life support after shared decision-making with family and team",
-      "Only permissible if the patient requested it before losing capacity",
-      "A criminal act in all jurisdictions"
-    ],
-    ans: 1,
-    exp: "ECMO withdrawal is ethically equivalent to withdrawing mechanical ventilation or vasopressors when continuation is futile. It requires: team consensus, clear communication with family, palliative care involvement, and documentation of decision-making process."
-  },
-
-  // ── ECMO AND REHABILITATION ───────────────────────────────────────────────
-  {
-    topic: "Rehabilitation on ECMO", difficulty: "intermediate",
-    q: "Early mobilization during VV ECMO is associated with:",
-    opts: [
-      "High cannula dislodgement rate — should be avoided",
-      "Improved physical function, reduced ICU-acquired weakness, and better post-transplant outcomes when done safely",
-      "No clinical benefit",
-      "Increased mortality"
-    ],
-    ans: 1,
-    exp: "Early mobilization (sitting, standing, ambulation) during VV ECMO is safe when performed by experienced teams with proper cannula securement. It reduces ICU-acquired weakness, maintains physical conditioning, and improves outcomes particularly in bridge-to-transplant patients."
-  },
-  {
-    topic: "Rehabilitation on ECMO", difficulty: "intermediate",
-    q: "Criteria for safely initiating mobilization in a VV ECMO patient include:",
-    opts: [
-      "Any VV ECMO patient can be mobilized immediately",
-      "Hemodynamic stability, adequate ECMO flow, secure cannulas, cooperative patient, experienced team present",
-      "Mobilization requires decannulation first",
-      "Only passive range of motion is permitted"
-    ],
-    ans: 1,
-    exp: "Safe mobilization criteria: hemodynamic stability (MAP >65 without escalating vasopressors), adequate ECMO flow, properly secured cannulas, cooperative and communicating patient, and a dedicated experienced physiotherapy/ECMO team present throughout."
-  },
-
-  // ── ADDITIONAL PHYSIOLOGY ─────────────────────────────────────────────────
-  {
-    topic: "Physiology", difficulty: "advanced",
-    q: "In VV ECMO, why does increasing native cardiac output NOT always improve oxygenation?",
-    opts: [
-      "Higher cardiac output reduces ECMO flow automatically",
-      "Higher cardiac output increases the fraction of non-ECMO blood (deoxygenated) mixing with ECMO-oxygenated blood, potentially diluting SaO2",
-      "Native cardiac output has no effect on oxygenation on VV ECMO",
-      "Higher cardiac output causes recirculation"
-    ],
-    ans: 1,
-    exp: "Counterintuitively, higher native CO on VV ECMO can dilute the oxygenated ECMO return with deoxygenated native venous blood. The fraction of total CO provided by ECMO (ECMO flow/total CO) determines how much oxygenation improvement occurs."
-  },
-  {
-    topic: "Physiology", difficulty: "advanced",
-    q: "The Fick principle applied to ECMO states that:",
-    opts: [
-      "ECMO flow equals cardiac output",
-      "VO2 = CO × (CaO2 − CvO2) × 10 — ECMO flow must be sufficient to provide adequate DO2 to meet VO2",
-      "SvO2 always equals 75% on ECMO",
-      "PaO2 determines cardiac output"
-    ],
-    ans: 1,
-    exp: "The Fick principle: VO2 = CO × (CaO2 − CvO2) × 10. On ECMO, total 'cardiac output' = native CO + ECMO flow. ECMO flow must be set to ensure total DO2 exceeds VO2 by sufficient margin (SvO2 >65–70%)."
-  },
-  {
-    topic: "Physiology", difficulty: "intermediate",
-    q: "In VA ECMO, mean arterial pressure (MAP) is primarily determined by:",
-    opts: [
-      "ECMO blood flow only",
-      "The combination of ECMO flow (cardiac output) × systemic vascular resistance (SVR)",
-      "Sweep gas settings",
-      "Oxygenator type"
-    ],
-    ans: 1,
-    exp: "MAP = CO × SVR. In VA ECMO, CO is largely provided by the pump. MAP is therefore determined by ECMO flow rate and SVR. Vasopressors increase SVR → increase MAP at same flow. High SVR increases LV afterload."
-  },
-
-  // ── ADVANCED NOMENCLATURE ─────────────────────────────────────────────────
-  {
-    topic: "Nomenclature", difficulty: "advanced",
-    q: "What is the difference between ECMO and ECLS?",
-    opts: [
-      "They are identical terms",
-      "ECLS is the broader term encompassing all extracorporeal support; ECMO specifically refers to systems providing both oxygenation and CO2 removal",
-      "ECMO is only for neonates",
-      "ECLS only refers to cardiac support"
-    ],
-    ans: 1,
-    exp: "ECLS (Extracorporeal Life Support) is the umbrella term for all extracorporeal cardiopulmonary support systems. ECMO is a subset providing membrane oxygenation. ECCO2R (another subset) focuses primarily on CO2 removal without full oxygenation support."
-  },
-  {
-    topic: "Nomenclature", difficulty: "intermediate",
-    q: "VVA ECMO configuration refers to:",
-    opts: [
-      "Two venous drainage cannulas and one arterial return",
-      "One venous drainage and two returns — one venous and one arterial — for combined respiratory and cardiac support",
-      "Three venous cannulas",
-      "Venoarterial ECMO via axillary access only"
-    ],
-    ans: 1,
-    exp: "VVA ECMO has one drainage cannula and two return cannulas (one venous for respiratory support, one arterial for cardiac support). It differs from VAV where there are two drainage cannulas and one return."
-  },
-
-  // ── ADDITIONAL CRISIS MANAGEMENT ──────────────────────────────────────────
-  {
-    topic: "Crisis Management", difficulty: "intermediate",
-    q: "Sudden loss of ECMO flow with low pre-membrane pressure suggests:",
-    opts: [
-      "Oxygenator thrombosis",
-      "Pump failure or severe hypovolemia causing venous collapse",
-      "Arterial cannula obstruction",
-      "Air in the arterial limb"
-    ],
-    ans: 1,
-    exp: "Low pre-membrane pressure with low flow suggests pump failure (no output) or venous collapse (insufficient preload). Distinguish from oxygenator clot which shows HIGH pre-membrane pressure. Check pump function and volume status immediately."
-  },
-  {
-    topic: "Crisis Management", difficulty: "advanced",
-    q: "A patient on VA ECMO suddenly loses all pulses and the monitor shows VF. The ECMO is still running. What is the correct immediate action?",
-    opts: [
-      "Start chest compressions and defibrillate immediately — treat as standard ACLS",
-      "Increase ECMO flow to maximum, defibrillate promptly, continue ECMO — CPR may not be needed if ECMO flow is adequate",
-      "Stop ECMO and start CPR",
-      "Decannulate and start CPR"
-    ],
-    ans: 1,
-    exp: "VA ECMO running at adequate flow maintains organ perfusion even during VF. Priority: maximize ECMO flow → defibrillate promptly → treat reversible cause (check ACT, electrolytes, ischemia). Chest compressions may not be needed if ECMO maintains adequate MAP."
-  },
-
-  // ── ADDITIONAL CANNULATION ────────────────────────────────────────────────
-  {
-    topic: "Cannulation", difficulty: "advanced",
-    q: "In femoral VA ECMO, the optimal arterial cannula tip position is:",
-    opts: [
-      "In the thoracic aorta",
-      "In the descending aorta at the level of the diaphragm — avoiding renal arteries",
-      "In the femoral artery only",
-      "In the iliac artery"
-    ],
-    ans: 1,
-    exp: "The arterial return cannula tip should be in the descending thoracic aorta (just above the diaphragm), confirmed by CXR. Too proximal risks aortic arch interference; too distal risks competitive flow issues with visceral arteries."
-  },
-  {
-    topic: "Cannulation", difficulty: "intermediate",
-    q: "Which imaging modality is preferred for real-time cannula guidance during ECMO insertion?",
-    opts: [
-      "CT scan",
-      "Transesophageal echocardiography (TEE) or transthoracic echo (TTE) combined with fluoroscopy",
-      "MRI",
-      "Chest X-ray only"
-    ],
-    ans: 1,
-    exp: "TEE provides real-time visualization of guidewires, dilators, and cannula tips in cardiac chambers and great vessels. Fluoroscopy assists with vessel access. TTE can be used when TEE is not available. CXR confirms final position."
-  },
-
-  // ── ADDITIONAL ANTICOAGULATION ────────────────────────────────────────────
-  {
-    topic: "Anticoagulation", difficulty: "intermediate",
-    q: "Anti-Xa monitoring vs ACT monitoring for heparin in ECMO — what is the advantage of anti-Xa?",
-    opts: [
-      "Anti-Xa is cheaper and faster",
-      "Anti-Xa directly measures heparin effect on Factor Xa — more specific and less affected by hemodilution, hypothermia, and thrombocytopenia than ACT",
-      "ACT is more specific for heparin effect",
-      "Both tests are equivalent in all situations"
-    ],
-    ans: 1,
-    exp: "Anti-Xa levels directly measure heparin's inhibitory effect on Factor Xa, making them more specific. ACT is affected by hemodilution, thrombocytopenia, hypothermia, and platelet dysfunction — common in ECMO patients. Anti-Xa target: 0.3–0.7 IU/mL."
-  },
-  {
-    topic: "Anticoagulation", difficulty: "advanced",
-    q: "Heparin resistance during ECMO is defined as:",
-    opts: [
-      "ACT >300 seconds",
-      "Failure to achieve target ACT/anti-Xa despite escalating heparin doses — often due to antithrombin III (AT III) deficiency",
-      "Patient allergy to heparin",
-      "Low platelet count on heparin"
-    ],
-    ans: 1,
-    exp: "Heparin resistance occurs when therapeutic anticoagulation cannot be achieved despite high heparin doses. The most common cause on ECMO is AT III deficiency (heparin requires AT III to work). Treatment: fresh frozen plasma or AT III concentrate."
-  },
-
-  // ── ADDITIONAL VA ECMO ────────────────────────────────────────────────────
-  {
-    topic: "VA ECMO – Cardiac", difficulty: "intermediate",
-    q: "The IABP (intra-aortic balloon pump) combined with VA ECMO primarily provides:",
-    opts: [
-      "Significant LV unloading comparable to Impella",
-      "Modest LV afterload reduction and coronary perfusion enhancement — less effective than Impella for LV unloading",
-      "RV support",
-      "Additional oxygenation"
-    ],
-    ans: 1,
-    exp: "IABP in combination with VA ECMO provides modest LV afterload reduction (diastolic augmentation + systolic unloading) and improves coronary perfusion. However, it provides significantly less LV unloading than Impella and is insufficient for severe LV distension."
-  },
-  {
-    topic: "VA ECMO – Cardiac", difficulty: "advanced",
-    q: "The ECMO-SELLA trial investigated:",
-    opts: [
-      "VV ECMO vs conventional ventilation in ARDS",
-      "Early vs late LV unloading with Impella in VA ECMO for cardiogenic shock",
-      "ECPR outcomes in OHCA",
-      "Anticoagulation targets in VA ECMO"
-    ],
-    ans: 1,
-    exp: "ECMO-SELLA was a randomized trial examining early (immediate) vs delayed LV unloading with Impella CP in patients on VA ECMO for cardiogenic shock. Results informed timing strategies for combined ECMO + Impella (ECPELLA) therapy."
-  },
-  {
-    topic: "VA ECMO – Cardiac", difficulty: "intermediate",
-    q: "ECPELLA refers to:",
-    opts: [
-      "A new type of ECMO circuit",
-      "Combined use of VA ECMO and Impella simultaneously for maximal cardiac support and LV unloading",
-      "An anticoagulation protocol",
-      "Emergency ECMO cannulation technique"
-    ],
-    ans: 1,
-    exp: "ECPELLA = VA ECMO + Impella. VA ECMO provides systemic circulatory support while Impella directly unloads the LV. This combination provides maximal hemodynamic support and actively prevents LV distension in severe cardiogenic shock."
-  },
-
-  // ── ADDITIONAL VV ECMO ────────────────────────────────────────────────────
-  {
-    topic: "VV ECMO – Respiratory", difficulty: "intermediate",
-    q: "The CESAR trial (2009) demonstrated that:",
-    opts: [
-      "VV ECMO had no benefit over conventional ventilation",
-      "Transfer to an ECMO-capable center (with ECMO available if needed) improved 6-month survival without severe disability",
-      "ECMO should be used for all ARDS patients",
-      "ECMO caused more harm than conventional ventilation"
-    ],
-    ans: 1,
-    exp: "CESAR showed that transfer to an ECMO center improved 6-month survival without severe disability (63% vs 47%). Notably, not all transferred patients received ECMO — the benefit may partly reflect superior overall critical care at ECMO centers."
-  },
-  {
-    topic: "VV ECMO – Respiratory", difficulty: "advanced",
-    q: "Inhaled nitric oxide (iNO) before VV ECMO initiation serves which purpose?",
-    opts: [
-      "Replaces the need for ECMO",
-      "Reduces pulmonary vascular resistance and RV afterload — a rescue measure while ECMO is being prepared, or in patients with refractory hypoxemia and RV failure",
-      "Improves oxygenator performance",
-      "Anticoagulates the pulmonary circuit"
-    ],
-    ans: 1,
-    exp: "iNO selectively dilates ventilated lung segments, improving V/Q matching and reducing RV afterload. In severe ARDS with RV failure, iNO can provide temporary improvement while ECMO is being set up or as an adjunct to ECMO."
-  },
-
-  // ── ADDITIONAL ADVERSE EFFECTS ────────────────────────────────────────────
-  {
-    topic: "Adverse Effects", difficulty: "advanced",
-    q: "Acquired von Willebrand syndrome (AVWS) in ECMO is caused by:",
-    opts: [
-      "Heparin destroying vWF",
-      "High shear stress from the centrifugal pump cleaving large vWF multimers — reducing platelet adhesion and worsening bleeding",
-      "Thrombocytopenia reducing vWF release",
-      "Antibiotic use on ECMO"
-    ],
-    ans: 1,
-    exp: "AVWS in ECMO: high shear stress from centrifugal pump cleaves large vWF multimers (most hemostatically active). This impairs platelet adhesion and contributes to bleeding despite normal platelet count. Diagnosed with vWF multimer analysis."
-  },
-  {
-    topic: "Adverse Effects", difficulty: "advanced",
-    q: "Thrombocytopenia in ECMO should prompt evaluation for HIT when:",
-    opts: [
-      "Platelet count drops below 150 at any time",
-      "Platelet count drops >50% from baseline after day 4 of heparin, especially with new thrombosis",
-      "Platelets are below 50 at any time on ECMO",
-      "Any platelet drop in the first 24 hours"
-    ],
-    ans: 1,
-    exp: "HIT probability is assessed by the 4T score: Thrombocytopenia (>50% drop), Timing (day 4–10 of heparin), Thrombosis (new clot), other causes absence. Day 1–3 platelet drop suggests hemodilution/consumption, not HIT. Confirm with anti-PF4 ELISA."
-  },
-
-  // ── ADDITIONAL MONITORING ─────────────────────────────────────────────────
-  {
-    topic: "Monitoring on ECMO", difficulty: "intermediate",
-    q: "Point-of-care testing (POCT) is preferred over laboratory testing for anticoagulation monitoring on ECMO because:",
-    opts: [
-      "POCT is more accurate than laboratory tests",
-      "Rapid turnaround allows timely dose adjustments — critical in dynamic ECMO patients where anticoagulation needs change frequently",
-      "Laboratory tests cannot measure ACT",
-      "POCT is cheaper"
-    ],
-    ans: 1,
-    exp: "ACT can be measured at bedside within minutes using POCT, enabling rapid heparin dose adjustments. Laboratory anti-Xa results take 60–90 minutes — too slow for emergent situations. Best practice uses both: POCT for rapid adjustment, anti-Xa for accuracy."
-  },
-
-  // ── FINAL MIXED QUESTIONS ─────────────────────────────────────────────────
-  {
-    topic: "Physiology", difficulty: "intermediate",
-    q: "In a patient on VV ECMO with SvO2 of 55% at the drainage cannula, what is the most appropriate immediate action?",
-    opts: [
-      "Reduce sweep gas flow",
-      "Increase ECMO blood flow, check hemoglobin (transfuse if <10), reduce metabolic demand, check for recirculation",
-      "Reduce ECMO flow",
-      "Increase vasopressor dose only"
-    ],
-    ans: 1,
-    exp: "SvO2 <65% indicates inadequate DO2. Systematic approach: (1) increase ECMO flow to maximum tolerated, (2) transfuse if Hgb <10 g/dL, (3) treat fever/agitation to reduce VO2, (4) check for recirculation, (5) optimize native lung function."
-  },
-  {
-    topic: "VA ECMO – Cardiac", difficulty: "basic",
-    q: "Which vasopressor is generally preferred in VA ECMO for cardiogenic shock?",
-    opts: [
-      "High-dose norepinephrine (>0.5 mcg/kg/min)",
-      "Low-dose norepinephrine to maintain MAP 65–75 mmHg — high doses increase afterload and worsen LV distension",
-      "Vasopressin as first-line agent",
-      "Phenylephrine — pure alpha agonist preferred"
-    ],
-    ans: 1,
-    exp: "Low-dose norepinephrine to maintain MAP 65–75 mmHg is preferred. High-dose vasopressors increase SVR → worsen LV afterload → risk LV distension. Target the minimum vasopressor needed to achieve adequate MAP."
-  },
-  {
-    topic: "Nomenclature", difficulty: "basic",
-    q: "In ECMO documentation, 'VV femoro-jugular' means:",
-    opts: [
-      "Femoral artery return and jugular vein drainage",
-      "Femoral vein drainage and internal jugular vein return",
-      "Both cannulas in the femoral vein",
-      "Femoral vein drainage and femoral artery return"
-    ],
-    ans: 1,
-    exp: "VV femoro-jugular ECMO: drainage cannula in the femoral vein (tip at IVC-RA junction) and return cannula in the internal jugular vein (tip toward tricuspid valve). This configuration maximizes separation between drainage and return, minimizing recirculation."
-  },
-  {
-    topic: "Circuit & Oxygenator", difficulty: "intermediate",
-    q: "What is the purpose of the 'recirculation bridge' in an ECMO circuit?",
-    opts: [
-      "It connects the arterial and venous limbs to allow circuit priming and emergency bypass of the patient",
-      "It increases ECMO flow",
-      "It allows CO2 to recirculate",
-      "It measures circuit pressure"
-    ],
-    ans: 0,
-    exp: "The recirculation bridge (trial-off loop) connects the arterial and venous limbs of the circuit. It allows the circuit to be kept running during cannula clamping for weaning trials, circuit changes, or brief patient disconnection — maintaining circuit patency."
-  },
-  {
-    topic: "ECMO Outcomes", difficulty: "advanced",
-    q: "The 'survival gap' in ECMO refers to:",
-    opts: [
-      "Difference in survival between VV and VA ECMO",
-      "Patients who survive ECMO but die before hospital discharge — highlighting the importance of post-ECMO ICU management",
-      "Survival difference between centers",
-      "Time gap between ECMO initiation and recovery"
-    ],
-    ans: 1,
-    exp: "The survival gap describes patients who are successfully weaned from ECMO but subsequently die before hospital discharge (10–20% of weaned patients). This highlights that ECMO decannulation is not the endpoint — comprehensive post-ECMO ICU management is equally critical."
-  },
-  {
-    topic: "Neonatal ECMO", difficulty: "intermediate",
-    q: "Intraventricular hemorrhage (IVH) risk in neonatal ECMO is highest in which group?",
-    opts: [
-      "Term neonates >37 weeks",
-      "Premature neonates <34 weeks — fragile germinal matrix vessels cannot tolerate systemic anticoagulation",
-      "Neonates >4 kg",
-      "Neonates with cardiac disease only"
-    ],
-    ans: 1,
-    exp: "Premature neonates <34 weeks have fragile germinal matrix vasculature highly susceptible to hemorrhage under anticoagulation. IVH grade III-IV is a contraindication to ECMO. This is the primary reason gestational age ≥34 weeks is required."
-  },
-  {
-    topic: "ECMO Ethics", difficulty: "intermediate",
-    q: "Informed consent for emergent ECMO is:",
-    opts: [
-      "Always required before initiation — ECMO cannot proceed without it",
-      "May be deferred in life-threatening emergencies — retrospective consent or surrogate consent obtained as soon as possible",
-      "Never required for ECMO",
-      "Only required for VV ECMO, not VA ECMO"
-    ],
-    ans: 1,
-    exp: "In life-threatening emergencies requiring immediate ECMO, initiating support can precede formal informed consent under emergency implied consent doctrine. Consent from the patient (if capacitated) or surrogate is obtained as soon as practically possible."
-  },
-  {
-    topic: "Rehabilitation on ECMO", difficulty: "advanced",
-    q: "Post-ECMO survivors commonly experience which long-term complication?",
-    opts: [
-      "No long-term complications",
-      "Post-intensive care syndrome (PICS) — cognitive impairment, psychological disorders (PTSD, anxiety, depression), and physical deconditioning",
-      "Only physical deconditioning",
-      "Permanent dependence on supplemental oxygen"
-    ],
-    ans: 1,
-    exp: "Post-intensive care syndrome (PICS) affects the majority of ECMO survivors: cognitive impairment (memory, attention), psychological sequelae (PTSD 25–30%, depression, anxiety), and physical deconditioning. Long-term multidisciplinary follow-up is essential."
+// Apply saved theme on load
+(function(){
+  const saved = localStorage.getItem('ecmo_theme');
+  if(saved === 'light'){
+    document.body.classList.add('light');
+    document.getElementById('theme-icon').textContent = '🌙';
+    document.getElementById('theme-label').textContent = 'Dark';
+    document.getElementById('meta-theme').content = '#F0F4F8';
   }
+})();
+
+// ── QUESTION BANK ─────────────────────────────────────────────────────────────
+const QUESTIONS = [
+  {topic:"Nomenclature",difficulty:"basic",q:"What does the term ECLS stand for?",opts:["Extracorporeal Life Support","Extracorporeal Lung System","External Cardiac Life Support","Extracorporeal Liver Support"],ans:0,exp:"ECLS = Extracorporeal Life Support. It is the broad term encompassing all extracorporeal cardiopulmonary support. ECMO is a subset of ECLS."},
+  {topic:"Nomenclature",difficulty:"basic",q:"According to the ELSO Maastricht Treaty, which term specifically refers to systems primarily targeted at CO2 removal?",opts:["ECMO","ECLS","ECCO2R","VV ECMO"],ans:2,exp:"ECCO2R (Extracorporeal Carbon Dioxide Removal) is the correct term for systems primarily targeting CO2 removal, while ECMO targets oxygenation and/or cardiac support."},
+  {topic:"Nomenclature",difficulty:"basic",q:"In VV ECMO, where does the oxygenated blood return?",opts:["Femoral artery","Aorta","Venous circulation","Left ventricle"],ans:2,exp:"In VV (veno-venous) ECMO, oxygenated blood returns to the venous circulation. It provides gas exchange support only — it does NOT support cardiac output."},
+  {topic:"Nomenclature",difficulty:"intermediate",q:"What is the key physiological difference between VV ECMO and VA ECMO?",opts:["VV ECMO supports gas exchange only; VA ECMO supports both gas exchange and cardiac output","VA ECMO supports gas exchange only; VV ECMO supports cardiac output","Both provide equal cardiac and respiratory support","VV ECMO provides higher flow rates than VA ECMO"],ans:0,exp:"VV ECMO provides gas exchange support only and relies on the native cardiac output to deliver oxygenated blood to tissues. VA ECMO provides both oxygenation and hemodynamic support."},
+  {topic:"Nomenclature",difficulty:"intermediate",q:"The Avalon bicaval double-lumen cannula for VV ECMO is typically placed in which vessel?",opts:["Right femoral vein","Left subclavian vein","Right internal jugular vein","Left femoral vein"],ans:2,exp:"The Avalon bicaval double-lumen cannula is placed in the right internal jugular vein. It drains blood from both the SVC and IVC and returns oxygenated blood directed toward the tricuspid valve."},
+  {topic:"Nomenclature",difficulty:"advanced",q:"In a VAV ECMO configuration, what is the primary clinical indication?",opts:["Isolated respiratory failure","Isolated cardiac failure","Combined respiratory and cardiac failure requiring both gas exchange and hemodynamic support","Bridge to lung transplantation only"],ans:2,exp:"VAV (veno-arterio-venous) ECMO uses two return cannulas — one venous and one arterial — to provide simultaneous respiratory and cardiac support. It is used when both gas exchange and cardiac output support are needed."},
+  {topic:"Circuit & Oxygenator",difficulty:"basic",q:"What type of pump is most commonly used in modern adult ECLS circuits?",opts:["Roller pump","Centrifugal pump","Axial flow pump","Diaphragm pump"],ans:1,exp:"Centrifugal pumps (magnetically levitated) are standard in modern adult ECLS. Examples include RotaFlow, CentriMag, and CardioHelp. Roller pumps are still used in neonatal ECLS."},
+  {topic:"Circuit & Oxygenator",difficulty:"basic",q:"What material are modern ECMO membrane lungs (oxygenators) made from?",opts:["Silicone","Polyurethane","Polymethylpentene (PMP) hollow fiber","Polycarbonate"],ans:2,exp:"Modern oxygenators use polymethylpentene (PMP) hollow fiber membranes. Gas diffuses across the membrane — O2 in, CO2 out — without direct blood-gas contact."},
+  {topic:"Circuit & Oxygenator",difficulty:"basic",q:"What does increasing the sweep gas flow rate primarily affect in a VV ECMO patient?",opts:["Increases blood flow","Decreases PaCO2","Increases PaO2","Reduces circuit pressure"],ans:1,exp:"Increasing sweep gas flow primarily increases CO2 removal, thereby decreasing PaCO2. To increase PaO2, you increase ECMO blood flow or the FiO2 of the sweep gas."},
+  {topic:"Circuit & Oxygenator",difficulty:"intermediate",q:"A rising pre-membrane pressure with a normal post-membrane pressure in the ECMO circuit suggests:",opts:["Membrane lung thrombosis","Hypovolemia causing circuit chatter","Increased circuit resistance proximal to the oxygenator","Cannula malposition"],ans:0,exp:"A rising delta P (pre-membrane minus post-membrane pressure >50 mmHg) indicates increasing resistance across the membrane lung, most commonly due to thrombosis within the oxygenator."},
+  {topic:"Circuit & Oxygenator",difficulty:"intermediate",q:"What is 'circuit chatter' in ECMO?",opts:["High-frequency vibration of the tubing due to high flow","Intermittent collapse of the venous drainage limb due to inadequate preload","Clot formation in the oxygenator","Air entrainment in the arterial return limb"],ans:1,exp:"Circuit chatter refers to intermittent collapse of the venous drainage tubing due to inadequate venous return. Causes include hypovolemia, cannula malposition, or excessive pump speed."},
+  {topic:"Cannulation",difficulty:"basic",q:"In peripheral femoral VA ECMO, the arterial return cannula is typically placed in the:",opts:["Common femoral vein","Common femoral artery","Internal jugular vein","Subclavian artery"],ans:1,exp:"In peripheral VA ECMO, the arterial return cannula is placed in the common femoral artery (retrograde perfusion), while the venous drainage cannula is placed in the femoral vein."},
+  {topic:"Cannulation",difficulty:"basic",q:"What is the primary purpose of a distal limb perfusion cannula (DLPC) in peripheral VA ECMO?",opts:["Increase ECMO flow","Prevent ipsilateral lower limb ischemia","Monitor arterial blood pressure","Provide venous drainage"],ans:1,exp:"A DLPC (typically 6–8 Fr) is inserted in the superficial femoral artery distal to the arterial return cannula to maintain antegrade blood flow to the leg and prevent limb ischemia — a mandatory practice."},
+  {topic:"Physiology",difficulty:"basic",q:"What is the normal resting oxygen consumption (VO2) in adults?",opts:["1 cc/kg/min","3 cc/kg/min","10 cc/kg/min","0.5 cc/kg/min"],ans:1,exp:"Normal adult resting VO2 is approximately 3 cc/kg/min (~120 cc/min/m2). This is the benchmark for metabolic rate and guides ECMO flow targets."},
+  {topic:"Physiology",difficulty:"basic",q:"Oxygen delivery (DO2) is calculated as:",opts:["VO2 / SvO2","Cardiac Output × CaO2 × 10","Hemoglobin × SaO2","ECMO flow × FiO2"],ans:1,exp:"DO2 (cc/min) = Cardiac Output (L/min) × CaO2 (cc/dL) × 10. Normal DO2 is ~600 cc/min/m2. CaO2 = (Hb × SaO2 × 1.34) + (PaO2 × 0.003)."},
+  {topic:"Physiology",difficulty:"basic",q:"What does a low SvO2 on ECMO drainage indicate?",opts:["Adequate oxygen delivery","Increased oxygen extraction — tissues not getting enough O2","Circuit thrombosis","Recirculation"],ans:1,exp:"SvO2 below 65–70% indicates increased oxygen extraction by tissues, reflecting inadequate DO2 — either from low ECMO flow, low hemoglobin, or high metabolic demand."},
+  {topic:"Physiology",difficulty:"intermediate",q:"What is the 'Harlequin syndrome' (North-South syndrome) in femoral VA ECMO?",opts:["Thrombosis of the femoral artery cannula","Upper body perfused by desaturated native cardiac output while lower body receives oxygenated ECMO blood","Excessive recirculation in VV ECMO","LV distension due to increased afterload"],ans:1,exp:"In femoral VA ECMO, native cardiac output (potentially desaturated from failing lungs) perfuses the upper body retrogradely while ECMO-oxygenated blood perfuses the lower body — creating a differential hypoxemia. Monitor right radial ABG."},
+  {topic:"Physiology",difficulty:"intermediate",q:"Recirculation in VV ECMO means:",opts:["Blood flows backward through the pump","Oxygenated return blood re-enters the drainage cannula before reaching systemic circulation","Native lung blood recirculates through the ECMO oxygenator twice","CO2 builds up in the membrane lung"],ans:1,exp:"Recirculation occurs when oxygenated blood from the return cannula is immediately suctioned back into the drainage cannula, reducing effective ECMO support. Minimum 10 cm separation between cannulas is recommended."},
+  {topic:"Adverse Effects",difficulty:"basic",q:"What is the most common complication of ECLS?",opts:["Stroke","Bleeding","Circuit thrombosis","Pneumothorax"],ans:1,exp:"Bleeding is the most common complication of ECLS, occurring at cannula sites, surgical wounds, and intracranial locations. It results from systemic anticoagulation, platelet consumption, and coagulopathy."},
+  {topic:"Adverse Effects",difficulty:"intermediate",q:"LV distension during VA ECMO is best managed initially by:",opts:["Stopping ECMO immediately","LV unloading using Impella, IABP, or surgical LV vent","Increasing ECMO flow","Adding a second drainage cannula"],ans:1,exp:"LV distension from increased afterload on VA ECMO is treated with LV unloading. Impella provides the most effective direct LV drainage. IABP provides modest unloading. Surgical LV vent or atrial septostomy are alternatives."},
+  {topic:"Crisis Management",difficulty:"basic",q:"What is the FIRST action when air embolism is detected in the ECMO circuit?",opts:["Increase pump speed","Immediately clamp the circuit","Remove the venous drainage cannula","Administer 100% oxygen"],ans:1,exp:"Immediate clamping of the circuit is the first step to prevent air from entering the patient. Then place the patient head-down (Trendelenburg), aspirate air, and troubleshoot the source (usually a loose connection)."},
+  {topic:"VV ECMO – Respiratory",difficulty:"basic",q:"The primary indication for VV ECMO in adults is:",opts:["Cardiogenic shock","Severe ARDS refractory to optimal conventional management","Pulmonary embolism","Post-cardiac arrest"],ans:1,exp:"VV ECMO is primarily indicated for severe ARDS with PaO2/FiO2 <80 mmHg despite optimal ventilation (lung-protective settings, prone positioning, NMB), as per EOLIA trial criteria."},
+  {topic:"VV ECMO – Respiratory",difficulty:"intermediate",q:"What are the recommended lung-protective ventilator settings for a patient on VV ECMO?",opts:["Vt 8 mL/kg, PEEP 15, RR 20, FiO2 1.0","Vt 4 mL/kg IBW, PEEP 10, RR 10, FiO2 0.3–0.5, Pplat <25 cmH2O","Vt 6 mL/kg, PEEP 5, RR 12, FiO2 0.6","Pressure support only, no set rate"],ans:1,exp:"Ultra-protective ventilation on VV ECMO: Vt 4 mL/kg IBW, PEEP ~10 cmH2O, RR 10/min, FiO2 0.3–0.5, Pplat <25 cmH2O. The goal is lung rest while ECMO provides gas exchange."},
+  {topic:"VA ECMO – Cardiac",difficulty:"basic",q:"What is the hemodynamic definition of cardiogenic shock?",opts:["SBP <90 mmHg for >30 min + CI <2.2 L/min/m2 + PCWP >15 mmHg","Heart rate >120 bpm with any hypotension","Need for any vasopressor infusion","Troponin elevation with hypotension"],ans:0,exp:"Classic hemodynamic criteria for cardiogenic shock include SBP <90 mmHg for >30 min, CI <2.2 L/min/m2, and elevated filling pressures (PCWP >15 mmHg)."},
+  {topic:"ECPR",difficulty:"basic",q:"ECPR is defined as:",opts:["Emergency cardiac surgery for refractory arrest","Application of VA ECMO in patients with cardiac arrest in whom conventional CPR fails to achieve ROSC","Extracorporeal CPR training program","Use of mechanical CPR devices alone"],ans:1,exp:"ECPR = rapid deployment of VA ECMO to restore assisted circulation in patients with refractory cardiac arrest (no ROSC after conventional CPR). It provides circulatory support while treating the reversible cause."},
+  {topic:"ECPR",difficulty:"basic",q:"What is the maximum recommended 'no-flow' interval for ECPR candidacy?",opts:["1 minute","5 minutes","15 minutes","30 minutes"],ans:1,exp:"A no-flow interval of ≤5 minutes (witnessed arrest with immediate bystander CPR) is a key inclusion criterion for ECPR. Longer no-flow times lead to irreversible neurological injury."},
+  {topic:"Anticoagulation",difficulty:"basic",q:"What is the most commonly used anticoagulant in ECLS?",opts:["Warfarin","Bivalirudin","Unfractionated heparin (UFH)","Rivaroxaban"],ans:2,exp:"Unfractionated heparin (UFH) is the standard anticoagulant for ECLS due to its rapid onset, reversibility with protamine, and well-established monitoring with ACT and anti-Xa levels."},
+  {topic:"Anticoagulation",difficulty:"basic",q:"What is the standard ACT target range for VV ECMO?",opts:["100–120 sec","160–180 sec","200–250 sec","250–300 sec"],ans:1,exp:"The typical ACT target for VV ECMO is 160–180 seconds, or anti-Xa 0.3–0.5 IU/mL. VA ECMO may require slightly higher targets (160–200 sec) due to greater thrombotic risk."},
+  {topic:"Anticoagulation",difficulty:"intermediate",q:"A patient on ECMO develops HIT. Which anticoagulant should replace heparin?",opts:["Warfarin","Argatroban or bivalirudin (direct thrombin inhibitors)","Low molecular weight heparin","Aspirin"],ans:1,exp:"HIT requires immediate cessation of all heparin and switching to a direct thrombin inhibitor. Argatroban or bivalirudin are standard alternatives."},
+  {topic:"Neonatal ECMO",difficulty:"basic",q:"The most common indication for neonatal ECMO is:",opts:["Congenital heart disease","Meconium aspiration syndrome (MAS) and persistent pulmonary hypertension of the newborn (PPHN)","Neonatal sepsis","Prematurity"],ans:1,exp:"Meconium aspiration syndrome and PPHN are the leading indications for neonatal ECMO, representing failure of pulmonary vasodilation and hypoxic respiratory failure."},
+  {topic:"Neonatal ECMO",difficulty:"basic",q:"What is the minimum gestational age typically required for neonatal ECMO?",opts:["28 weeks","32 weeks","34 weeks","40 weeks"],ans:2,exp:"Gestational age ≥34 weeks is the standard minimum for neonatal ECMO. Premature infants <34 weeks have fragile germinal matrix vessels with very high risk of intracranial hemorrhage on anticoagulation."},
+  {topic:"Pediatric ECMO",difficulty:"basic",q:"The most common indication for pediatric ECMO (1 month – 18 years) is:",opts:["Respiratory failure","Cardiac failure — congenital heart disease and post-cardiac surgery","Septic shock","Trauma"],ans:1,exp:"Cardiac failure, predominantly related to congenital heart disease and post-cardiac surgery low output syndrome, is the most common indication for pediatric ECMO."},
+  {topic:"Transport on ECMO",difficulty:"basic",q:"Which ECMO device is most commonly used for inter-hospital transport?",opts:["CentriMag","RotaFlow","Maquet Cardiohelp (HLS system)","Biomedicus"],ans:2,exp:"The Maquet Cardiohelp (HLS system) is the most widely used transport ECMO device. It is compact, battery-powered, and designed for mobile use."},
+  {topic:"Nutrition on ECMO",difficulty:"basic",q:"What is the preferred route of nutrition in stable ECMO patients?",opts:["Total parenteral nutrition (TPN)","Enteral nutrition via nasogastric or post-pyloric tube","Oral feeding","No nutrition for first 72 hours"],ans:1,exp:"Enteral nutrition is preferred in ECMO patients when hemodynamically feasible. It preserves gut integrity, reduces infection risk, and is associated with better outcomes compared to TPN."},
+  {topic:"Monitoring on ECMO",difficulty:"basic",q:"SvO2 monitoring in the ECMO circuit drainage cannula reflects:",opts:["Post-oxygenator oxygen saturation","Mixed venous oxygen saturation — indicating adequacy of oxygen delivery relative to consumption","Arterial oxygen saturation","Circuit anticoagulation status"],ans:1,exp:"SvO2 in the drainage cannula reflects mixed venous saturation. Target >65–70% on ECMO. Low SvO2 indicates inadequate DO2."},
+  {topic:"ECMO Outcomes",difficulty:"basic",q:"According to ELSO registry data, overall survival to hospital discharge for adult VV ECMO is approximately:",opts:["20–30%","50–60%","80–90%","95–100%"],ans:1,exp:"ELSO registry data shows approximately 55–60% survival to hospital discharge for adult VV ECMO (respiratory)."},
+  {topic:"ECMO Outcomes",difficulty:"basic",q:"According to ELSO registry data, overall survival to hospital discharge for adult VA ECMO is approximately:",opts:["10–15%","40–50%","70–80%","90–95%"],ans:1,exp:"Adult VA ECMO survival to hospital discharge is approximately 40–50% per ELSO registry."},
+  {topic:"ECMO Ethics",difficulty:"intermediate",q:"When should goals-of-care discussions occur in ECMO patients?",opts:["Only at the time of ECMO decannulation","Early — ideally before initiation and regularly throughout the ECMO run as prognosis evolves","Only if family requests them","After 30 days of ECMO"],ans:1,exp:"Goals-of-care discussions should occur before ECMO initiation (when possible), within 24–48 hours of initiation, and regularly thereafter as clinical trajectory becomes clearer."},
+  {topic:"Rehabilitation on ECMO",difficulty:"intermediate",q:"Early mobilization during VV ECMO is associated with:",opts:["High cannula dislodgement rate — should be avoided","Improved physical function, reduced ICU-acquired weakness, and better post-transplant outcomes when done safely","No clinical benefit","Increased mortality"],ans:1,exp:"Early mobilization during VV ECMO is safe when performed by experienced teams with proper cannula securement. It reduces ICU-acquired weakness and improves outcomes particularly in bridge-to-transplant patients."},
+  {topic:"Special Populations",difficulty:"intermediate",q:"Hypothermia-associated cardiac arrest is a particularly favorable indication for ECPR because:",opts:["Cold temperatures enhance ECMO circuit function","Hypothermia provides profound cerebral protection — full neurological recovery possible even after prolonged arrest","Hypothermic patients require no anticoagulation","ECMO rewarms patients faster than other methods"],ans:1,exp:"Hypothermic cardiac arrest provides exceptional cerebral protection. Full neurological recovery has been documented after hours of cardiac arrest in severely hypothermic patients on ECMO rewarming."},
+  {topic:"Physiology",difficulty:"advanced",q:"Why does VA ECMO increase LV afterload?",opts:["It increases heart rate","Retrograde arterial flow increases aortic root pressure, opposing LV ejection","It reduces venous preload dramatically","It activates the renin-angiotensin system"],ans:1,exp:"Femoral VA ECMO returns blood retrogradely into the aorta, increasing aortic root pressure. This increased afterload opposes LV ejection, can prevent aortic valve opening, and may cause LV distension and pulmonary edema."},
+  {topic:"VA ECMO – Cardiac",difficulty:"advanced",q:"The ECPELLA approach refers to:",opts:["A new type of ECMO circuit","Combined use of VA ECMO and Impella simultaneously for maximal cardiac support and LV unloading","An anticoagulation protocol","Emergency ECMO cannulation technique"],ans:1,exp:"ECPELLA = VA ECMO + Impella. VA ECMO provides systemic circulatory support while Impella directly unloads the LV — providing maximal hemodynamic support and actively preventing LV distension."},
+  {topic:"Adverse Effects",difficulty:"advanced",q:"Acquired von Willebrand syndrome (AVWS) in ECMO is caused by:",opts:["Heparin destroying vWF","High shear stress from the centrifugal pump cleaving large vWF multimers — reducing platelet adhesion and worsening bleeding","Thrombocytopenia reducing vWF release","Antibiotic use on ECMO"],ans:1,exp:"AVWS in ECMO: high shear stress from centrifugal pump cleaves large vWF multimers (most hemostatically active). This impairs platelet adhesion and contributes to bleeding despite normal platelet count."},
+  {topic:"VV ECMO – Respiratory",difficulty:"advanced",q:"Awake, ambulatory VV ECMO is used as:",opts:["Definitive treatment for ARDS","A bridge to lung transplantation in selected patients avoiding ventilator-induced deconditioning","Standard care for all VV ECMO patients","A technique to reduce anticoagulation requirements"],ans:1,exp:"Ambulatory VV ECMO in awake, non-intubated patients is an established bridge-to-transplant strategy. It avoids ventilator-induced lung injury and deconditioning."},
+  {topic:"ECPR",difficulty:"advanced",q:"After successful ECPR, what is the standard post-resuscitation bundle?",opts:["High-dose steroids and immediate extubation","Coronary angiography ± PCI, targeted temperature management (33–36°C), treat reversible cause, neurological monitoring","Immediate decannulation from ECMO","Empiric broad-spectrum antibiotics only"],ans:1,exp:"Post-ECPR bundle: (1) urgent coronary angiography ± PCI for suspected ACS, (2) targeted temperature management 33–36°C, (3) treat underlying reversible cause, (4) daily neurological assessment and monitoring."},
+  {topic:"Anticoagulation",difficulty:"advanced",q:"Heparin resistance during ECMO is defined as:",opts:["ACT >300 seconds","Failure to achieve target ACT/anti-Xa despite escalating heparin doses — often due to antithrombin III (AT III) deficiency","Patient allergy to heparin","Low platelet count on heparin"],ans:1,exp:"Heparin resistance occurs when therapeutic anticoagulation cannot be achieved despite high heparin doses. The most common cause on ECMO is AT III deficiency. Treatment: FFP or AT III concentrate."},
+  {topic:"Monitoring on ECMO",difficulty:"advanced",q:"What does a rising lactate AFTER ECMO initiation indicate?",opts:["Successful ECMO support — lactate always rises initially","Inadequate ECMO flow, persistent shock, complications (bleeding, limb ischemia), or irreversible organ failure","Normal ECMO circuit function","Hyperglycemia"],ans:1,exp:"Rising lactate after ECMO initiation is a warning sign. Causes: inadequate ECMO flow, ongoing hemorrhage, limb ischemia, mesenteric ischemia, or irreversible pre-ECMO organ damage."},
+  {topic:"VA ECMO – Cardiac",difficulty:"intermediate",q:"Fulminant myocarditis on VA ECMO has which characteristic prognosis?",opts:["Very poor — almost universal mortality","Excellent recovery potential — VA ECMO as bridge to myocardial recovery","Requires immediate heart transplantation","No role for ECMO in myocarditis"],ans:1,exp:"Fulminant myocarditis has excellent recovery potential on VA ECMO because the myocardial inflammation is often reversible. ECMO provides hemodynamic support while the myocardium recovers."},
+  {topic:"Circuit & Oxygenator",difficulty:"advanced",q:"What is the typical lifespan of a modern PMP oxygenator before requiring elective replacement?",opts:["24–48 hours","3–5 days","2–4 weeks","3–6 months"],ans:2,exp:"Modern PMP oxygenators typically last 2–4 weeks before requiring elective replacement due to progressive plasma leakage or thrombosis."}
 ];
 
-// ─── STATE ────────────────────────────────────────────────────────────────────
+// ── STATE ──────────────────────────────────────────────────────────────────────
 let config = { topic: "all", count: 10, diff: "all" };
-let examQuestions = [];
-let currentIdx = 0;
-let score = 0;
-let results = [];
+let examQuestions = [], currentIdx = 0, score = 0, results = [];
 
-// ─── CHIP SELECTION ───────────────────────────────────────────────────────────
+// ── CHIP SELECTION ─────────────────────────────────────────────────────────────
 function setupChips(groupId, configKey) {
   document.getElementById(groupId).querySelectorAll(".chip").forEach(chip => {
     chip.addEventListener("click", () => {
@@ -2255,7 +442,6 @@ setupChips("topic-chips", "topic");
 setupChips("count-chips", "count");
 setupChips("diff-chips", "diff");
 
-// ─── EXAM LOGIC ───────────────────────────────────────────────────────────────
 function shuffle(arr) {
   const a = [...arr];
   for (let i = a.length - 1; i > 0; i--) {
@@ -2266,72 +452,37 @@ function shuffle(arr) {
 }
 
 function startExam() {
-  // Filter
+  const topicMap = {nomenclature:"Nomenclature",circuit:"Circuit & Oxygenator",cannulation:"Cannulation",physiology:"Physiology",adverse:"Adverse Effects",crisis:"Crisis Management",vv:"VV ECMO – Respiratory",va:"VA ECMO – Cardiac",ecpr:"ECPR",anticoag:"Anticoagulation",neonatal:"Neonatal ECMO",pediatric:"Pediatric ECMO",transport:"Transport on ECMO",nutrition:"Nutrition on ECMO",monitoring:"Monitoring on ECMO",special:"Special Populations",outcomes:"ECMO Outcomes",ethics:"ECMO Ethics",rehab:"Rehabilitation on ECMO"};
   let pool = QUESTIONS;
-  if (config.topic !== "all") {
-    const topicMap = {
-      nomenclature: "Nomenclature",
-      circuit: "Circuit & Oxygenator",
-      cannulation: "Cannulation",
-      physiology: "Physiology",
-      adverse: "Adverse Effects",
-      crisis: "Crisis Management",
-      vv: "VV ECMO – Respiratory",
-      va: "VA ECMO – Cardiac",
-      ecpr: "ECPR",
-      anticoag: "Anticoagulation",
-      neonatal: "Neonatal ECMO",
-      pediatric: "Pediatric ECMO",
-      transport: "Transport on ECMO",
-      nutrition: "Nutrition on ECMO",
-      monitoring: "Monitoring on ECMO",
-      special: "Special Populations",
-      outcomes: "ECMO Outcomes",
-      ethics: "ECMO Ethics",
-      rehab: "Rehabilitation on ECMO",
-      sedation: "Sedation on ECMO",
-      program: "ECMO Program",
-    };
-    pool = pool.filter(q => q.topic === topicMap[config.topic]);
-  }
-  if (config.diff !== "all") {
-    pool = pool.filter(q => q.difficulty === config.diff);
-  }
-  if (pool.length === 0) {
-    alert("No questions match the selected filters. Please adjust your selection.");
-    return;
-  }
+  if (config.topic !== "all") pool = pool.filter(q => q.topic === topicMap[config.topic]);
+  if (config.diff !== "all") pool = pool.filter(q => q.difficulty === config.diff);
+  if (!pool.length) { alert("No questions match. Please adjust filters."); return; }
   pool = shuffle(pool);
   const n = config.count === "all" ? pool.length : Math.min(parseInt(config.count), pool.length);
   examQuestions = pool.slice(0, n);
-  currentIdx = 0;
-  score = 0;
-  results = [];
+  currentIdx = 0; score = 0; results = [];
   showScreen("screen-exam");
   renderQuestion();
 }
 
 function renderQuestion() {
-  const q = examQuestions[currentIdx];
-  const total = examQuestions.length;
-
-  document.getElementById("q-counter").textContent = `Question ${currentIdx + 1} / ${total}`;
+  const q = examQuestions[currentIdx], total = examQuestions.length;
+  document.getElementById("q-counter").textContent = `Question ${currentIdx+1} / ${total}`;
   document.getElementById("score-counter").textContent = `Score: ${score}`;
-  document.getElementById("progress-fill").style.width = ((currentIdx + 1) / total * 100) + "%";
-  document.getElementById("q-meta").textContent = `${q.topic} · ${q.difficulty.charAt(0).toUpperCase() + q.difficulty.slice(1)}`;
+  document.getElementById("progress-fill").style.width = ((currentIdx+1)/total*100)+"%";
+  document.getElementById("q-meta").textContent = `${q.topic} · ${q.difficulty.charAt(0).toUpperCase()+q.difficulty.slice(1)}`;
   document.getElementById("q-text").textContent = q.q;
   document.getElementById("explanation").style.display = "none";
   document.getElementById("btn-next").style.display = "none";
-
-  const shuffledOpts = shuffle(q.opts.map((text, i) => ({ text, original: i })));
+  const shuffledOpts = shuffle(q.opts.map((text,i) => ({text,original:i})));
   const correctText = q.opts[q.ans];
-
   const container = document.getElementById("options");
   container.innerHTML = "";
-  shuffledOpts.forEach((opt, i) => {
+  shuffledOpts.forEach((opt,i) => {
     const btn = document.createElement("button");
     btn.className = "opt-btn";
-    btn.innerHTML = `<span class="opt-letter">${String.fromCharCode(65 + i)}.</span>${opt.text}`;
+    btn.dataset.text = opt.text;
+    btn.innerHTML = `<span class="opt-letter">${String.fromCharCode(65+i)}.</span>${opt.text}`;
     btn.onclick = () => handleAnswer(opt.text, correctText, q.exp);
     container.appendChild(btn);
   });
@@ -2340,304 +491,116 @@ function renderQuestion() {
 function handleAnswer(selected, correctText, exp) {
   const isCorrect = selected === correctText;
   if (isCorrect) score++;
-
   const q = examQuestions[currentIdx];
-  results.push({ q: q.q, correct: isCorrect, selected, correct_ans: correctText, topic: q.topic });
-
-  // Style buttons
+  results.push({q:q.q,correct:isCorrect,selected,correct_ans:correctText,topic:q.topic});
   document.querySelectorAll(".opt-btn").forEach(btn => {
     btn.disabled = true;
-    const text = btn.textContent.slice(2).trim(); // remove "A. " prefix
-    // extract actual text after letter prefix
-    const btnText = btn.innerHTML.replace(/<span[^>]*>[^<]*<\/span>/, "").trim();
-    if (btnText === correctText) {
-      btn.classList.add("correct");
-    } else if (btnText === selected && !isCorrect) {
-      btn.classList.add("wrong");
-    } else {
-      btn.classList.add("reveal");
-    }
-  });
-
-  // Fix: compare full option text (innerHTML stripped)
-  document.querySelectorAll(".opt-btn").forEach(btn => {
-    btn.disabled = true;
-    const optText = btn.childNodes[1] ? btn.childNodes[1].textContent.trim() : btn.textContent.slice(2).trim();
-    btn.classList.remove("correct","wrong","reveal");
-    if (optText === correctText) btn.classList.add("correct");
-    else if (optText === selected && !isCorrect) btn.classList.add("wrong");
+    const t = btn.dataset.text;
+    if (t === correctText) btn.classList.add("correct");
+    else if (t === selected && !isCorrect) btn.classList.add("wrong");
     else btn.classList.add("reveal");
   });
-
   const expEl = document.getElementById("explanation");
   expEl.innerHTML = `<strong>Explanation: </strong>${exp}`;
   expEl.style.display = "block";
-
   const nextBtn = document.getElementById("btn-next");
   nextBtn.style.display = "block";
-  nextBtn.textContent = currentIdx + 1 >= examQuestions.length ? "View Results →" : "Next Question →";
-
+  nextBtn.textContent = currentIdx+1 >= examQuestions.length ? "View Results →" : "Next Question →";
   document.getElementById("score-counter").textContent = `Score: ${score}`;
 }
 
 function nextQuestion() {
   currentIdx++;
-  if (currentIdx >= examQuestions.length) {
-    showScore();
-  } else {
-    renderQuestion();
-  }
+  if (currentIdx >= examQuestions.length) showScore();
+  else renderQuestion();
 }
 
 function showScore() {
-  const total = examQuestions.length;
-  const pct = Math.round(score / total * 100);
-  const grade = pct >= 90 ? "Excellent" : pct >= 75 ? "Good" : pct >= 60 ? "Pass" : "Needs Review";
-  const color = pct >= 90 ? "#22c55e" : pct >= 75 ? "#06b6d4" : pct >= 60 ? "#f59e0b" : "#ef4444";
-
-  // Save progress
+  const total = examQuestions.length, pct = Math.round(score/total*100);
+  const grade = pct>=90?"Excellent":pct>=75?"Good":pct>=60?"Pass":"Needs Review";
+  const color = pct>=90?"#22c55e":pct>=75?"#06b6d4":pct>=60?"#f59e0b":"#ef4444";
   updateProgress(results, total);
-
-  document.getElementById("score-emoji").textContent = pct >= 75 ? "🎯" : "📚";
-  document.getElementById("score-pct").textContent = pct + "%";
+  document.getElementById("score-emoji").textContent = pct>=75?"🎯":"📚";
+  document.getElementById("score-pct").textContent = pct+"%";
   document.getElementById("score-pct").style.color = color;
   document.getElementById("score-grade").textContent = grade;
   document.getElementById("score-grade").style.color = color;
   document.getElementById("score-sub").textContent = `${score} / ${total} correct`;
-
   const list = document.getElementById("review-list");
-  list.innerHTML = results.map(r => `
-    <div class="review-item">
-      <div class="review-icon">${r.correct ? "✅" : "❌"}</div>
-      <div>
-        <div class="review-q">${r.q}</div>
-        ${!r.correct ? `<div class="review-ans">Your answer: <span style="color:#ef4444">${r.selected}</span> | Correct: <span style="color:#22c55e">${r.correct_ans}</span></div>` : ""}
-      </div>
-    </div>`).join("");
-
+  list.innerHTML = results.map(r=>`<div class="review-item"><div class="review-icon">${r.correct?"✅":"❌"}</div><div><div class="review-q">${r.q}</div>${!r.correct?`<div class="review-ans">Your: <span style="color:#ef4444">${r.selected}</span> | Correct: <span style="color:#22c55e">${r.correct_ans}</span></div>`:""}</div></div>`).join("");
   showScreen("screen-score");
 }
 
-function retryExam() {
-  currentIdx = 0;
-  score = 0;
-  results = [];
-  showScreen("screen-exam");
-  renderQuestion();
-}
+function retryExam() { currentIdx=0;score=0;results=[];showScreen("screen-exam");renderQuestion(); }
+function goSetup() { showScreen("screen-setup"); }
+function showScreen(id) { document.querySelectorAll(".screen").forEach(s=>s.classList.remove("active"));document.getElementById(id).classList.add("active");window.scrollTo(0,0); }
 
-function goSetup() {
-  showScreen("screen-setup");
-}
-
-function showScreen(id) {
-  document.querySelectorAll(".screen").forEach(s => s.classList.remove("active"));
-  document.getElementById(id).classList.add("active");
-  window.scrollTo(0, 0);
-}
-
-// ── PWA INSTALL ──────────────────────────────────────────────────────────────
+// ── PWA INSTALL ────────────────────────────────────────────────────────────────
 let deferredPrompt = null;
+window.addEventListener('beforeinstallprompt', (e) => { e.preventDefault();deferredPrompt=e;const btn=document.getElementById('btn-install');if(btn)btn.style.display='block'; });
+function installApp() { if(deferredPrompt){deferredPrompt.prompt();deferredPrompt.userChoice.then(()=>{deferredPrompt=null;const btn=document.getElementById('btn-install');if(btn)btn.style.display='none';});}else{alert('iPhone/iPad: tap Share → Add to Home Screen\nAndroid: tap Menu ⋮ → Add to Home Screen');} }
+window.addEventListener('appinstalled',()=>{const btn=document.getElementById('btn-install');if(btn)btn.style.display='none';});
 
-window.addEventListener('beforeinstallprompt', (e) => {
-  e.preventDefault();
-  deferredPrompt = e;
-  const btn = document.getElementById('btn-install');
-  if (btn) btn.style.display = 'block';
-});
-
-function installApp() {
-  if (deferredPrompt) {
-    deferredPrompt.prompt();
-    deferredPrompt.userChoice.then(() => {
-      deferredPrompt = null;
-      const btn = document.getElementById('btn-install');
-      if (btn) btn.style.display = 'none';
-    });
-  } else {
-    alert('To install:\niPhone/iPad: tap Share → Add to Home Screen\nAndroid: tap Menu (⋮) → Add to Home Screen');
-  }
-}
-
-window.addEventListener('appinstalled', () => {
-  const btn = document.getElementById('btn-install');
-  if (btn) btn.style.display = 'none';
-});
-
-// ── PROGRESS TRACKING ────────────────────────────────────────────────────────
+// ── PROGRESS ──────────────────────────────────────────────────────────────────
 const PROGRESS_KEY = 'ecmo_exam_progress';
-
-function loadProgress() {
-  try {
-    const raw = localStorage.getItem(PROGRESS_KEY);
-    if (!raw) return defaultProgress();
-    return JSON.parse(raw);
-  } catch(e) { return defaultProgress(); }
-}
-
-function defaultProgress() {
-  return {
-    totalAnswered: 0,
-    totalCorrect: 0,
-    examsCompleted: 0,
-    bestScore: null,
-    lastStudied: null,
-    streak: 0,
-    lastStreakDate: null,
-    topics: {}
-  };
-}
-
-function saveProgress(p) {
-  try { localStorage.setItem(PROGRESS_KEY, JSON.stringify(p)); } catch(e) {}
-}
-
-function updateProgress(examResults, examTotal) {
-  const p = loadProgress();
-  const correct = examResults.filter(r => r.correct).length;
-  const pct = Math.round(correct / examTotal * 100);
-
-  p.totalAnswered += examTotal;
-  p.totalCorrect += correct;
-  p.examsCompleted += 1;
-  if (p.bestScore === null || pct > p.bestScore) p.bestScore = pct;
-  p.lastStudied = new Date().toISOString();
-
-  // Streak
-  const today = new Date().toDateString();
-  const lastDate = p.lastStreakDate ? new Date(p.lastStreakDate).toDateString() : null;
-  const yesterday = new Date(Date.now() - 86400000).toDateString();
-  if (lastDate === today) {
-    // same day — no change
-  } else if (lastDate === yesterday) {
-    p.streak += 1;
-  } else if (lastDate !== today) {
-    p.streak = 1;
-  }
-  p.lastStreakDate = new Date().toISOString();
-
-  // Topic breakdown
-  examResults.forEach(r => {
-    const t = r.topic || 'General';
-    if (!p.topics[t]) p.topics[t] = { answered: 0, correct: 0 };
-    p.topics[t].answered += 1;
-    if (r.correct) p.topics[t].correct += 1;
-  });
-
+function loadProgress(){try{const r=localStorage.getItem(PROGRESS_KEY);if(!r)return defaultProgress();return JSON.parse(r);}catch(e){return defaultProgress();}}
+function defaultProgress(){return{totalAnswered:0,totalCorrect:0,examsCompleted:0,bestScore:null,lastStudied:null,streak:0,lastStreakDate:null,topics:{}};}
+function saveProgress(p){try{localStorage.setItem(PROGRESS_KEY,JSON.stringify(p));}catch(e){}}
+function updateProgress(examResults,examTotal){
+  const p=loadProgress(),correct=examResults.filter(r=>r.correct).length,pct=Math.round(correct/examTotal*100);
+  p.totalAnswered+=examTotal;p.totalCorrect+=correct;p.examsCompleted+=1;
+  if(p.bestScore===null||pct>p.bestScore)p.bestScore=pct;
+  p.lastStudied=new Date().toISOString();
+  const today=new Date().toDateString(),lastDate=p.lastStreakDate?new Date(p.lastStreakDate).toDateString():null,yesterday=new Date(Date.now()-86400000).toDateString();
+  if(lastDate===today){}else if(lastDate===yesterday){p.streak+=1;}else{p.streak=1;}
+  p.lastStreakDate=new Date().toISOString();
+  examResults.forEach(r=>{const t=r.topic||'General';if(!p.topics[t])p.topics[t]={answered:0,correct:0};p.topics[t].answered+=1;if(r.correct)p.topics[t].correct+=1;});
   saveProgress(p);
 }
-
-function getMasteryLevel(pct, total) {
-  if (total < 10) return { label: 'Beginner', cls: 'mastery-beginner', sub: 'Keep going — you\'re just getting started' };
-  if (pct >= 90) return { label: 'Expert', cls: 'mastery-expert', sub: 'Outstanding mastery of ECMO — ELSO-ready' };
-  if (pct >= 75) return { label: 'Proficient', cls: 'mastery-proficient', sub: 'Strong knowledge — keep refining weak areas' };
-  if (pct >= 60) return { label: 'Competent', cls: 'mastery-competent', sub: 'Good foundation — focus on weak topics' };
-  return { label: 'Developing', cls: 'mastery-beginner', sub: 'Keep practicing — consistency is key' };
+function getMasteryLevel(pct,total){
+  if(total<10)return{label:'Beginner',cls:'mastery-beginner',sub:"Keep going — you're just getting started"};
+  if(pct>=90)return{label:'Expert',cls:'mastery-expert',sub:'Outstanding mastery of ECMO — ELSO-ready'};
+  if(pct>=75)return{label:'Proficient',cls:'mastery-proficient',sub:'Strong knowledge — keep refining weak areas'};
+  if(pct>=60)return{label:'Competent',cls:'mastery-competent',sub:'Good foundation — focus on weak topics'};
+  return{label:'Developing',cls:'mastery-beginner',sub:'Keep practicing — consistency is key'};
 }
-
-function getBarColor(pct) {
-  if (pct >= 80) return '#22c55e';
-  if (pct >= 60) return '#06b6d4';
-  if (pct >= 40) return '#f59e0b';
-  return '#ef4444';
-}
-
-function renderProgress() {
-  const p = loadProgress();
-  const overallPct = p.totalAnswered > 0 ? Math.round(p.totalCorrect / p.totalAnswered * 100) : 0;
-  const mastery = getMasteryLevel(overallPct, p.totalAnswered);
-
-  document.getElementById('streak-num').textContent = p.streak || 0;
-  document.getElementById('stat-total').textContent = p.totalAnswered;
-  document.getElementById('stat-accuracy').textContent = p.totalAnswered > 0 ? overallPct + '%' : '—';
-  document.getElementById('stat-exams').textContent = p.examsCompleted;
-  document.getElementById('stat-best').textContent = p.bestScore !== null ? p.bestScore + '%' : '—';
-
-  if (p.lastStudied) {
-    const d = new Date(p.lastStudied);
-    const today = new Date().toDateString();
-    const ls = d.toDateString() === today ? 'Today' : d.toLocaleDateString();
-    document.getElementById('stat-last').textContent = ls;
-  } else {
-    document.getElementById('stat-last').textContent = 'Never';
-  }
-
-  const badge = document.getElementById('mastery-badge');
-  badge.textContent = mastery.label;
-  badge.className = 'mastery-badge ' + mastery.cls;
-  document.getElementById('mastery-sub').textContent = mastery.sub;
-
-  // Topic breakdown
-  const container = document.getElementById('topic-breakdown');
-  const topics = Object.entries(p.topics);
-  if (topics.length === 0) {
-    container.innerHTML = '<div class="empty-progress">No data yet — complete an exam to see your topic breakdown</div>';
-    document.getElementById('btn-weak').style.display = 'none';
-  } else {
-    // Sort by accuracy ascending (weakest first)
-    topics.sort((a, b) => {
-      const aP = a[1].answered > 0 ? a[1].correct / a[1].answered : 0;
-      const bP = b[1].answered > 0 ? b[1].correct / b[1].answered : 0;
-      return aP - bP;
-    });
-    container.innerHTML = topics.map(([topic, data]) => {
-      const pct = data.answered > 0 ? Math.round(data.correct / data.answered * 100) : 0;
-      const color = getBarColor(pct);
-      const icon = pct >= 80 ? '✅' : pct >= 60 ? '🔵' : pct >= 40 ? '⚠️' : '❌';
-      return `<div class="topic-row">
-        <div class="topic-name">
-          <span>${icon} ${topic}</span>
-          <span style="color:${color};font-weight:700">${pct}% (${data.correct}/${data.answered})</span>
-        </div>
-        <div class="topic-bar-bg">
-          <div class="topic-bar-fill" style="width:${pct}%;background:${color}"></div>
-        </div>
-      </div>`;
-    }).join('');
-
-    // Show weak topics button if any topic <60%
-    const hasWeak = topics.some(([,d]) => d.answered >= 3 && (d.correct/d.answered) < 0.6);
-    document.getElementById('btn-weak').style.display = hasWeak ? 'block' : 'none';
+function getBarColor(pct){if(pct>=80)return'#22c55e';if(pct>=60)return'#06b6d4';if(pct>=40)return'#f59e0b';return'#ef4444';}
+function renderProgress(){
+  const p=loadProgress(),overallPct=p.totalAnswered>0?Math.round(p.totalCorrect/p.totalAnswered*100):0,mastery=getMasteryLevel(overallPct,p.totalAnswered);
+  document.getElementById('streak-num').textContent=p.streak||0;
+  document.getElementById('stat-total').textContent=p.totalAnswered;
+  document.getElementById('stat-accuracy').textContent=p.totalAnswered>0?overallPct+'%':'—';
+  document.getElementById('stat-exams').textContent=p.examsCompleted;
+  document.getElementById('stat-best').textContent=p.bestScore!==null?p.bestScore+'%':'—';
+  if(p.lastStudied){const d=new Date(p.lastStudied);document.getElementById('stat-last').textContent=d.toDateString()===new Date().toDateString()?'Today':d.toLocaleDateString();}
+  else document.getElementById('stat-last').textContent='Never';
+  const badge=document.getElementById('mastery-badge');badge.textContent=mastery.label;badge.className='mastery-badge '+mastery.cls;
+  document.getElementById('mastery-sub').textContent=mastery.sub;
+  const container=document.getElementById('topic-breakdown'),topics=Object.entries(p.topics);
+  if(!topics.length){container.innerHTML='<div class="empty-progress">No data yet — complete an exam to see your topic breakdown</div>';document.getElementById('btn-weak').style.display='none';}
+  else{
+    topics.sort((a,b)=>{const aP=a[1].answered>0?a[1].correct/a[1].answered:0,bP=b[1].answered>0?b[1].correct/b[1].answered:0;return aP-bP;});
+    container.innerHTML=topics.map(([topic,data])=>{const pct=data.answered>0?Math.round(data.correct/data.answered*100):0,color=getBarColor(pct),icon=pct>=80?'✅':pct>=60?'🔵':pct>=40?'⚠️':'❌';return`<div class="topic-row"><div class="topic-name"><span>${icon} ${topic}</span><span style="color:${color};font-weight:700">${pct}% (${data.correct}/${data.answered})</span></div><div class="topic-bar-bg"><div class="topic-bar-fill" style="width:${pct}%;background:${color}"></div></div></div>`;}).join('');
+    document.getElementById('btn-weak').style.display=topics.some(([,d])=>d.answered>=3&&(d.correct/d.answered)<0.6)?'block':'none';
   }
 }
-
-function showTab(tabId) {
-  document.getElementById('tab-exam').style.display = tabId === 'tab-exam' ? 'block' : 'none';
-  document.getElementById('tab-progress').style.display = tabId === 'tab-progress' ? 'block' : 'none';
-  document.querySelectorAll('.nav-tab').forEach((t, i) => {
-    t.classList.toggle('active', (i === 0 && tabId === 'tab-exam') || (i === 1 && tabId === 'tab-progress'));
-  });
-  if (tabId === 'tab-progress') renderProgress();
+function showTab(tabId){
+  document.getElementById('tab-exam').style.display=tabId==='tab-exam'?'block':'none';
+  document.getElementById('tab-progress').style.display=tabId==='tab-progress'?'block':'none';
+  document.querySelectorAll('.nav-tab').forEach((t,i)=>t.classList.toggle('active',(i===0&&tabId==='tab-exam')||(i===1&&tabId==='tab-progress')));
+  if(tabId==='tab-progress')renderProgress();
 }
-
-function startWeakExam() {
-  const p = loadProgress();
-  // Find weakest topics (>= 3 answered, <60% accuracy)
-  const weakTopics = Object.entries(p.topics)
-    .filter(([,d]) => d.answered >= 3 && (d.correct/d.answered) < 0.6)
-    .map(([t]) => t);
-  if (weakTopics.length === 0) { alert('No weak topics found!'); return; }
-
-  // Filter questions from weak topics
-  let pool = QUESTIONS.filter(q => weakTopics.includes(q.topic));
-  pool = shuffle(pool);
-  examQuestions = pool.slice(0, Math.min(10, pool.length));
-  currentIdx = 0; score = 0; results = [];
-  showTab('tab-exam');
-  showScreen('screen-exam');
-  renderQuestion();
+function startWeakExam(){
+  const p=loadProgress(),weakTopics=Object.entries(p.topics).filter(([,d])=>d.answered>=3&&(d.correct/d.answered)<0.6).map(([t])=>t);
+  if(!weakTopics.length){alert('No weak topics found!');return;}
+  let pool=shuffle(QUESTIONS.filter(q=>weakTopics.includes(q.topic)));
+  examQuestions=pool.slice(0,Math.min(10,pool.length));currentIdx=0;score=0;results=[];
+  showTab('tab-exam');showScreen('screen-exam');renderQuestion();
 }
+function resetProgress(){if(confirm('Reset all progress data? This cannot be undone.')){localStorage.removeItem(PROGRESS_KEY);renderProgress();}}
 
-function resetProgress() {
-  if (confirm('Reset all progress data? This cannot be undone.')) {
-    localStorage.removeItem(PROGRESS_KEY);
-    renderProgress();
-  }
-}
-
-// Initialize tab visibility
-document.getElementById('tab-exam').style.display = 'block';
-document.getElementById('tab-progress').style.display = 'none';
+document.getElementById('tab-exam').style.display='block';
+document.getElementById('tab-progress').style.display='none';
 </script>
 </body>
 </html>
