@@ -777,5 +777,39 @@ function resetProgress(){if(confirm('Reset all progress data? This cannot be und
 document.getElementById('tab-exam').style.display='block';
 document.getElementById('tab-progress').style.display='none';
 </script>
+
+<script>
+// Service Worker registration
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('./sw.js');
+  });
+}
+
+// Install button
+let deferredPrompt = null;
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+  deferredPrompt = e;
+  const btn = document.getElementById('btn-install');
+  if (btn) btn.style.display = 'block';
+});
+function installApp() {
+  if (deferredPrompt) {
+    deferredPrompt.prompt();
+    deferredPrompt.userChoice.then(() => {
+      deferredPrompt = null;
+      const btn = document.getElementById('btn-install');
+      if (btn) btn.style.display = 'none';
+    });
+  } else {
+    alert('iPhone/iPad: tap Share → Add to Home Screen\nAndroid: tap Menu ⋮ → Add to Home Screen');
+  }
+}
+window.addEventListener('appinstalled', () => {
+  const btn = document.getElementById('btn-install');
+  if (btn) btn.style.display = 'none';
+});
+</script>
 </body>
 </html>
