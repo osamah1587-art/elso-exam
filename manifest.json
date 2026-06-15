@@ -1,7 +1,6 @@
 {
-  "name": "ECMO O.Dakka",
-  "short_name": "ECMO O.Dakka",
-  "description": "200 questions from the ELSO Red Book 6th Edition",
+  "name": "ICU O.Dakka",
+  "short_name": "ICU O.Dakka",
   "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#020817",
