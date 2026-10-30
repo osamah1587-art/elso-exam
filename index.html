@@ -1509,11 +1509,12 @@ const QUESTIONS = [
 
   // ── NEONATAL ECMO ─────────────────────────────────────────────────────────
   {
-    topic: "Neonatal ECMO", difficulty: "basic",
-    q: "The most common indication for neonatal ECMO is:",
-    opts: ["Congenital heart disease","Meconium aspiration syndrome (MAS) and persistent pulmonary hypertension of the newborn (PPHN)","Neonatal sepsis","Prematurity"],
-    ans: 1,
-    exp: "Meconium aspiration syndrome and persistent pulmonary hypertension of the newborn (PPHN) are the leading indications for neonatal ECMO, representing failure of pulmonary vasodilation and hypoxic respiratory failure."
+    topic: "Neonatal ECMO",
+    difficulty: "basic",
+    q: "Currently, the most common single diagnosis for neonatal respiratory ECMO is:",
+    opts: ["Congenital diaphragmatic hernia (CDH)","Meconium aspiration syndrome (MAS)","Neonatal sepsis","Respiratory distress syndrome of prematurity"],
+    ans: 0,
+    exp: "CDH now accounts for about one-third of neonatal respiratory ECMO runs and is the most common single indication. MAS, PPHN and RDS were historically the leading indications, but have declined with better perinatal care (surfactant, iNO, HFOV). MAS still has the best survival (>90%), while CDH survival has stayed around 50%."
   },
   {
     topic: "Neonatal ECMO", difficulty: "basic",
@@ -4607,16 +4608,12 @@ const QUESTIONS = [
     exp: "PPCM recovery on ECMO: excellent recovery potential (50–70% recover with ECMO support). Prolactin pathway implicated — bromocriptine (dopamine agonist, stops lactation/prolactin) may enhance recovery. Bridge-to-recovery is primary strategy. Subsequent pregnancies carry 30–50% recurrence risk — genetic counseling and MFM consultation essential."
   },
   {
-    topic: "Pregnancy ECMO", difficulty: "intermediate",
+    topic: "Pregnancy ECMO",
+    difficulty: "intermediate",
     q: "H1N1 influenza ARDS in pregnancy requiring VV ECMO occurs at higher rates than in non-pregnant patients because:",
-    opts: [
-      "Pregnant women have better immune responses",
-      "Pregnancy causes physiological immunomodulation, increased O2 consumption, reduced FRC, and elevated diaphragm — making pregnant women more susceptible to severe influenza and rapid respiratory decompensation",
-      "Influenza is more common in pregnancy",
-      "Antivirals cannot be used in pregnancy"
-    ],
+    opts: ["Pregnant women have better immune responses","Pregnancy causes physiological immunomodulation, increased O2 consumption, reduced FRC, and elevated diaphragm — making pregnant women more susceptible to severe influenza and rapid respiratory decompensation","Influenza is more common in pregnancy","Antivirals cannot be used in pregnancy"],
     ans: 1,
-    exp: "Pregnancy + H1N1 susceptibility: (1) physiological immunotolerance (fetal acceptance) → impaired viral clearance, (2) ↑VO2 20–30% → less reserve, (3) ↓FRC from elevated diaphragm → faster derecruitment, (4) ↑cardiac output → faster spread. H1N1 mortality in pregnancy 10× higher than non-pregnant adults. Oseltamivir safe in pregnancy — start immediately."
+    exp: "Pregnancy + H1N1 susceptibility: (1) physiological immunotolerance (fetal acceptance) → impaired viral clearance, (2) ↑VO2 20–30% → less reserve, (3) ↓FRC from elevated diaphragm → faster derecruitment, (4) ↑cardiac output → faster spread. In the 2009 pandemic, pregnant women were ~1% of the US population but ~5% of H1N1 deaths, and had ~7× the risk of ICU admission (13× at ≥20 weeks) vs non-pregnant women of childbearing age. Oseltamivir safe in pregnancy — start immediately."
   },
   {
     topic: "Pregnancy ECMO", difficulty: "advanced",
