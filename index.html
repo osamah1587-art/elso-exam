@@ -270,7 +270,7 @@ if ('serviceWorker' in navigator) {
     <span class="ticker-item"><span class="ticker-dot">·</span></span>
     <span class="ticker-item">Critical Care Medicine</span>
     <span class="ticker-item"><span class="ticker-dot">·</span></span>
-    <span class="ticker-item">520 Questions</span>
+    <span class="ticker-item"><span class="q-count">392</span> Questions</span>
     <span class="ticker-item"><span class="ticker-dot">·</span></span>
     <span class="ticker-item">ICU O.Dakka</span>
     <span class="ticker-item"><span class="ticker-dot">·</span></span>
@@ -280,7 +280,7 @@ if ('serviceWorker' in navigator) {
     <span class="ticker-item"><span class="ticker-dot">·</span></span>
     <span class="ticker-item">Critical Care Medicine</span>
     <span class="ticker-item"><span class="ticker-dot">·</span></span>
-    <span class="ticker-item">520 Questions</span>
+    <span class="ticker-item"><span class="q-count">392</span> Questions</span>
     <span class="ticker-item"><span class="ticker-dot">·</span></span>
   </div>
 </div>
@@ -331,7 +331,7 @@ if ('serviceWorker' in navigator) {
     <div class="logo-badge">ELSO Red Book · 6th Edition</div>
     <div class="author-tag">ICU O.Dakka</div>
     <h1>ECMO Exam Simulator</h1>
-    <p>520 questions from the ELSO Red Book — fully offline</p>
+    <p><span class="q-count">392</span> questions from the ELSO Red Book — fully offline</p>
   </div>
 
   <!-- NAV TABS -->
@@ -4737,6 +4737,7 @@ const QUESTIONS = [
 ];
 
 // ─── STATE ────────────────────────────────────────────────────────────────────
+document.querySelectorAll('.q-count').forEach(el => el.textContent = QUESTIONS.length);
 let config = { topic: "all", count: 10, diff: "all" };
 let examQuestions = [];
 let currentIdx = 0;
