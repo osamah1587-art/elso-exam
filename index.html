@@ -574,11 +574,12 @@ const QUESTIONS = [
 
   // ── CIRCUIT ───────────────────────────────────────────────────────────────
   {
-    topic: "Circuit & Oxygenator", difficulty: "basic",
+    topic: "Circuit & Oxygenator",
+    difficulty: "basic",
     q: "What type of pump is most commonly used in modern adult ECLS circuits?",
     opts: ["Roller pump","Centrifugal pump","Axial flow pump","Diaphragm pump"],
     ans: 1,
-    exp: "Centrifugal pumps (magnetically levitated) are standard in modern adult ECLS. Examples include RotaFlow, CentriMag, and CardioHelp. Roller pumps are still used in neonatal ECLS."
+    exp: "Centrifugal pumps are standard in modern adult ECLS (e.g., RotaFlow, Cardiohelp; magnetically levitated designs such as CentriMag). Roller pumps are still used in neonatal ECLS."
   },
   {
     topic: "Circuit & Oxygenator", difficulty: "basic",
@@ -764,16 +765,12 @@ const QUESTIONS = [
     exp: "SvO2 below 65–70% indicates increased oxygen extraction by tissues, reflecting inadequate DO2 — either from low ECMO flow, low hemoglobin, or high metabolic demand."
   },
   {
-    topic: "Physiology", difficulty: "intermediate",
+    topic: "Physiology",
+    difficulty: "intermediate",
     q: "What is the 'Harlequin syndrome' (North-South syndrome) in femoral VA ECMO?",
-    opts: [
-      "Thrombosis of the femoral artery cannula",
-      "Upper body perfused by desaturated native cardiac output while lower body receives oxygenated ECMO blood",
-      "Excessive recirculation in VV ECMO",
-      "LV distension due to increased afterload"
-    ],
+    opts: ["Thrombosis of the femoral artery cannula","Upper body perfused by desaturated native cardiac output while lower body receives oxygenated ECMO blood","Excessive recirculation in VV ECMO","LV distension due to increased afterload"],
     ans: 1,
-    exp: "In femoral VA ECMO, native cardiac output (potentially desaturated from failing lungs) perfuses the upper body retrogradely while ECMO-oxygenated blood perfuses the lower body — creating a differential hypoxemia. Monitor right radial ABG."
+    exp: "In femoral VA ECMO, native cardiac output (potentially desaturated from failing lungs) is ejected antegrade into the aortic arch, perfusing the coronaries and upper body, while retrograde ECMO-oxygenated blood perfuses the lower body — creating a differential hypoxemia. Monitor right radial ABG."
   },
   {
     topic: "Physiology", difficulty: "intermediate",
@@ -1081,14 +1078,10 @@ const QUESTIONS = [
     exp: "Lactate ≥10 mmol/L at ECMO initiation identifies patients with likely irreversible end-organ damage and poor outcomes. Lactate clearance at 12–24 hours is a key prognostic marker after ECMO initiation."
   },
   {
-    topic: "VA ECMO – Cardiac", difficulty: "intermediate",
-    q: "Which condition is an absolute contraindication to VA ECMO for cardiac failure?",
-    opts: [
-      "Age >65 years",
-      "Severe aortic valve regurgitation",
-      "Elevated creatinine",
-      "Recent CABG"
-    ],
+    topic: "VA ECMO – Cardiac",
+    difficulty: "intermediate",
+    q: "Which condition is a contraindication to VA ECMO for cardiac failure?",
+    opts: ["Age >65 years","Severe aortic valve regurgitation","Elevated creatinine","Recent CABG"],
     ans: 1,
     exp: "Severe aortic regurgitation is a contraindication because VA ECMO increases LV afterload — if the aortic valve is incompetent, blood will regurgitate back into the LV causing severe distension and pulmonary edema."
   },
@@ -1129,28 +1122,20 @@ const QUESTIONS = [
     exp: "Non-opening aortic valve on VA ECMO indicates LV stasis — risk of thrombus and pulmonary edema. LV unloading with Impella (direct LV drainage) is most effective. Inotropes can also help restore valve opening."
   },
   {
-    topic: "VA ECMO – Cardiac", difficulty: "advanced",
+    topic: "VA ECMO – Cardiac",
+    difficulty: "advanced",
     q: "During VA ECMO weaning, which echocardiographic finding best indicates readiness for decannulation?",
-    opts: [
-      "Normal RV size",
-      "LVEF ≥20–25% with aortic valve opening and no significant LV dilation at reduced flow",
-      "Absence of pericardial effusion",
-      "Normal mitral valve function"
-    ],
+    opts: ["Normal RV size","LVEF ≥20–25%, LVOT VTI ≥10–12 cm, lateral mitral S′ ≥6 cm/s, aortic valve opening and no LV dilation at minimal flow","Absence of pericardial effusion","Normal mitral valve function"],
     ans: 1,
-    exp: "Weaning readiness on VA ECMO requires LVEF ≥20–25%, aortic valve opening on most beats, no significant LV dilation, and hemodynamic stability (MAP ≥65, CI ≥2.0) while on reduced ECMO support."
+    exp: "VA weaning echo criteria (Aissaoui; ELSO VA guidance): LVEF ≥20–25% (some protocols ≥25–30%), LVOT VTI ≥10–12 cm, lateral mitral annulus S′ ≥6 cm/s, aortic valve opening, no LV dilation or tamponade at minimal flow (~1–1.5 L/min), with hemodynamic stability (MAP ≥60–65, low CVP) on low-dose inotropes."
   },
   {
-    topic: "VA ECMO – Cardiac", difficulty: "advanced",
+    topic: "VA ECMO – Cardiac",
+    difficulty: "advanced",
     q: "What anticoagulation target is typically used for VA ECMO compared to VV ECMO?",
-    opts: [
-      "Lower ACT target (120–140 sec) in VA ECMO due to bleeding risk",
-      "Higher ACT target (160–200 sec) in VA ECMO due to higher thrombotic risk from low-flow aorta",
-      "No anticoagulation needed in VA ECMO",
-      "Same target for both configurations"
-    ],
-    ans: 1,
-    exp: "VA ECMO requires a higher anticoagulation target (ACT 160–200 sec or anti-Xa 0.3–0.7 IU/mL) compared to VV ECMO due to the higher risk of thrombosis in the low-flow aortic root and LV."
+    opts: ["Lower ACT target (120–140 sec) in VA ECMO due to bleeding risk","Higher ACT target (160–200 sec) in VA ECMO due to higher thrombotic risk from low-flow aorta","No anticoagulation needed in VA ECMO","Same target for both configurations"],
+    ans: 3,
+    exp: "ELSO guidelines and the Red Book do not set different anticoagulation targets by configuration. Targets are individualised to bleeding vs thrombotic risk (traditionally ACT 180–220 s; anti-Xa 0.3–0.7 IU/mL, many centres lower). Lower-intensity anticoagulation in VV ECMO or higher in VA with LV stasis is local practice, not guideline."
   },
   {
     topic: "VA ECMO – Cardiac", difficulty: "intermediate",
@@ -1193,11 +1178,12 @@ const QUESTIONS = [
     exp: "VF/pVT (ventricular fibrillation/pulseless ventricular tachycardia) is associated with the best ECPR outcomes as these rhythms indicate viable myocardium and are more likely to have a reversible cause."
   },
   {
-    topic: "ECPR", difficulty: "intermediate",
-    q: "What is the target 'door to ECMO flow' time in an ECPR protocol?",
+    topic: "ECPR",
+    difficulty: "intermediate",
+    q: "What is the ELSO-recommended target interval from cardiac arrest to ECMO flow in ECPR?",
     opts: ["<120 minutes","<60 minutes","<30 minutes","<10 minutes"],
     ans: 1,
-    exp: "Door-to-ECMO flow should be <60 minutes. Every minute without restoration of circulation worsens neurological outcome. Highly organized protocols and trained teams are essential to achieve this target."
+    exp: "ELSO recommends establishing ECMO flow within 60 minutes of arrest onset (total low-flow time). ECPR should be considered after 10–15 minutes of failed conventional CPR, and in-hospital door-to-flow should be as short as possible. Every minute without restoration of circulation worsens neurological outcome."
   },
   {
     topic: "ECPR", difficulty: "intermediate",
@@ -1212,16 +1198,12 @@ const QUESTIONS = [
     exp: "ECPR bridges to recovery or definitive treatment. End-stage metastatic malignancy is a contraindication, not a reversible cause. Reversible targets include AMI, PE, hypothermia, myocarditis, and drug toxicity."
   },
   {
-    topic: "ECPR", difficulty: "advanced",
+    topic: "ECPR",
+    difficulty: "advanced",
     q: "After successful ECPR, what is the standard post-resuscitation bundle?",
-    opts: [
-      "High-dose steroids and immediate extubation",
-      "Coronary angiography ± PCI, temperature control (32–36°C target, prevent fever >37.5°C), treat reversible cause, neurological monitoring",
-      "Immediate decannulation from ECMO",
-      "Empiric broad-spectrum antibiotics only"
-    ],
+    opts: ["High-dose steroids and immediate extubation","Coronary angiography ± PCI, temperature control (actively prevent fever >37.7°C for ≥72 h), treat reversible cause, neurological monitoring","Immediate decannulation from ECMO","Empiric broad-spectrum antibiotics only"],
     ans: 1,
-    exp: "Post-ECPR bundle: (1) urgent coronary angiography ± PCI for suspected ACS, (2) temperature control — current ERC/ESICM guidance: actively prevent fever (>37.5°C) for ≥72h; 32–36°C still acceptable, (3) treat underlying reversible cause, (4) daily neurological assessment and monitoring."
+    exp: "Post-ECPR bundle: (1) urgent coronary angiography ± PCI for suspected ACS, (2) temperature control — ERC/ESICM: actively prevent fever (>37.7°C) for ≥72 h; evidence is insufficient to recommend for or against 32–36°C, (3) treat underlying reversible cause, (4) daily neurological assessment and monitoring."
   },
   {
     topic: "ECPR", difficulty: "advanced",
@@ -1252,11 +1234,12 @@ const QUESTIONS = [
     exp: "Unfractionated heparin (UFH) is the standard anticoagulant for ECLS due to its rapid onset, reversibility with protamine, and well-established monitoring with ACT and anti-Xa levels."
   },
   {
-    topic: "Anticoagulation", difficulty: "basic",
+    topic: "Anticoagulation",
+    difficulty: "basic",
     q: "What is the standard ACT target range for VV ECMO?",
-    opts: ["100–120 sec","160–180 sec","200–250 sec","250–300 sec"],
+    opts: ["100–120 sec","180–220 sec","200–250 sec","250–300 sec"],
     ans: 1,
-    exp: "The typical ACT target for VV ECMO is 160–180 seconds, or anti-Xa 0.3–0.5 IU/mL. VA ECMO may require slightly higher targets (160–200 sec) due to greater thrombotic risk."
+    exp: "The traditional ELSO ACT target is 180–220 s (anti-Xa 0.3–0.7 IU/mL), the same for VV and VA. Many centres now titrate primarily to anti-Xa or aPTT because ACT correlates poorly with heparin effect, and lower-intensity targets are increasingly used in VV ECMO."
   },
   {
     topic: "Anticoagulation", difficulty: "intermediate",
@@ -1488,16 +1471,12 @@ const QUESTIONS = [
     exp: "During circuit change, ECMO flow is necessarily interrupted. Priorities are: maintain ventilation (manual bagging), maintain hemodynamic support (CPR if needed, vasopressors), and perform the change rapidly with a practiced team."
   },
   {
-    topic: "Nomenclature", difficulty: "advanced",
+    topic: "Nomenclature",
+    difficulty: "advanced",
     q: "PA (pulmonary artery) cannulation in ECMO is used to create which configuration?",
-    opts: [
-      "VV ECMO",
-      "A right ventricular assist device (RVAD) — draining the right ventricle and returning to the pulmonary artery",
-      "VA ECMO",
-      "ECCO2R only"
-    ],
+    opts: ["VV ECMO","V-P configuration (RVAD-type) — RA drainage with pulmonary-artery return, providing RV support","VA ECMO","ECCO2R only"],
     ans: 1,
-    exp: "Pulmonary artery cannulation creates an RVAD configuration: drainage from the right atrium/RV, return to the pulmonary artery. This provides right heart support without oxygenation support."
+    exp: "Pulmonary artery cannulation creates an RVAD configuration: drainage from the right atrium/RV, return to the pulmonary artery. It supports the RV; adding an oxygenator also provides gas exchange (oxy-RVAD). ELSO Maastricht term: V-P."
   },
   {
     topic: "Physiology", difficulty: "advanced",
@@ -1871,23 +1850,20 @@ const QUESTIONS = [
 
   // ── CIRCUIT MANAGEMENT ADVANCED ───────────────────────────────────────────
   {
-    topic: "Circuit & Oxygenator", difficulty: "intermediate",
-    q: "What is the typical lifespan of a modern PMP oxygenator before requiring elective replacement?",
-    opts: ["24–48 hours","3–5 days","2–4 weeks","3–6 months"],
+    topic: "Circuit & Oxygenator",
+    difficulty: "intermediate",
+    q: "When should a modern PMP oxygenator be replaced?",
+    opts: ["Routinely every 24–48 hours","Routinely every 3–5 days","When performance fails (falling O2/CO2 transfer, rising ΔP, hemolysis, consumptive coagulopathy, visible clot) — not at a fixed time interval","Routinely every 3–6 months"],
     ans: 2,
-    exp: "Modern PMP oxygenators typically last 2–4 weeks before requiring elective replacement due to progressive plasma leakage or thrombosis. Some last longer with good anticoagulation. Emergency replacement is done when signs of failure appear."
+    exp: "PMP oxygenators are plasma-tight and can last weeks. Replacement is driven by function, not elapsed days: falling gas transfer (low post-oxygenator PO2 on FiO2 1.0, rising PaCO2), rising transmembrane ΔP, hemolysis, consumptive coagulopathy (falling fibrinogen/platelets, rising D-dimer), or large visible clot."
   },
   {
-    topic: "Circuit & Oxygenator", difficulty: "intermediate",
+    topic: "Circuit & Oxygenator",
+    difficulty: "intermediate",
     q: "Plasma leakage from the oxygenator is identified by:",
-    opts: [
-      "Rising pre-membrane pressure",
-      "Visible yellow/pink fluid in the gas outlet port of the oxygenator",
-      "Falling ECMO flow",
-      "Rising arterial PO2"
-    ],
+    opts: ["Rising pre-membrane pressure","Visible yellow/pink fluid in the gas outlet port of the oxygenator","Falling ECMO flow","Rising arterial PO2"],
     ans: 1,
-    exp: "Plasma leakage (sweep gas contamination with plasma proteins) appears as yellow or pink fluid in the gas outlet. It indicates membrane integrity failure and heralds oxygenator failure — elective replacement should be planned."
+    exp: "Plasma leakage (sweep gas contamination with plasma proteins) appears as yellow or pink fluid in the gas outlet. It indicates membrane integrity failure and heralds oxygenator failure — elective replacement should be planned. Characteristic of older microporous polypropylene oxygenators; rare with modern PMP membranes."
   },
   {
     topic: "Circuit & Oxygenator", difficulty: "advanced",
@@ -1930,16 +1906,12 @@ const QUESTIONS = [
     exp: "Higher ECMO center volume is consistently associated with better survival. Experienced teams develop optimized protocols, rapid response to complications, and efficient crisis management — all translating to improved outcomes."
   },
   {
-    topic: "ECMO Outcomes", difficulty: "intermediate",
+    topic: "ECMO Outcomes",
+    difficulty: "intermediate",
     q: "Lactate clearance on ECMO is defined as adequate when:",
-    opts: [
-      "Lactate drops by any amount at 6 hours",
-      "Lactate decreases ≥10–20% per hour or normalizes (<2 mmol/L) within 12–24 hours of ECMO initiation",
-      "Lactate reaches 5 mmol/L at 48 hours",
-      "Lactate is unchanged at 24 hours"
-    ],
+    opts: ["Lactate drops by any amount at 6 hours","Lactate falls ≥10% over the first ~6 hours and/or normalizes (<2 mmol/L) within 24 hours of ECMO initiation","Lactate reaches 5 mmol/L at 48 hours","Lactate is unchanged at 24 hours"],
     ans: 1,
-    exp: "Adequate lactate clearance (≥10–20% per hour or normalization within 12–24 hours) is the most important early prognostic marker on ECMO. Failure to clear lactate at 24 hours predicts poor survival and guides escalation decisions."
+    exp: "Adequate lactate clearance (≥10% fall over the first ~6 h and/or normalisation within 24 h) is the most important early prognostic marker on ECMO. Failure to clear lactate at 24 hours predicts poor survival and guides escalation decisions."
   },
 
   // ── ECMO PROGRAM STRUCTURE ────────────────────────────────────────────────
@@ -2114,16 +2086,12 @@ const QUESTIONS = [
     exp: "Counterintuitively, higher native CO on VV ECMO can dilute the oxygenated ECMO return with deoxygenated native venous blood. The fraction of total CO provided by ECMO (ECMO flow/total CO) determines how much oxygenation improvement occurs."
   },
   {
-    topic: "Physiology", difficulty: "advanced",
+    topic: "Physiology",
+    difficulty: "advanced",
     q: "The Fick principle applied to ECMO states that:",
-    opts: [
-      "ECMO flow equals cardiac output",
-      "VO2 = CO × (CaO2 − CvO2) × 10 — ECMO flow must be sufficient to provide adequate DO2 to meet VO2",
-      "SvO2 always equals 75% on ECMO",
-      "PaO2 determines cardiac output"
-    ],
+    opts: ["ECMO flow equals cardiac output","VO2 = CO × (CaO2 − CvO2) × 10 — ECMO flow must be sufficient to provide adequate DO2 to meet VO2","SvO2 always equals 75% on ECMO","PaO2 determines cardiac output"],
     ans: 1,
-    exp: "The Fick principle: VO2 = CO × (CaO2 − CvO2) × 10. On ECMO, total 'cardiac output' = native CO + ECMO flow. ECMO flow must be set to ensure total DO2 exceeds VO2 by sufficient margin (SvO2 >65–70%)."
+    exp: "The Fick principle: VO2 = CO × (CaO2 − CvO2) × 10. In VA ECMO, total systemic flow = native CO + ECMO flow; in VV ECMO, ECMO flow is in series with native CO and does not add to it. ECMO flow must be set to ensure total DO2 exceeds VO2 by sufficient margin (SvO2 >65–70%)."
   },
   {
     topic: "Physiology", difficulty: "intermediate",
@@ -2152,14 +2120,10 @@ const QUESTIONS = [
     exp: "ECLS (Extracorporeal Life Support) is the umbrella term for all extracorporeal cardiopulmonary support systems. ECMO is a subset providing membrane oxygenation. ECCO2R (another subset) focuses primarily on CO2 removal without full oxygenation support."
   },
   {
-    topic: "Nomenclature", difficulty: "intermediate",
-    q: "VVA ECMO configuration refers to:",
-    opts: [
-      "Two venous drainage cannulas and one arterial return",
-      "One venous drainage and two returns — one venous and one arterial — for combined respiratory and cardiac support",
-      "Three venous cannulas",
-      "Venoarterial ECMO via axillary access only"
-    ],
+    topic: "Nomenclature",
+    difficulty: "intermediate",
+    q: "V-VA ECMO configuration refers to:",
+    opts: ["Two venous drainage cannulas and one arterial return","One venous drainage and two returns — one venous and one arterial — for combined respiratory and cardiac support","Three venous cannulas","Venoarterial ECMO via axillary access only"],
     ans: 1,
     exp: "ELSO nomenclature: letters before the dash = drainage, after = return. V-VA: one venous drainage and two returns (venous + arterial) — combined respiratory and cardiac support; often written VAV in practice, same configuration. VV-A (two drainage, one arterial return) is a different configuration used to improve drainage."
   },
@@ -2320,30 +2284,22 @@ const QUESTIONS = [
     exp: "AVWS in ECMO: high shear stress from centrifugal pump cleaves large vWF multimers (most hemostatically active). This impairs platelet adhesion and contributes to bleeding despite normal platelet count. Diagnosed with vWF multimer analysis."
   },
   {
-    topic: "Adverse Effects", difficulty: "advanced",
+    topic: "Adverse Effects",
+    difficulty: "advanced",
     q: "Thrombocytopenia in ECMO should prompt evaluation for HIT when:",
-    opts: [
-      "Platelet count drops below 150 at any time",
-      "Platelet count drops >50% from baseline after day 4 of heparin, especially with new thrombosis",
-      "Platelets are below 50 at any time on ECMO",
-      "Any platelet drop in the first 24 hours"
-    ],
+    opts: ["Platelet count drops below 150 at any time","Platelet count drops >50% from baseline after day 5 of heparin, especially with new thrombosis","Platelets are below 50 at any time on ECMO","Any platelet drop in the first 24 hours"],
     ans: 1,
-    exp: "HIT probability is assessed by the 4T score: Thrombocytopenia (>50% drop), Timing (day 4–10 of heparin), Thrombosis (new clot), other causes absence. Day 1–3 platelet drop suggests hemodilution/consumption, not HIT. Confirm with anti-PF4 ELISA."
+    exp: "HIT probability is assessed by the 4T score: Thrombocytopenia (>50% drop), Timing (onset day 5–10, or ≤1 day if heparin exposure within 30 days), Thrombosis (new clot), other causes absence. Day 1–4 platelet drop suggests hemodilution/consumption, not HIT. Confirm with anti-PF4 ELISA."
   },
 
   // ── ADDITIONAL MONITORING ─────────────────────────────────────────────────
   {
-    topic: "Monitoring on ECMO", difficulty: "intermediate",
-    q: "Point-of-care testing (POCT) is preferred over laboratory testing for anticoagulation monitoring on ECMO because:",
-    opts: [
-      "POCT is more accurate than laboratory tests",
-      "Rapid turnaround allows timely dose adjustments — critical in dynamic ECMO patients where anticoagulation needs change frequently",
-      "Laboratory tests cannot measure ACT",
-      "POCT is cheaper"
-    ],
+    topic: "Monitoring on ECMO",
+    difficulty: "intermediate",
+    q: "The main advantage of ACT (point-of-care) monitoring on ECMO is:",
+    opts: ["POCT is more accurate than laboratory tests","Rapid turnaround allows timely dose adjustments — critical in dynamic ECMO patients where anticoagulation needs change frequently","Laboratory tests cannot measure ACT","POCT is cheaper"],
     ans: 1,
-    exp: "ACT can be measured at bedside within minutes using POCT, enabling rapid heparin dose adjustments. Laboratory anti-Xa results take 60–90 minutes — too slow for emergent situations. Best practice uses both: POCT for rapid adjustment, anti-Xa for accuracy."
+    exp: "ACT can be measured at bedside within minutes using POCT, enabling rapid heparin dose adjustments. Laboratory anti-Xa results take 60–90 minutes — too slow for emergent situations. However, ACT correlates poorly with heparin effect; current practice favours anti-Xa or aPTT for titration, with ACT for rapid bedside checks."
   },
 
   // ── FINAL MIXED QUESTIONS ─────────────────────────────────────────────────
@@ -2510,11 +2466,12 @@ const QUESTIONS = [
     exp: "'Extracorporeal' = outside the body (extra = outside, corporeal = body). In ECLS, blood is drained from the patient, processed through an external circuit (pump + oxygenator), and returned — all outside the patient's body."
   },
   {
-    topic: "Nomenclature", difficulty: "basic",
+    topic: "Nomenclature",
+    difficulty: "basic",
     q: "What is the correct ELSO term for ECMO used specifically to support the right ventricle?",
-    opts: ["LVAD","RVAD (Right Ventricular Assist Device) using PA cannulation","BiVAD","VAD"],
+    opts: ["LVAD","V-P ECMO (venous drainage, pulmonary-artery return; 'oxy-RVAD' when an oxygenator is included)","BiVAD","VAD"],
     ans: 1,
-    exp: "RVAD via ECMO uses right atrial/RV drainage returning to the pulmonary artery — specifically supporting the right ventricle. This is distinct from VA ECMO which supports both ventricles indirectly."
+    exp: "ELSO Maastricht nomenclature: V-P = venous drainage with pulmonary-artery return, supporting the RV specifically (oxy-RVAD if an oxygenator is in the circuit). This is distinct from VA ECMO, which bypasses both ventricles."
   },
   {
     topic: "Nomenclature", difficulty: "intermediate",
@@ -2824,16 +2781,12 @@ const QUESTIONS = [
     exp: "GI complications in ECMO include mesenteric ischemia (non-pulsatile flow, vasopressors), GI hemorrhage (anticoagulation), and feeding intolerance/ileus. Bowel perforation from cannulas is not a recognized ECMO complication as cannulas are in vascular structures."
   },
   {
-    topic: "Adverse Effects", difficulty: "intermediate",
-    q: "Elevated serum lactate dehydrogenase (LDH) during ECMO specifically indicates:",
-    opts: [
-      "Liver failure",
-      "Hemolysis — LDH is released from lysed red blood cells and is a sensitive marker of circuit-related hemolysis",
-      "Oxygenator failure",
-      "Anticoagulation toxicity"
-    ],
+    topic: "Adverse Effects",
+    difficulty: "intermediate",
+    q: "Rising LDH on ECMO most often reflects:",
+    opts: ["Liver failure","Hemolysis — LDH is released from lysed red blood cells and is a sensitive marker of circuit-related hemolysis","Oxygenator failure","Anticoagulation toxicity"],
     ans: 1,
-    exp: "LDH elevation in ECMO strongly suggests hemolysis. LDH is released from lysed RBCs. Combined with plasma free hemoglobin >50 mg/dL, pink urine, and decreased haptoglobin, it confirms hemolysis requiring circuit inspection and management."
+    exp: "LDH is sensitive but non-specific (liver injury, tissue ischaemia also raise it); on ECMO a rising LDH most often reflects hemolysis. Plasma free Hb is the specific marker. LDH is released from lysed RBCs. Combined with plasma free hemoglobin >50 mg/dL, pink urine, and decreased haptoglobin, it confirms hemolysis requiring circuit inspection and management."
   },
   {
     topic: "Adverse Effects", difficulty: "intermediate",
@@ -2872,16 +2825,12 @@ const QUESTIONS = [
     exp: "VTE in ECMO: non-pulsatile venous flow, immobility, endothelial injury at cannulation sites, and the prothrombotic response to ECMO circuit all create VTE risk. Regular DVT surveillance with Doppler ultrasound is recommended in prolonged ECMO runs."
   },
   {
-    topic: "Adverse Effects", difficulty: "intermediate",
+    topic: "Adverse Effects",
+    difficulty: "intermediate",
     q: "Adrenal insufficiency during prolonged ECMO is suspected when:",
-    opts: [
-      "Patient develops hypertension",
-      "Refractory vasodilatory shock despite adequate ECMO support and vasopressors — requiring hydrocortisone supplementation",
-      "Oxygenation deteriorates",
-      "Circuit thrombosis develops"
-    ],
+    opts: ["Patient develops hypertension","Refractory vasodilatory shock despite adequate ECMO support and vasopressors — requiring hydrocortisone supplementation","Oxygenation deteriorates","Circuit thrombosis develops"],
     ans: 1,
-    exp: "Prolonged critical illness and ECMO can cause relative adrenal insufficiency. Suspect when vasodilatory shock is refractory to vasopressors. Empirical hydrocortisone 200–300 mg/day often improves hemodynamics — confirm with cortisol stimulation test."
+    exp: "Prolonged critical illness and ECMO can cause relative adrenal insufficiency. Suspect when vasodilatory shock is refractory to vasopressors. Empirical hydrocortisone 200–300 mg/day often improves hemodynamics — an ACTH stimulation test is not required to start hydrocortisone."
   },
 
   // ── CRISIS MANAGEMENT DEEP ────────────────────────────────────────────────
@@ -2922,16 +2871,12 @@ const QUESTIONS = [
     exp: "On VA ECMO, arrest with ECMO running: ensure adequate flow (increase only if perfusion inadequate), identify rhythm (defibrillate VF/VT), check ACT (consider clot), check for tamponade, electrolytes, and ischemia. If ECMO maintains MAP >50, CPR may not be required — avoid if possible."
   },
   {
-    topic: "Crisis Management", difficulty: "advanced",
-    q: "The 'clamp-and-go' protocol in ECMO emergency refers to:",
-    opts: [
-      "Clamping the drainage cannula to increase pressure",
-      "A stepwise approach where both arterial and venous lines are clamped simultaneously during circuit emergency — preventing air entry and blood loss",
-      "Clamping the sweep gas line",
-      "Emergency decannulation procedure"
-    ],
+    topic: "Crisis Management",
+    difficulty: "advanced",
+    q: "Clamping off the circuit ('come off ECMO' drill) in a circuit emergency refers to:",
+    opts: ["Clamping the drainage cannula to increase pressure","A stepwise approach where both arterial and venous lines are clamped simultaneously during circuit emergency — preventing air entry and blood loss","Clamping the sweep gas line","Emergency decannulation procedure"],
     ans: 1,
-    exp: "Clamp-and-go: simultaneously clamp both the venous drainage and arterial return lines when a circuit emergency occurs (air embolism, connection failure, circuit rupture). Prevents air from entering patient and blood from exiting. First step in all circuit emergencies."
+    exp: "Clamping off: simultaneously clamp both the venous drainage and arterial return lines when a circuit emergency occurs (air embolism, connection failure, circuit rupture). Prevents air from entering patient and blood from exiting. Used for circuit rupture, air in the circuit or connection failure — after a rapid look at the patient; ventilator and hemodynamic support must be increased immediately."
   },
   {
     topic: "Crisis Management", difficulty: "advanced",
@@ -2960,16 +2905,12 @@ const QUESTIONS = [
     exp: "UFH binds AT III, causing a conformational change that accelerates AT III's natural inhibition of thrombin (Factor IIa) and Factor Xa by >1000-fold. This is why AT III deficiency causes heparin resistance — no AT III means heparin cannot work."
   },
   {
-    topic: "Anticoagulation", difficulty: "basic",
+    topic: "Anticoagulation",
+    difficulty: "basic",
     q: "Activated clotting time (ACT) measures:",
-    opts: [
-      "Anti-Xa levels specifically",
-      "Time for whole blood to clot after activation — reflects heparin effect on the intrinsic coagulation pathway",
-      "Platelet function",
-      "Fibrinogen level"
-    ],
+    opts: ["Anti-Xa levels specifically","Time for whole blood to clot after activation — reflects heparin effect on the intrinsic coagulation pathway","Platelet function","Fibrinogen level"],
     ans: 1,
-    exp: "ACT measures time for whole blood to clot after contact activation (kaolin or celite). It reflects overall coagulation including heparin effect. Normal ACT = 100–120 sec. ECMO target: 160–200 sec. Affected by hemodilution, thrombocytopenia, hypothermia."
+    exp: "ACT measures time for whole blood to clot after contact activation (kaolin or celite). It reflects overall coagulation including heparin effect. Normal ACT = 100–120 sec. Traditional ELSO target 180–220 sec. Affected by hemodilution, thrombocytopenia, hypothermia."
   },
   {
     topic: "Anticoagulation", difficulty: "intermediate",
@@ -3032,16 +2973,12 @@ const QUESTIONS = [
     exp: "Bivalirudin is monitored by aPTT (target 60–80 sec, 1.5–2.5× normal) or ACT. Critically: bivalirudin is ~80% cleared by enzymatic proteolysis (plasma proteases) and ~20% renally — the dose must be reduced in renal failure/CRRT. Unlike argatroban, no adjustment needed for liver failure. Its short half-life (~25 min) helps when interruptions are frequent; avoid stagnant areas in the circuit where it is locally degraded."
   },
   {
-    topic: "Anticoagulation", difficulty: "intermediate",
-    q: "Minimum heparin infusion is continued even when ECMO patients are bleeding because:",
-    opts: [
-      "Heparin has anti-inflammatory properties that help bleeding",
-      "Complete cessation of anticoagulation risks catastrophic circuit or patient thrombosis — a minimum rate balances clot vs bleed",
-      "It is a regulatory requirement",
-      "Heparin prevents transfusion reactions"
-    ],
+    topic: "Anticoagulation",
+    difficulty: "intermediate",
+    q: "In life-threatening bleeding on ECMO, the anticoagulation strategy is:",
+    opts: ["Increase heparin to prevent circuit clot","Reduce or temporarily hold anticoagulation (feasible for days in VV ECMO with coated circuits), accepting circuit-change risk, and resume once haemostasis is achieved","It is a regulatory requirement to continue full anticoagulation","Give protamine routinely every 4 hours"],
     ans: 1,
-    exp: "Complete heparin cessation risks rapid circuit thrombosis (clot formation in low-flow areas, oxygenator) and patient thrombosis (LV stasis in VA ECMO, stroke). A minimum infusion (5–10 units/kg/hr) maintains some anticoagulation while minimizing bleeding risk."
+    exp: "Holding anticoagulation for life-threatening bleeding is accepted practice. In a systematic review, ~200 patients went a median ~5 days without anticoagulation with thrombosis rates comparable to standard care. Keep flow high, have a primed backup circuit ready, monitor ΔP/fibrinogen/D-dimer, and restart (low-dose first) when haemostasis is secured. VA ECMO with LV stasis carries higher thrombotic risk."
   },
   {
     topic: "Anticoagulation", difficulty: "advanced",
@@ -3132,16 +3069,12 @@ const QUESTIONS = [
     exp: "During VV ECMO weaning, allowing mild hypercapnia by reducing sweep gas stimulates the patient's own respiratory center. This promotes spontaneous breathing effort, improving native lung recruitment and providing a physiological signal that weaning is appropriate."
   },
   {
-    topic: "Anticoagulation", difficulty: "basic",
+    topic: "Anticoagulation",
+    difficulty: "basic",
     q: "Why is low molecular weight heparin (LMWH) generally NOT used for anticoagulation in ECMO?",
-    opts: [
-      "LMWH is too expensive",
-      "LMWH has a long half-life, is not easily reversible, and cannot be rapidly titrated — making management of bleeding or clotting emergencies difficult",
-      "LMWH causes more HIT than UFH",
-      "LMWH does not work with ECMO circuits"
-    ],
+    opts: ["LMWH is too expensive","LMWH has a long half-life, is not easily reversible, and cannot be rapidly titrated — making management of bleeding or clotting emergencies difficult","LMWH causes more HIT than UFH","LMWH does not work with ECMO circuits"],
     ans: 1,
-    exp: "LMWH disadvantages in ECMO: 8–12 hour half-life (vs UFH 60–90 min), not reversible with protamine (only partial), cannot be titrated in real-time, and anti-Xa monitoring less reliable in ECMO. UFH remains standard due to short half-life, titrability, and reversibility."
+    exp: "LMWH disadvantages in ECMO: ~4–7 hour half-life, renally cleared (vs UFH 60–90 min), not reversible with protamine (only partial), cannot be titrated in real-time, and anti-Xa monitoring less reliable in ECMO. UFH remains standard due to short half-life, titrability, and reversibility."
   },
   {
     topic: "Circuit & Oxygenator", difficulty: "basic",
@@ -3168,16 +3101,12 @@ const QUESTIONS = [
     exp: "Pressure injuries in ECMO: prolonged immobility (cannulas restrict repositioning), significant edema (third spacing, fluid resuscitation), reduced peripheral perfusion (vasopressors), and sedation all combine. Specialized mattresses, frequent assessment, and careful repositioning protocols are essential."
   },
   {
-    topic: "History of ECMO", difficulty: "intermediate",
+    topic: "History of ECMO",
+    difficulty: "intermediate",
     q: "The landmark 'ECMO for neonates' trial (O'Rourke et al., 1989) used which study design and what was its result?",
-    opts: [
-      "Double-blind RCT — no benefit",
-      "Adaptive randomization (play-the-winner design) — demonstrated clear survival benefit for neonatal ECMO vs conventional therapy",
-      "Retrospective cohort — inconclusive",
-      "Meta-analysis — conflicting results"
-    ],
+    opts: ["Double-blind RCT — no benefit","Two-phase adaptive design (randomised until 4 deaths in one arm, then all patients to the better therapy) — survival benefit for ECMO","Retrospective cohort — inconclusive","Meta-analysis — conflicting results"],
     ans: 1,
-    exp: "The O'Rourke neonatal ECMO trial used adaptive 'play-the-winner' randomization. It was stopped early with 28/29 ECMO survivors vs 6/10 controls — demonstrating overwhelming survival benefit. Landmark trial establishing neonatal ECMO as standard of care."
+    exp: "O'Rourke (Boston, 1989): Phase I randomised — ECMO 9/9 survived vs conventional 6/10; after the 4th control death, Phase II gave all patients ECMO — 19/20 survived (overall 28/29). The 'play-the-winner' design belongs to Bartlett's 1985 Michigan trial."
   },
 
   // ══════════════════════════════════════════════════════════════════════════
@@ -3202,18 +3131,20 @@ const QUESTIONS = [
     exp: "MA (maximum amplitude) on TEG reflects the maximum strength of the fibrin-platelet clot. It is primarily determined by platelet number and function (80%) and fibrinogen (20%). Low MA suggests platelet dysfunction or thrombocytopenia."
   },
   {
-    topic: "Coagulation on ECMO", difficulty: "intermediate",
+    topic: "Coagulation on ECMO",
+    difficulty: "intermediate",
     q: "On ROTEM, the EXTEM test uses which activator and what does it assess?",
     opts: ["Kaolin — intrinsic pathway","Tissue factor — extrinsic pathway clot formation time and clot firmness","Reptilase — fibrinogen","Heparinase — heparin effect"],
     ans: 1,
-    exp: "EXTEM uses tissue factor (TF) to activate the extrinsic pathway. It assesses overall clot formation time (CT), clot kinetics (CFT), and maximum clot firmness (MCF). INTEM uses kaolin for intrinsic pathway. FIBTEM isolates fibrinogen contribution."
+    exp: "EXTEM uses tissue factor (TF) to activate the extrinsic pathway. It assesses overall clot formation time (CT), clot kinetics (CFT), and maximum clot firmness (MCF). INTEM uses ellagic acid (contact/intrinsic activation); kaolin is the TEG activator. FIBTEM isolates fibrinogen contribution."
   },
   {
-    topic: "Coagulation on ECMO", difficulty: "intermediate",
+    topic: "Coagulation on ECMO",
+    difficulty: "intermediate",
     q: "Hyperfibrinolysis on ROTEM/TEG during ECMO is identified by:",
-    opts: ["Prolonged CT","Clot lysis index <85% at 60 minutes (LY60 >15%) — rapid breakdown of formed clot","High MA","Normal clot formation"],
+    opts: ["Prolonged CT","ROTEM ML >15% (CLI60 <85%) or TEG LY30 >7.5% — rapid breakdown of formed clot","High MA","Normal clot formation"],
     ans: 1,
-    exp: "Hyperfibrinolysis: LY60 >15% (TEG) or ML >15% (ROTEM) indicates >15% clot lysis at 60 minutes. Treat with antifibrinolytics (tranexamic acid, EACA). Hyperfibrinolysis contributes to refractory bleeding in ECMO despite adequate coagulation factors."
+    exp: "Hyperfibrinolysis: ROTEM maximum lysis >15% within 60 min (CLI60 <85%), or TEG LY30 >7.5% (>3% in some trauma protocols). Treat with antifibrinolytics (tranexamic acid, EACA). Hyperfibrinolysis contributes to refractory bleeding on ECMO despite adequate coagulation factors."
   },
   {
     topic: "Coagulation on ECMO", difficulty: "advanced",
@@ -3230,8 +3161,9 @@ const QUESTIONS = [
     exp: "High shear stress from centrifugal pumps activates ADAMTS13 protease, which cleaves large vWF multimers into smaller, less hemostatically active forms. Loss of HMW multimers impairs platelet adhesion and primary hemostasis — contributing to ECMO-associated bleeding."
   },
   {
-    topic: "Coagulation on ECMO", difficulty: "intermediate",
-    q: "Target INR/PT during ECMO in a non-bleeding patient is:",
+    topic: "Coagulation on ECMO",
+    difficulty: "intermediate",
+    q: "Which INR is generally tolerated without correction in a non-bleeding ECMO patient?",
     opts: ["INR >3.0","INR 1.5–2.0 — mild prolongation acceptable; correct only if actively bleeding or pre-procedure","INR must be normal (<1.2)","INR is not monitored on ECMO"],
     ans: 1,
     exp: "Mild PT/INR prolongation (INR 1.5–2.0) is common and acceptable in stable ECMO patients. Aggressive FFP transfusion to normalize INR is not recommended and risks volume overload. Correct only for active bleeding or planned invasive procedures."
@@ -3281,11 +3213,12 @@ const QUESTIONS = [
     exp: "Vancomycin: increased Vd on ECMO (hemodilution, third spacing) requires higher loading doses. AUC-guided dosing (target AUC/MIC 400–600) is now preferred over trough-only monitoring. TDM (therapeutic drug monitoring) with pharmacokinetic analysis is essential."
   },
   {
-    topic: "Pharmacokinetics on ECMO", difficulty: "advanced",
+    topic: "Pharmacokinetics on ECMO",
+    difficulty: "advanced",
     q: "Voriconazole is significantly affected by ECMO because:",
-    opts: ["It is water-soluble and easily eliminated","It is highly lipophilic and protein-bound — major circuit sequestration; PLUS it is metabolized by CYP2C19 which has genetic polymorphism affecting levels","It causes circuit thrombosis","It accelerates oxygenator failure"],
+    opts: ["It is water-soluble and easily eliminated","It is lipophilic and protein-bound — major circuit sequestration; PLUS it is metabolized by CYP2C19 which has genetic polymorphism affecting levels","It causes circuit thrombosis","It accelerates oxygenator failure"],
     ans: 1,
-    exp: "Voriconazole: highly lipophilic (logP 1.8), 58% protein-bound → significant ECMO sequestration. Additionally, CYP2C19 polymorphism causes highly variable metabolism. TDM mandatory (target trough 1–5.5 mg/L). Consider liposomal amphotericin B as alternative in prolonged ECMO."
+    exp: "Voriconazole: moderately lipophilic (logP ~1.8), 58% protein-bound, yet shows marked circuit loss ex vivo. Additionally, CYP2C19 polymorphism causes highly variable metabolism. TDM mandatory (target trough 1–5.5 mg/L). Consider liposomal amphotericin B as alternative in prolonged ECMO."
   },
   {
     topic: "Pharmacokinetics on ECMO", difficulty: "advanced",
@@ -3311,9 +3244,10 @@ const QUESTIONS = [
     exp: "The RV has thin walls adapted for low-pressure pulmonary circulation. Acute increases in PVR (massive PE, ARDS, post-cardiac surgery) cause rapid RV dilation, septal shift → LV compression → biventricular failure. The RV has minimal contractile reserve."
   },
   {
-    topic: "RV Failure on ECMO", difficulty: "intermediate",
+    topic: "RV Failure on ECMO",
+    difficulty: "intermediate",
     q: "Echocardiographic signs of acute RV failure on ECMO include:",
-    opts: ["Normal RV size with preserved TAPSE","RV dilation, D-shaped septum (McConnell sign in PE), paradoxical septal motion, tricuspid regurgitation, reduced TAPSE <17mm","Hyperdynamic LV function","Pericardial effusion only"],
+    opts: ["Normal RV size with preserved TAPSE","RV dilation, D-shaped septum, McConnell sign (in PE), paradoxical septal motion, tricuspid regurgitation, reduced TAPSE <17mm","Hyperdynamic LV function","Pericardial effusion only"],
     ans: 1,
     exp: "Acute RV failure echo signs: RV/LV ratio >0.6–1.0, D-shaped interventricular septum (septal flattening from RV pressure overload), paradoxical septal motion, TR, reduced TAPSE. McConnell sign (apical RV sparing with free wall hypokinesia) suggests massive PE."
   },
@@ -3385,11 +3319,12 @@ const QUESTIONS = [
     exp: "PCS: inability to separate from CPB or development of refractory low cardiac output state (CI <2.0 L/min/m2, MAP <60, high filling pressures) despite optimal medical therapy after cardiac surgery. Incidence 2–6% of cardiac surgical procedures."
   },
   {
-    topic: "Post-cardiac Surgery ECMO", difficulty: "intermediate",
-    q: "In post-cardiotomy ECMO, central cannulation (ascending aorta + right atrium) is preferred over peripheral cannulation because:",
-    opts: ["Central cannulation is faster","Avoids femoral access complications (limb ischemia), provides antegrade perfusion, eliminates Harlequin syndrome, and is already surgically accessible in the operating room","No difference between approaches","Peripheral cannulation is always preferred"],
+    topic: "Post-cardiac Surgery ECMO",
+    difficulty: "intermediate",
+    q: "Compared with central cannulation, peripheral VA ECMO for post-cardiotomy shock is associated with:",
+    opts: ["Higher in-hospital mortality and more bleeding","Lower bleeding/re-exploration rates and lower in-hospital mortality in observational data — central reserved for severe peripheral vascular disease or when the chest must stay open","No difference in any outcome","Mandatory re-sternotomy for decannulation"],
     ans: 1,
-    exp: "Central cannulation in post-cardiotomy ECMO: direct surgical access available, antegrade aortic perfusion (no Harlequin), no limb ischemia, higher flows achievable. Disadvantage: requires re-sternotomy if patient has left OR — peripheral preferred in that scenario."
+    exp: "ELSO VA guidance suggests peripheral cannulation is preferable even after cardiotomy. An individual-patient meta-analysis found central cannulation associated with higher in-hospital mortality (≈71% vs 64%), more bleeding and re-exploration. Central cannulation offers antegrade flow and no Harlequin risk, and is used with severe peripheral vascular disease or an open chest."
   },
   {
     topic: "Post-cardiac Surgery ECMO", difficulty: "intermediate",
@@ -3473,11 +3408,12 @@ const QUESTIONS = [
     exp: "Bupivacaine toxicity: 20% lipid emulsion 1.5 mL/kg IV bolus is first-line treatment — creates a lipid compartment that extracts bupivacaine from cardiac tissue (lipid sink theory). If ineffective → ECMO provides circulatory support while bupivacaine is redistributed/metabolized."
   },
   {
-    topic: "Toxicology ECMO", difficulty: "advanced",
+    topic: "Toxicology ECMO",
+    difficulty: "advanced",
     q: "High-dose insulin euglycemic therapy (HIET) combined with ECMO for calcium channel blocker overdose works because:",
-    opts: ["Insulin reverses CCB binding to L-type calcium channels","Myocardial cells in CCB toxicity shift to fatty acid metabolism — insulin facilitates glucose utilization, improving myocardial energy metabolism and contractility","Insulin eliminates CCB renally","Insulin prevents vasodilation"],
+    opts: ["Insulin reverses CCB binding to L-type calcium channels","The stressed myocardium becomes carbohydrate-dependent, but CCBs block insulin release and cause insulin resistance — high-dose insulin restores myocardial glucose uptake and contractility","Insulin eliminates CCB renally","Insulin prevents vasodilation"],
     ans: 1,
-    exp: "CCB overdose impairs myocardial glucose uptake → cells rely on fatty acids (less efficient). HIET (insulin 1 unit/kg/hr with dextrose): facilitates glucose uptake → improved myocardial energy metabolism → improved contractility. Synergistic with ECMO hemodynamic support."
+    exp: "In shock the myocardium shifts from fatty acids to glucose as its main fuel. CCBs block pancreatic insulin release (L-type channels on beta cells) and cause insulin resistance, so the heart cannot use glucose. HIET (insulin ~1 unit/kg/hr, titrated, with dextrose and K+ monitoring) restores glucose uptake → improved contractility. Synergistic with ECMO support."
   },
 
   // ── CHAPTER 46: ETHICS & END OF LIFE ─────────────────────────────────────
@@ -3547,11 +3483,12 @@ const QUESTIONS = [
     exp: "Post-cardiotomy ECMO indications: inability to wean CPB, refractory low cardiac output post-CPB, or early post-op cardiogenic shock. Most commonly follows complex procedures (redo surgery, combined CABG-valve, high-risk CAD, or prior LV dysfunction)."
   },
   {
-    topic: "Bridge to VAD/Transplant", difficulty: "intermediate",
+    topic: "Bridge to VAD/Transplant",
+    difficulty: "intermediate",
     q: "Contraindications to LVAD implantation as a destination therapy that make transplant necessary include:",
-    opts: ["Age >50","Severe irreversible RV failure (BiVAD needed), severe aortic regurgitation, active infection, or lack of social support","Any prior cardiac surgery","Diabetes mellitus"],
+    opts: ["Age >50","Severe irreversible RV failure, small/restrictive LV cavity (restrictive or hypertrophic cardiomyopathy), complex congenital anatomy, or refractory ventricular arrhythmias","Any prior cardiac surgery","Diabetes mellitus"],
     ans: 1,
-    exp: "LVAD destination therapy contraindications (preferring transplant): severe RV failure (LVAD alone insufficient — BiVAD or heart transplant needed), severe AI (LVAD worsens regurgitation), active uncontrolled infection, severe non-cardiac comorbidities, or inadequate social support for device management."
+    exp: "Anatomy/physiology unsuitable for an LVAD favours transplant: severe RV failure (LVAD alone insufficient), small restrictive LV cavity (inflow obstruction/suction), complex congenital anatomy, refractory VT/VF. Severe AR is usually repaired at implant, and lack of social support or active infection exclude transplant as well."
   },
   {
     topic: "Massive PE on ECMO", difficulty: "intermediate",
@@ -3686,16 +3623,12 @@ const QUESTIONS = [
     exp: "LV distension: VA ECMO ↑ afterload → LV cannot eject → no AV opening → LV dilates → pulmonary edema (back pressure). Non-pulsatile waveform confirms no ejection. Immediate LV unloading: Impella CP (best — direct LV drainage) or surgical LV vent. IABP alone insufficient. May need to slightly reduce ECMO flow temporarily."
   },
   {
-    topic: "Clinical Scenarios", difficulty: "advanced",
+    topic: "Clinical Scenarios",
+    difficulty: "advanced",
     q: "SCENARIO (continued): Impella CP inserted. LV size reduces on echo. Aortic valve now opens every 3rd beat. After 48 hours, repeat echo shows LVEF improved to 18%. Patient is hemodynamically stable on low-dose norepinephrine. What is the next step?",
-    opts: [
-      "Immediately decannulate ECMO",
-      "Begin gradual ECMO weaning trial — reduce flow from 4.8 to 3.0 L/min over 30 minutes under echo guidance, targeting MAP ≥65 and CI ≥2.0",
-      "Increase ECMO flow to maximum",
-      "Plan immediate LVAD implantation"
-    ],
+    opts: ["Immediately decannulate ECMO","Begin gradual ECMO weaning trial — reduce flow from 4.8 to 3.0 L/min over 30 minutes under echo guidance, targeting MAP ≥65 and CI ≥2.0","Increase ECMO flow to maximum","Plan immediate LVAD implantation"],
     ans: 1,
-    exp: "Structured weaning trial: gradually reduce ECMO flow (not below 1.5 L/min due to clot risk) while monitoring MAP, CI, SvO2, and echo. LVEF 18% with improving trend warrants a trial. If hemodynamically stable at 1.5 L/min for 30–60 min with echo showing maintained function → consider decannulation."
+    exp: "Structured weaning trial: gradually reduce ECMO flow (typically down to ~1–1.5 L/min, with adequate anticoagulation) while monitoring MAP, CI, SvO2, and echo. LVEF 18% with improving trend warrants a trial. If hemodynamically stable at minimal flow for 30–60 min with echo showing maintained function → consider decannulation."
   },
 
   // ── SCENARIO 5: LIMB ISCHEMIA ─────────────────────────────────────────────
@@ -3738,28 +3671,20 @@ const QUESTIONS = [
     exp: "ECPR criteria met: witnessed arrest ✓, immediate bystander CPR (no-flow <5 min) ✓, shockable rhythm (VF) ✓, ETCO2 18 mmHg >10 ✓, low-flow 22 min <60 min ✓, age 48 ✓, potentially reversible cause (need to investigate). All major inclusion criteria satisfied."
   },
   {
-    topic: "Clinical Scenarios", difficulty: "advanced",
+    topic: "Clinical Scenarios",
+    difficulty: "advanced",
     q: "SCENARIO (continued): ECMO cannulated — femoral VA. ECMO flow 4.2 L/min. MAP 68 mmHg. Lactate 14 mmol/L. Temperature 36.8°C. What are the IMMEDIATE post-ECPR priorities in the first 2 hours?",
-    opts: [
-      "Immediate decannulation once ROSC achieved",
-      "Urgent coronary angiography ± PCI, initiate temperature control (32–36°C target, prevent fever >37.5°C), treat reversible cause, neurological monitoring",
-      "High-dose steroids and broad antibiotics",
-      "Immediate CT brain before any intervention"
-    ],
+    opts: ["Immediate decannulation once ROSC achieved","Urgent coronary angiography ± PCI, initiate temperature control (actively prevent fever >37.7°C for ≥72 h), treat reversible cause, neurological monitoring","High-dose steroids and broad antibiotics","Immediate CT brain before any intervention"],
     ans: 1,
-    exp: "Post-ECPR bundle: (1) urgent CAG ± PCI — most common reversible cause is ACS, (2) temperature control via ECMO heat exchanger — prevent fever >37.5°C (32–36°C acceptable), (3) treat identified reversible causes, (4) continuous EEG monitoring for seizures, (5) lactate clearance monitoring. Do not delay CAG for CT brain unless obvious non-cardiac cause."
+    exp: "Post-ECPR bundle: (1) urgent CAG ± PCI — most common reversible cause is ACS, (2) temperature control via ECMO heat exchanger — actively prevent fever >37.7°C for ≥72 h (insufficient evidence for or against 32–36°C), (3) treat identified reversible causes, (4) continuous EEG monitoring for seizures, (5) lactate clearance monitoring. Do not delay CAG for CT brain unless obvious non-cardiac cause."
   },
   {
-    topic: "Clinical Scenarios", difficulty: "advanced",
+    topic: "Clinical Scenarios",
+    difficulty: "advanced",
     q: "SCENARIO (continued): Coronary angiography shows 100% LAD occlusion — successfully stented. 24 hours later: lactate 2.1 mmol/L, MAP 72 on low-dose norepinephrine, echo LVEF 25%, patient following commands. What is the neurological prognostication timing?",
-    opts: [
-      "Immediate — neurological outcome is clear at 24 hours",
-      "Minimum 72 hours after rewarming from TTM — premature prognostication on TTM or immediately after rewarming is unreliable and leads to inappropriate withdrawal",
-      "7 days only",
-      "Prognostication is not possible in ECPR patients"
-    ],
+    opts: ["Immediate — neurological outcome is clear at 24 hours","Minimum 72 hours after ROSC (ERC/ESICM; AHA: ≥72 h after return to normothermia) — premature prognostication on TTM or immediately after rewarming is unreliable and leads to inappropriate withdrawal","7 days only","Prognostication is not possible in ECPR patients"],
     ans: 1,
-    exp: "Neurological prognostication after cardiac arrest + TTM: wait minimum 72 hours after rewarming. TTM delays metabolism of sedatives and alters neurological examination. Multimodal approach: clinical exam + EEG + SSEP + CT/MRI brain. Premature withdrawal based on early assessment leads to avoidable deaths."
+    exp: "Neurological prognostication after cardiac arrest + TTM: wait at least 72 hours after ROSC (ERC/ESICM) once sedation and hypothermia are excluded; AHA counts ≥72 h from return to normothermia. TTM delays metabolism of sedatives and alters neurological examination. Multimodal approach: clinical exam + EEG + SSEP + CT/MRI brain. Premature withdrawal based on early assessment leads to avoidable deaths."
   },
 
   // ── SCENARIO 7: AIR EMBOLISM ──────────────────────────────────────────────
@@ -3818,16 +3743,12 @@ const QUESTIONS = [
 
   // ── SCENARIO 10: BLEEDING ON ECMO ────────────────────────────────────────
   {
-    topic: "Clinical Scenarios", difficulty: "advanced",
+    topic: "Clinical Scenarios",
+    difficulty: "advanced",
     q: "SCENARIO: VA ECMO day 4 post-cardiotomy. ICU nurse reports oozing from sternal wound and cannula sites. ACT 198 sec. Hgb 7.2 g/dL. Platelets 48,000. Fibrinogen 0.9 g/L. INR 1.8. ROTEM shows short MCF and evidence of hyperfibrinolysis. What is the PRIORITY treatment?",
-    opts: [
-      "Stop heparin completely and give protamine",
-      "Targeted blood product therapy: transfuse RBCs (Hgb <8), give cryoprecipitate (fibrinogen <1.5 g/L is the priority), platelets (target >80,000 if bleeding), FFP (INR correction). Consider tranexamic acid for hyperfibrinolysis. Reduce heparin to minimum (not stop)",
-      "Immediate surgical re-exploration",
-      "Increase ECMO flow to reduce recirculation"
-    ],
+    opts: ["Stop heparin completely and give protamine","Targeted blood product therapy: transfuse RBCs (Hgb <8), give cryoprecipitate (fibrinogen <1.5 g/L is the priority), platelets (target >80,000 if bleeding), FFP (INR correction). Consider tranexamic acid for hyperfibrinolysis. Reduce or temporarily hold heparin","Immediate surgical re-exploration","Increase ECMO flow to reduce recirculation"],
     ans: 1,
-    exp: "Goal-directed hemorrhage control: (1) cryoprecipitate URGENTLY — fibrinogen 0.9 g/L is critically low (target >1.5 g/L), (2) platelets to >80,000, (3) transfuse RBCs Hgb >8, (4) tranexamic acid for ROTEM-confirmed hyperfibrinolysis, (5) reduce heparin to minimum therapeutic (ACT 140–160) but don't stop — risk circuit thrombosis."
+    exp: "Goal-directed hemorrhage control: (1) cryoprecipitate URGENTLY — fibrinogen 0.9 g/L is critically low (target >1.5 g/L), (2) platelets to >80,000, (3) transfuse RBCs Hgb >8, (4) tranexamic acid for ROTEM-confirmed hyperfibrinolysis, (5) reduce or temporarily hold heparin while bleeding is controlled — accept circuit-change risk, keep a primed backup circuit ready."
   },
   {
     topic: "Clinical Scenarios", difficulty: "advanced",
@@ -3910,16 +3831,12 @@ const QUESTIONS = [
     exp: "4T score 8 = high probability HIT. Actions: (1) STOP all heparin (including flushes, heparin-bonded catheters), (2) start argatroban — hepatically metabolized, target aPTT 60–80 sec, (3) send anti-PF4 ELISA + SRA for confirmation, (4) NEVER give platelets (increases thrombosis risk in HIT), (5) circuit change may be needed if circuit exposed to heparin."
   },
   {
-    topic: "Clinical Scenarios", difficulty: "advanced",
+    topic: "Clinical Scenarios",
+    difficulty: "advanced",
     q: "SCENARIO (continued): Argatroban started. 24 hours later, anti-PF4 ELISA returns strongly positive. SRA positive. HIT confirmed. Patient develops new circuit clot requiring circuit change. What anticoagulant should prime the new circuit?",
-    opts: [
-      "Heparin — it is safer for circuit priming",
-      "Argatroban or bivalirudin — the new circuit must be primed with a non-heparin anticoagulant. All heparin must be avoided in confirmed HIT",
-      "No anticoagulation needed for priming",
-      "Warfarin"
-    ],
+    opts: ["Heparin — it is safer for circuit priming","Heparin-free prime (crystalloid/albumin ± argatroban) with continued systemic non-heparin anticoagulation — all heparin avoided in confirmed HIT","No anticoagulation needed for priming","Warfarin"],
     ans: 1,
-    exp: "Confirmed HIT: all heparin is absolutely contraindicated — including circuit priming. New circuit should be primed with argatroban or bivalirudin solution. Bivalirudin is often preferred for priming (short half-life). Document HIT allergy prominently. Avoid heparin for the patient's lifetime."
+    exp: "Confirmed HIT: all heparin is absolutely contraindicated — including circuit priming. Prime the new circuit heparin-free (crystalloid/albumin, ± argatroban) and continue systemic DTI. Bivalirudin degrades in stagnant prime, so it is not ideal for priming. Consider non-heparin-coated circuits where available. Document HIT allergy prominently. Avoid heparin for the patient's lifetime."
   },
 
   // ── SCENARIO 15: HYPOTHERMIA ECPR ────────────────────────────────────────
@@ -3936,16 +3853,12 @@ const QUESTIONS = [
     exp: "'No one is dead until warm and dead': at 24°C, cerebral O2 consumption is reduced ~75%. Full neurological recovery documented after hours of VF in severe hypothermia. ECPR + active rewarming via ECMO heat exchanger is the definitive treatment. Standard ECPR low-flow criteria do not apply to hypothermia."
   },
   {
-    topic: "Clinical Scenarios", difficulty: "advanced",
+    topic: "Clinical Scenarios",
+    difficulty: "advanced",
     q: "SCENARIO (continued): ECPR initiated. ECMO rewarming begun at 0.5°C per 30 minutes. At 30°C, patient converts to sinus rhythm spontaneously. ECMO flow 4.5 L/min. How should rewarming continue?",
-    opts: [
-      "Rewarm as fast as possible to 37°C",
-      "Continue controlled rewarming to 33–36°C (TTM target) — avoid overshoot to >37°C which worsens neurological injury. Monitor for rewarming arrhythmias, electrolyte shifts (K+, Mg2+, PO4) during rewarming",
-      "Stop ECMO now that sinus rhythm returned",
-      "Cool back to 24°C for 24 hours"
-    ],
+    opts: ["Rewarm as fast as possible to 37°C","Continue controlled rewarming to 33–36°C (TTM target) — avoid overshoot to >37°C which worsens neurological injury. Monitor for rewarming arrhythmias, electrolyte shifts (K+, Mg2+, PO4) during rewarming","Stop ECMO now that sinus rhythm returned","Cool back to 24°C for 24 hours"],
     ans: 1,
-    exp: "Controlled rewarming: target 33–36°C (TTM range), avoid hyperthermia (>37°C worsens brain injury). Rate: 0.25–0.5°C/30 min. Monitor: potassium (hypothermia → intracellular K+ → hypokalemia during rewarming → arrhythmias), glucose, Mg, PO4. Maintain ECMO support until cardiac function assessed at normothermia."
+    exp: "Controlled rewarming: target 33–36°C (TTM range), avoid hyperthermia (>37°C worsens brain injury). Rate: 0.25–0.5°C/30 min. Monitor: potassium (hypothermia shifts K+ into cells → hypokalaemia; rewarming shifts it back out → rebound hyperkalaemia, especially if K+ was replaced while cold — avoid aggressive replacement during hypothermia), glucose, Mg, PO4. Maintain ECMO support until cardiac function assessed at normothermia."
   },
 
   // ── SCENARIO 16: DRUG OVERDOSE ECPR ──────────────────────────────────────
@@ -4146,11 +4059,12 @@ const QUESTIONS = [
     exp: "ECMO-associated hepatic dysfunction: (1) ischemic hepatitis — shock prior to ECMO causing centrilobular necrosis (transaminases 1000-10000), (2) congestive hepatopathy — elevated CVP/right heart failure causing hepatic venous congestion (conjugated hyperbilirubinemia, elevated ALP). Both cause coagulopathy and drug metabolism impairment."
   },
   {
-    topic: "Renal Support on ECMO", difficulty: "advanced",
+    topic: "Renal Support on ECMO",
+    difficulty: "advanced",
     q: "Hepatic drug metabolism impairment in ECMO patients with liver dysfunction affects which drug class most significantly?",
-    opts: ["Water-soluble antibiotics","Drugs with high hepatic extraction ratio — propofol, fentanyl, midazolam, argatroban, voriconazole — risk accumulation and toxicity with liver failure","Vasopressors","Heparin"],
+    opts: ["Water-soluble antibiotics","Hepatically cleared drugs — propofol, fentanyl, midazolam, argatroban, voriconazole — risk accumulation and toxicity with liver failure","Vasopressors","Heparin"],
     ans: 1,
-    exp: "High hepatic extraction drugs (propofol, fentanyl, midazolam, argatroban, voriconazole, amiodarone) accumulate significantly in liver failure. Argatroban dose must be reduced 75% in hepatic dysfunction. Voriconazole switches to IV formulation concerns. TDM essential for all narrow-therapeutic-index drugs with hepatic metabolism."
+    exp: "Hepatically cleared drugs (propofol, fentanyl, midazolam, argatroban, voriconazole, amiodarone) accumulate in liver failure. Argatroban dose must be reduced substantially (~75%) in hepatic dysfunction. TDM is essential for narrow-therapeutic-index drugs with hepatic metabolism (e.g., voriconazole)."
   },
   {
     topic: "Renal Support on ECMO", difficulty: "advanced",
@@ -4290,11 +4204,12 @@ const QUESTIONS = [
     exp: "IJV decannulation: manual compression 5–10 minutes (jugular is easily compressible). Monitor: local hematoma (expanding neck hematoma can compress airway — emergency), and venous thrombosis at 24–48h with Doppler. Resume anticoagulation per clinical plan — VTE prophylaxis important post-ECMO."
   },
   {
-    topic: "Weaning & Decannulation", difficulty: "advanced",
+    topic: "Weaning & Decannulation",
+    difficulty: "advanced",
     q: "Deep vein thrombosis (DVT) at ECMO cannulation sites after decannulation occurs in approximately what percentage of patients?",
-    opts: ["<1%","10–30% — routine DVT surveillance with Doppler ultrasound at cannulation sites is recommended after decannulation","50–70%",">90%"],
-    ans: 1,
-    exp: "DVT at former ECMO cannulation sites occurs in 10–30% of patients post-decannulation. Risk factors: large cannula size, prolonged cannulation, endothelial injury, post-ECMO hypercoagulable state. Routine Doppler surveillance at 24–48h and 1 week post-decannulation is recommended. Treat symptomatic DVT with anticoagulation."
+    opts: ["<1%","10–30%","60–85% — routine imaging of cannulation sites is recommended after decannulation",">90%"],
+    ans: 2,
+    exp: "With systematic ultrasound or CT screening, cannula-associated DVT is found in most patients (about 60–85% across series). Ultrasound may miss iliac and caval thrombi. Routine post-decannulation imaging of cannulated vessels is recommended; treat confirmed DVT with anticoagulation. Older estimates of 10–30% reflect clinically detected cases only."
   },
   {
     topic: "Weaning & Decannulation", difficulty: "intermediate",
@@ -4419,16 +4334,12 @@ const QUESTIONS = [
     exp: "ECCO2R at low flows (0.4–1.5 L/min) removes 50–150 mL CO2/min — sufficient to allow Vt reduction to 3–4 mL/kg or RR reduction in hypercapnic COPD/ARDS. Not effective for oxygenation (requires full ECMO flows). Simpler, lower risk than full VV ECMO — accessed via femoral vein or arteriovenous route."
   },
   {
-    topic: "ARDS Special Situations", difficulty: "advanced",
-    q: "The REST trial (2021) investigated ECCO2R combined with ultra-protective ventilation in moderate ARDS. Its main finding was:",
-    opts: [
-      "ECCO2R significantly improved survival in moderate ARDS",
-      "No survival benefit — ECCO2R with ultra-protective ventilation (Vt 3 mL/kg) did not improve 90-day mortality vs standard care; higher adverse events in ECCO2R group",
-      "ECCO2R improved ICU length of stay",
-      "ECCO2R should be standard of care for all ARDS"
-    ],
+    topic: "ARDS Special Situations",
+    difficulty: "advanced",
+    q: "The REST trial (2021) investigated ECCO2R combined with ultra-protective ventilation in acute hypoxaemic respiratory failure (PaO2/FiO2 <150). Its main finding was:",
+    opts: ["ECCO2R significantly improved survival in hypoxaemic respiratory failure","No survival benefit — ECCO2R with ultra-protective ventilation (Vt 3 mL/kg) did not improve 90-day mortality vs standard care; higher adverse events in ECCO2R group","ECCO2R improved ICU length of stay","ECCO2R should be standard of care for all ARDS"],
     ans: 1,
-    exp: "REST trial (2021): ECCO2R + Vt 3 mL/kg vs standard (Vt 6 mL/kg) in moderate ARDS — no significant 90-day mortality difference. Trend toward harm in ECCO2R arm (more adverse events). Current evidence does not support routine ECCO2R in moderate ARDS — reserved for severe hypercapnia refractory to conventional measures."
+    exp: "REST (JAMA 2021): 412 patients with acute hypoxaemic respiratory failure (PaO2/FiO2 <150; ~60% ARDS), ECCO2R + Vt ≤3 mL/kg vs standard care. Stopped early for futility/feasibility: 90-day mortality 41.5% vs 39.5%, with more serious adverse events (including intracranial haemorrhage) in the ECCO2R arm. Routine ECCO2R is not supported."
   },
   {
     topic: "ARDS Special Situations", difficulty: "intermediate",
@@ -4457,16 +4368,12 @@ const QUESTIONS = [
     exp: "IHCA vs OHCA ECPR: IHCA outcomes better due to immediate witness, no EMS transport delay, faster CPR initiation, and immediate access to catheterization lab and ECMO. OHCA adds: potential no-flow period before bystander CPR, transport time, and out-of-hospital variable CPR quality — all reducing neurological outcomes."
   },
   {
-    topic: "OHCA ECPR", difficulty: "intermediate",
-    q: "The ARREST trial (2019) demonstrated for OHCA ECPR:",
-    opts: [
-      "No benefit of ECPR over standard CPR",
-      "Early ECPR (within 24 min of hospital arrival) for refractory VF OHCA improved survival to hospital discharge (43% vs 7%) — landmark trial establishing ECPR benefit in selected OHCA",
-      "ECPR increased mortality in OHCA",
-      "ECPR only benefits younger patients"
-    ],
+    topic: "OHCA ECPR",
+    difficulty: "intermediate",
+    q: "The ARREST trial (2020) demonstrated for OHCA ECPR:",
+    opts: ["No benefit of ECPR over standard CPR","Early ECMO-facilitated resuscitation for refractory VF OHCA improved survival to hospital discharge (43% vs 7%) — landmark trial establishing ECPR benefit in selected OHCA","ECPR increased mortality in OHCA","ECPR only benefits younger patients"],
     ans: 1,
-    exp: "ARREST trial: 30 patients, refractory VF OHCA, randomized to early ECPR vs standard ACLS. ECPR arm: 43% survival vs 7% ACLS arm — trial stopped early for benefit. ECPR cannulated within 24 min of arrival with immediate CAG. Established ECPR as viable therapy for carefully selected refractory VF OHCA."
+    exp: "ARREST trial: 30 patients (Lancet 2020), refractory VF OHCA, randomized to early ECPR vs standard ACLS. ECPR arm: 43% survival vs 7% ACLS arm — trial stopped early for benefit. ECMO-facilitated arm included immediate coronary angiography. Established ECPR as viable therapy for carefully selected refractory VF OHCA."
   },
   {
     topic: "OHCA ECPR", difficulty: "intermediate",
@@ -4481,16 +4388,12 @@ const QUESTIONS = [
     exp: "Prague OHCA (Belohlavek et al., JAMA 2022): 264 refractory OHCA patients randomized to an invasive strategy (mechanical CPR, prehospital intra-arrest transport, ECPR if no ROSC, immediate invasive assessment) vs standard ACLS. Primary endpoint (180-day survival with good neurological outcome) 31.5% vs 22.0% — NOT statistically significant (p=0.09). Secondary analyses favoured the invasive strategy, especially in refractory VF. Supportive but not definitive."
   },
   {
-    topic: "OHCA ECPR", difficulty: "intermediate",
+    topic: "OHCA ECPR",
+    difficulty: "intermediate",
     q: "The Minnesota Criteria for OHCA ECPR candidacy include:",
-    opts: [
-      "Any OHCA patient regardless of rhythm or time",
-      "Age 18–75, witnessed arrest, bystander CPR within 5 min, initial shockable rhythm, no ROSC after 3 shocks, transfer to ECMO center within 30 min, ETCO2 >10 mmHg",
-      "Only patients with STEMI",
-      "Patients with no-flow >15 minutes"
-    ],
+    opts: ["Any OHCA patient regardless of rhythm or time","Age 18–75, presumed cardiac OHCA, initial VF/VT, no ROSC after 3 shocks, amiodarone given, body habitus fits a mechanical CPR device, estimated transport to cath lab <30 min","Only patients with STEMI","Patients with no-flow >15 minutes"],
     ans: 1,
-    exp: "Minnesota ECPR criteria (typical OHCA ECPR protocol): age 18–75, witnessed arrest with bystander CPR <5 min no-flow, initial shockable rhythm (VF/pVT), failure of ≥3 defibrillation attempts, transfer time to ECMO center <30 min, ETCO2 >10 mmHg during CPR. These select patients with reversible cause and preserved neurological potential."
+    exp: "Minnesota Resuscitation Consortium protocol: age 18–75, presumed cardiac cause, initial VF/VT, no ROSC after 3 shocks, amiodarone 300 mg given, fits a LUCAS device, transfer <30 min. Cath-lab termination criteria (ECMO not started): ETCO2 <10 mmHg, PaO2 <50 mmHg, or lactate >18 mmol/L."
   },
   {
     topic: "OHCA ECPR", difficulty: "advanced",
@@ -4529,16 +4432,12 @@ const QUESTIONS = [
     exp: "Immediate CAG post-OHCA ECPR: ACS causes >60% of refractory VF OHCA. Immediate CAG with PCI if culprit lesion found addresses the reversible cause and allows ECMO weaning. Do not defer for neurological assessment — neurological prognosis cannot be determined early; treat the reversible cause first. ECMO provides stability for CAG."
   },
   {
-    topic: "OHCA ECPR", difficulty: "advanced",
+    topic: "OHCA ECPR",
+    difficulty: "advanced",
     q: "Neurological prognostication after OHCA ECPR should follow a multimodal approach including:",
-    opts: [
-      "Clinical exam alone at 24 hours",
-      "Multimodal assessment at ≥72 hours after rewarming: clinical exam (pupillary reflexes, motor response), EEG (burst suppression pattern, seizures), SSEP (absent N20 bilaterally = poor prognosis), CT/MRI brain, and NSE serum levels",
-      "CT brain alone is sufficient",
-      "Only EEG at 48 hours"
-    ],
+    opts: ["Clinical exam alone at 24 hours","Multimodal assessment at ≥72 hours after ROSC (once sedation/hypothermia excluded): clinical exam (pupillary reflexes, motor response), EEG (burst suppression pattern, seizures), SSEP (absent N20 bilaterally = poor prognosis), CT/MRI brain, and NSE serum levels","CT brain alone is sufficient","Only EEG at 48 hours"],
     ans: 1,
-    exp: "OHCA ECPR neuroprognostication (ERC/ESICM guidelines): wait ≥72h after rewarming (sedative clearance). Multimodal: (1) bilaterally absent pupillary reflexes, (2) absent N20 SSEP, (3) burst suppression/status epilepticus on EEG, (4) CT/MRI diffuse anoxic injury, (5) NSE >60 μg/L at 48–72h. Two or more poor predictors = poor outcome with high specificity."
+    exp: "ERC/ESICM: assess at ≥72 h after ROSC once confounders (sedation, hypothermia) are excluded. Poor outcome is likely with ≥2 of: absent pupillary and corneal reflexes at ≥72 h, bilaterally absent N20 SSEP (≥24 h), highly malignant EEG (≥24 h), NSE >60 µg/L at 48/72 h, status myoclonus ≤72 h, diffuse anoxic injury on CT/MRI."
   },
   {
     topic: "OHCA ECPR", difficulty: "intermediate",
@@ -4578,14 +4477,10 @@ const QUESTIONS = [
     exp: "Trauma ECMO indications: (1) severe bilateral pulmonary contusions with refractory hypoxemia (most common — VV ECMO), (2) traumatic cardiac injury with cardiogenic shock (VA ECMO), (3) massive air embolism, (4) hypothermia cardiac arrest (ECPR). Key: hemorrhage must be controlled before or simultaneous with ECMO initiation."
   },
   {
-    topic: "Trauma ECMO", difficulty: "intermediate",
+    topic: "Trauma ECMO",
+    difficulty: "intermediate",
     q: "Anticoagulation strategy in trauma ECMO differs from standard ECMO by:",
-    opts: [
-      "Higher heparin doses required",
-      "Heparin-free or ultra-low heparin protocols using heparin-bonded circuits — accepting higher circuit thrombosis risk to prevent re-bleeding from injuries. ACT target often 140–160 sec rather than standard 160–200 sec",
-      "No anticoagulation ever needed in trauma ECMO",
-      "Bivalirudin is mandatory in all trauma ECMO"
-    ],
+    opts: ["Higher heparin doses required","Heparin-free or ultra-low heparin protocols using heparin-bonded circuits — accepting higher circuit thrombosis risk to prevent re-bleeding from injuries. ACT target often 140–160 sec rather than the standard 180–220 sec","No anticoagulation ever needed in trauma ECMO","Bivalirudin is mandatory in all trauma ECMO"],
     ans: 1,
     exp: "Trauma ECMO anticoagulation: heparin-bonded circuits allow reduced or no heparin in immediate post-injury phase. Ultra-low heparin (ACT 140–160 sec) or heparin-free ECMO for 24–48h until hemorrhage controlled, then gradually increase to standard targets. Accept higher circuit change frequency vs risk of re-bleeding."
   },

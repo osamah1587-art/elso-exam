@@ -1,4 +1,4 @@
-const CACHE = 'ecmo-exam-v4';
+const CACHE = 'ecmo-exam-v5';
 self.addEventListener('install', e => {
   e.waitUntil(caches.open(CACHE).then(c => c.addAll(['./index.html'])));
   self.skipWaiting();
