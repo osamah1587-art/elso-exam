@@ -895,9 +895,9 @@ const QUESTIONS = [
   {
     topic: "Adverse Effects", difficulty: "advanced",
     q: "What is the minimum target platelet count in a bleeding ECMO patient?",
-    opts: [">20,000",">50,000–80,000",">150,000",">200,000"],
+    opts: [">20,000",">80,000–100,000",">150,000",">200,000"],
     ans: 1,
-    exp: "In bleeding ECMO patients, platelets should be maintained >100,000. In stable ECMO patients without bleeding, the target is >50,000–80,000. Platelet transfusion should be guided by clinical context."
+    exp: "In actively bleeding ECMO patients, most centres keep platelets >80,000–100,000. In stable non-bleeding patients a lower threshold (~50,000) is acceptable. Platelet transfusion should be guided by clinical context."
   },
 
   // ── CRISIS MANAGEMENT ─────────────────────────────────────────────────────
@@ -1011,7 +1011,7 @@ const QUESTIONS = [
     q: "How is weaning from VV ECMO performed?",
     opts: [
       "Abruptly stopping ECMO flow",
-      "Gradually reducing ECMO blood flow to minimum and/or reducing sweep gas to near-zero, then trialing decannulation",
+      "Gradually reducing sweep gas to zero (sweep-off trial) while keeping blood flow unchanged, then decannulating if gas exchange is adequate",
       "Increasing ventilator settings first",
       "Reducing anticoagulation then decannulating"
     ],
@@ -1028,7 +1028,7 @@ const QUESTIONS = [
       "Convert to VA ECMO"
     ],
     ans: 1,
-    exp: "Troubleshoot low SpO2 systematically: (1) recirculation (reposition cannulas), (2) Hgb <10 (transfuse), (3) inadequate native cardiac output, (4) high VO2 (treat fever/agitation), (5) cannula malposition."
+    exp: "Troubleshoot low SpO2 systematically: (1) recirculation (reposition cannulas), (2) low Hgb (transfuse if DO2 inadequate), (3) inadequate native cardiac output, (4) high VO2 (treat fever/agitation), (5) cannula malposition."
   },
   {
     topic: "VV ECMO – Respiratory", difficulty: "advanced",
@@ -1216,12 +1216,12 @@ const QUESTIONS = [
     q: "After successful ECPR, what is the standard post-resuscitation bundle?",
     opts: [
       "High-dose steroids and immediate extubation",
-      "Coronary angiography ± PCI, targeted temperature management (33–36°C), treat reversible cause, neurological monitoring",
+      "Coronary angiography ± PCI, temperature control (32–36°C target, prevent fever >37.5°C), treat reversible cause, neurological monitoring",
       "Immediate decannulation from ECMO",
       "Empiric broad-spectrum antibiotics only"
     ],
     ans: 1,
-    exp: "Post-ECPR bundle: (1) urgent coronary angiography ± PCI for suspected ACS, (2) targeted temperature management 33–36°C, (3) treat underlying reversible cause, (4) daily neurological assessment and monitoring."
+    exp: "Post-ECPR bundle: (1) urgent coronary angiography ± PCI for suspected ACS, (2) temperature control — current ERC/ESICM guidance: actively prevent fever (>37.5°C) for ≥72h; 32–36°C still acceptable, (3) treat underlying reversible cause, (4) daily neurological assessment and monitoring."
   },
   {
     topic: "ECPR", difficulty: "advanced",
@@ -2161,7 +2161,7 @@ const QUESTIONS = [
       "Venoarterial ECMO via axillary access only"
     ],
     ans: 1,
-    exp: "VVA ECMO has one drainage cannula and two return cannulas (one venous for respiratory support, one arterial for cardiac support). It differs from VAV where there are two drainage cannulas and one return."
+    exp: "ELSO nomenclature: letters before the dash = drainage, after = return. V-VA: one venous drainage and two returns (venous + arterial) — combined respiratory and cardiac support; often written VAV in practice, same configuration. VV-A (two drainage, one arterial return) is a different configuration used to improve drainage."
   },
 
   // ── ADDITIONAL CRISIS MANAGEMENT ──────────────────────────────────────────
@@ -2182,12 +2182,12 @@ const QUESTIONS = [
     q: "A patient on VA ECMO suddenly loses all pulses and the monitor shows VF. The ECMO is still running. What is the correct immediate action?",
     opts: [
       "Start chest compressions and defibrillate immediately — treat as standard ACLS",
-      "Increase ECMO flow to maximum, defibrillate promptly, continue ECMO — CPR may not be needed if ECMO flow is adequate",
+      "Confirm adequate ECMO flow and MAP, defibrillate promptly, continue ECMO — CPR usually not needed if ECMO flow is adequate",
       "Stop ECMO and start CPR",
       "Decannulate and start CPR"
     ],
     ans: 1,
-    exp: "VA ECMO running at adequate flow maintains organ perfusion even during VF. Priority: maximize ECMO flow → defibrillate promptly → treat reversible cause (check ACT, electrolytes, ischemia). Chest compressions may not be needed if ECMO maintains adequate MAP."
+    exp: "VA ECMO at adequate flow maintains organ perfusion during VF. Priority: confirm flow/MAP (increase flow only if perfusion inadequate — high flow in a non-ejecting LV worsens distension), defibrillate promptly, treat the cause (electrolytes, ischemia, LV distension). Watch for LV distension while the LV is not ejecting — echo, consider venting. Compressions usually unnecessary if ECMO maintains MAP."
   },
 
   // ── ADDITIONAL CANNULATION ────────────────────────────────────────────────
@@ -2198,10 +2198,10 @@ const QUESTIONS = [
       "In the thoracic aorta",
       "In the descending aorta at the level of the diaphragm — avoiding renal arteries",
       "In the femoral artery only",
-      "In the iliac artery"
+      "In the common iliac artery / distal abdominal aorta (standard short cannula)"
     ],
-    ans: 1,
-    exp: "The arterial return cannula tip should be in the descending thoracic aorta (just above the diaphragm), confirmed by CXR. Too proximal risks aortic arch interference; too distal risks competitive flow issues with visceral arteries."
+    ans: 3,
+    exp: "Standard femoral arterial return cannulas (15–19 Fr, ~15–25 cm) sit with the tip in the common iliac artery or distal abdominal aorta. Retrograde flow from there perfuses the aorta; advancing a tip to the diaphragm is not required and long cannulas are not routine. Confirm the wire/cannula course with ultrasound/fluoroscopy and CXR/X-ray."
   },
   {
     topic: "Cannulation", difficulty: "intermediate",
@@ -2257,15 +2257,15 @@ const QUESTIONS = [
   },
   {
     topic: "VA ECMO – Cardiac", difficulty: "advanced",
-    q: "The ECMO-SELLA trial investigated:",
+    q: "The EARLY-UNLOAD trial (2023) investigated:",
     opts: [
       "VV ECMO vs conventional ventilation in ARDS",
-      "Early vs late LV unloading with Impella in VA ECMO for cardiogenic shock",
+      "Early routine vs conventional (as-needed) LV unloading by transseptal left atrial venting in VA ECMO for cardiogenic shock",
       "ECPR outcomes in OHCA",
       "Anticoagulation targets in VA ECMO"
     ],
     ans: 1,
-    exp: "ECMO-SELLA was a randomized trial examining early (immediate) vs delayed LV unloading with Impella CP in patients on VA ECMO for cardiogenic shock. Results informed timing strategies for combined ECMO + Impella (ECPELLA) therapy."
+    exp: "EARLY-UNLOAD (Kim et al., Circulation 2023) randomized VA ECMO cardiogenic shock patients to early routine transseptal LA venting vs conventional strategy (venting only if LV distension/pulmonary edema developed). There was no difference in 30-day mortality; many conventional-arm patients still needed venting. The optimal timing and method (Impella vs LA vent vs IABP) of LV unloading remains unresolved."
   },
   {
     topic: "VA ECMO – Cardiac", difficulty: "intermediate",
@@ -2352,12 +2352,12 @@ const QUESTIONS = [
     q: "In a patient on VV ECMO with SvO2 of 55% at the drainage cannula, what is the most appropriate immediate action?",
     opts: [
       "Reduce sweep gas flow",
-      "Increase ECMO blood flow, check hemoglobin (transfuse if <10), reduce metabolic demand, check for recirculation",
+      "Increase ECMO blood flow, check hemoglobin (transfuse if low and DO2 inadequate), reduce metabolic demand, check for recirculation",
       "Reduce ECMO flow",
       "Increase vasopressor dose only"
     ],
     ans: 1,
-    exp: "SvO2 <65% indicates inadequate DO2. Systematic approach: (1) increase ECMO flow to maximum tolerated, (2) transfuse if Hgb <10 g/dL, (3) treat fever/agitation to reduce VO2, (4) check for recirculation, (5) optimize native lung function."
+    exp: "SvO2 <65% indicates inadequate DO2. Systematic approach: (1) increase ECMO flow to maximum tolerated, (2) transfuse if Hgb low (restrictive ~7–8; higher only if DO2 inadequate), (3) treat fever/agitation to reduce VO2, (4) check for recirculation, (5) optimize native lung function."
   },
   {
     topic: "VA ECMO – Cardiac", difficulty: "basic",
@@ -2452,10 +2452,10 @@ const QUESTIONS = [
   // ── HISTORY OF ECMO ───────────────────────────────────────────────────────
   {
     topic: "History of ECMO", difficulty: "basic",
-    q: "Who is credited with performing the first successful prolonged ECMO run in a human?",
+    q: "Who is credited with the first successful neonatal ECMO run?",
     opts: ["John Gibbon","Robert Bartlett","John Kirklin","Michael DeBakey"],
     ans: 1,
-    exp: "Robert Bartlett performed the first successful prolonged neonatal ECMO run in 1975 on a neonate named 'Esperanza' with meconium aspiration syndrome — a landmark that established ECMO as a viable therapy."
+    exp: "Robert Bartlett performed the first successful prolonged neonatal ECMO run in 1975 on a neonate named 'Esperanza' with meconium aspiration syndrome — a landmark that established neonatal ECMO. (The first successful prolonged adult ECMO run was reported by J. Donald Hill in 1972 in a trauma patient.)"
   },
   {
     topic: "History of ECMO", difficulty: "basic",
@@ -2786,9 +2786,9 @@ const QUESTIONS = [
   {
     topic: "Physiology", difficulty: "basic",
     q: "Which hemoglobin level is typically targeted during ECMO to optimize oxygen delivery?",
-    opts: ["Hgb >7 g/dL","Hgb >10 g/dL","Hgb >14 g/dL","Hgb >16 g/dL"],
-    ans: 1,
-    exp: "Hgb >10 g/dL is targeted during ECMO. Higher hemoglobin directly increases CaO2 and therefore DO2, reducing the ECMO flow needed to meet metabolic demands. Transfusion to Hgb 10–12 g/dL is often recommended in hypoxemic ECMO patients."
+    opts: ["Restrictive threshold, Hgb ~7–8 g/dL, higher only if DO2 is inadequate","Hgb >12 g/dL in all patients","Hgb >14 g/dL","Hgb >16 g/dL"],
+    ans: 0,
+    exp: "Current ELSO guidance favours a restrictive transfusion threshold (Hgb ~7–8 g/dL) in most adult ECMO patients; liberal transfusion has been associated with harm (transfusion exposure, infection, thrombosis) without outcome benefit. Transfuse above this only when oxygen delivery is inadequate (low SvO2, rising lactate, refractory hypoxemia) despite optimizing flow. Older practice targeted 10–12 g/dL."
   },
   {
     topic: "Physiology", difficulty: "intermediate",
@@ -2914,12 +2914,12 @@ const QUESTIONS = [
     q: "During ECMO, a patient develops sudden cardiac arrest. The ECMO is running at 4 L/min. What is the immediate priority?",
     opts: [
       "Stop ECMO and start CPR",
-      "Maximize ECMO flow, defibrillate if shockable rhythm, identify and treat reversible cause — CPR may not be needed if ECMO maintains organ perfusion",
+      "Confirm adequate ECMO flow/MAP, defibrillate if shockable rhythm, identify and treat reversible cause — CPR may not be needed if ECMO maintains organ perfusion",
       "Decannulate immediately",
       "Administer epinephrine and stop ECMO"
     ],
     ans: 1,
-    exp: "On VA ECMO, arrest with ECMO running: increase flow to maximum, identify rhythm (defibrillate VF/VT), check ACT (consider clot), check for tamponade, electrolytes, and ischemia. If ECMO maintains MAP >50, CPR may not be required — avoid if possible."
+    exp: "On VA ECMO, arrest with ECMO running: ensure adequate flow (increase only if perfusion inadequate), identify rhythm (defibrillate VF/VT), check ACT (consider clot), check for tamponade, electrolytes, and ischemia. If ECMO maintains MAP >50, CPR may not be required — avoid if possible."
   },
   {
     topic: "Crisis Management", difficulty: "advanced",
@@ -3029,7 +3029,7 @@ const QUESTIONS = [
       "Thromboelastography only"
     ],
     ans: 1,
-    exp: "Bivalirudin is monitored by aPTT (target 60–80 sec, 1.5–2.5× normal) or ACT. Critically: bivalirudin is 20% hepatically metabolized and 80% renally cleared — dose MUST be reduced in renal failure. Unlike argatroban, no adjustment needed for liver failure."
+    exp: "Bivalirudin is monitored by aPTT (target 60–80 sec, 1.5–2.5× normal) or ACT. Critically: bivalirudin is ~80% cleared by enzymatic proteolysis (plasma proteases) and ~20% renally — the dose must be reduced in renal failure/CRRT. Unlike argatroban, no adjustment needed for liver failure. Its short half-life (~25 min) helps when interruptions are frequent; avoid stagnant areas in the circuit where it is locally degraded."
   },
   {
     topic: "Anticoagulation", difficulty: "intermediate",
@@ -3327,9 +3327,9 @@ const QUESTIONS = [
   {
     topic: "RV Failure on ECMO", difficulty: "advanced",
     q: "In pulmonary arterial hypertension (PAH) crisis requiring ECMO, the preferred configuration is:",
-    opts: ["VA ECMO via femoral access","VV ECMO or PA-to-LA cannulation (central venous-arterial ECMO bypassing the pulmonary circulation) to decompress the RV","VV ECMO only","No ECMO — contraindicated in PAH"],
-    ans: 1,
-    exp: "PAH crisis: severe RV failure with preserved LV function. Options: (1) VA ECMO provides cardiac support, (2) PA-to-LA or PA-to-aorta ECMO directly bypasses the obstructed pulmonary vasculature, decompressing the RV while maintaining systemic circulation."
+    opts: ["VA ECMO (often peripheral, awake) — bypasses the pulmonary circulation and unloads the RV","VV ECMO — improves oxygenation and thereby unloads the RV","ECCO2R only","No ECMO — contraindicated in PAH"],
+    ans: 0,
+    exp: "PAH crisis = RV failure against a fixed high PVR. VA ECMO drains the RA and returns to the systemic arterial side, bypassing the pulmonary circulation and decompressing the RV — the standard configuration, often awake as a bridge to transplant or recovery. VV ECMO does not unload the RV (all flow still passes the pulmonary circulation). Central PA-to-LA (oxygenator in parallel to the lungs) is an alternative for long bridging."
   },
   {
     topic: "RV Failure on ECMO", difficulty: "advanced",
@@ -3597,7 +3597,7 @@ const QUESTIONS = [
   // ── SCENARIO 1: LOW FLOW VV ECMO ─────────────────────────────────────────
   {
     topic: "Clinical Scenarios", difficulty: "advanced",
-    q: "SCENARIO: A 38-year-old on VV ECMO for H1N1 ARDS. ECMO flow suddenly drops from 4.5 L/min to 2.8 L/min. The circuit is chattering. Pre-membrane pressure is -85 mmHg. SpO2 drops to 78%. What is the FIRST action?",
+    q: "SCENARIO: A 38-year-old on VV ECMO for H1N1 ARDS. ECMO flow suddenly drops from 4.5 L/min to 2.8 L/min. The circuit is chattering. Venous (pre-pump) pressure is -85 mmHg. SpO2 drops to 78%. What is the FIRST action?",
     opts: [
       "Increase pump RPM immediately to restore flow",
       "Reduce pump speed, give 500 mL fluid bolus, check cannula position — chatter indicates insufficient venous return",
@@ -3617,7 +3617,7 @@ const QUESTIONS = [
       "Hemoglobin is too low"
     ],
     ans: 1,
-    exp: "Pre-membrane saturation of 95 mmHg (should be low/venous ~40 mmHg) indicates highly oxygenated blood entering the drainage cannula = recirculation. The oxygenator is working fine (post-membrane PO2 450 mmHg). Reposition cannulas to increase separation, reduce flow slightly, or consider repositioning under echo guidance."
+    exp: "Pre-membrane PO2 of 95 mmHg (should be low/venous ~40 mmHg) indicates highly oxygenated blood entering the drainage cannula = recirculation. The oxygenator is working fine (post-membrane PO2 450 mmHg). Reposition cannulas to increase separation, reduce flow slightly, or consider repositioning under echo guidance."
   },
 
   // ── SCENARIO 2: HARLEQUIN SYNDROME ───────────────────────────────────────
@@ -3742,12 +3742,12 @@ const QUESTIONS = [
     q: "SCENARIO (continued): ECMO cannulated — femoral VA. ECMO flow 4.2 L/min. MAP 68 mmHg. Lactate 14 mmol/L. Temperature 36.8°C. What are the IMMEDIATE post-ECPR priorities in the first 2 hours?",
     opts: [
       "Immediate decannulation once ROSC achieved",
-      "Urgent coronary angiography ± PCI, initiate targeted temperature management (33–36°C), treat reversible cause, neurological monitoring",
+      "Urgent coronary angiography ± PCI, initiate temperature control (32–36°C target, prevent fever >37.5°C), treat reversible cause, neurological monitoring",
       "High-dose steroids and broad antibiotics",
       "Immediate CT brain before any intervention"
     ],
     ans: 1,
-    exp: "Post-ECPR bundle: (1) urgent CAG ± PCI — most common reversible cause is ACS, (2) TTM 33–36°C for neuroprotection (use ECMO heat exchanger), (3) treat identified reversible causes, (4) continuous EEG monitoring for seizures, (5) lactate clearance monitoring. Do not delay CAG for CT brain unless obvious non-cardiac cause."
+    exp: "Post-ECPR bundle: (1) urgent CAG ± PCI — most common reversible cause is ACS, (2) temperature control via ECMO heat exchanger — prevent fever >37.5°C (32–36°C acceptable), (3) treat identified reversible causes, (4) continuous EEG monitoring for seizures, (5) lactate clearance monitoring. Do not delay CAG for CT brain unless obvious non-cardiac cause."
   },
   {
     topic: "Clinical Scenarios", difficulty: "advanced",
@@ -3791,15 +3791,15 @@ const QUESTIONS = [
   // ── SCENARIO 8: CANNULA MIGRATION ────────────────────────────────────────
   {
     topic: "Clinical Scenarios", difficulty: "intermediate",
-    q: "SCENARIO: A patient on VV ECMO (femoro-jugular) has been stable for 5 days. After repositioning for physiotherapy, ECMO flow drops and SpO2 falls. CXR shows the jugular return cannula tip has migrated to the SVC, 8 cm above the RA. What is the consequence and management?",
+    q: "SCENARIO: A patient on VV ECMO (femoro-jugular) has been stable for 5 days. After repositioning for physiotherapy, SpO2 falls and the drainage line blood looks brighter red. ECMO flow is unchanged. CXR shows the femoral drainage cannula tip has advanced into the mid-RA, close to the jugular return cannula tip. What is the consequence and management?",
     opts: [
-      "No clinical significance — SVC position is acceptable",
-      "Return cannula too far from tricuspid valve — returned oxygenated blood recirculates directly into SVC drainage → recirculation increases. Reposition cannula under fluoroscopy or echo guidance back to RA",
+      "No clinical significance — RA position is acceptable",
+      "Drainage and return tips are too close — oxygenated return blood is aspirated straight back into the drainage cannula (recirculation). Withdraw the drainage cannula to the IVC/intrahepatic level under echo or fluoroscopy guidance",
       "Immediately remove the cannula",
       "Increase ECMO flow to compensate"
     ],
     ans: 1,
-    exp: "Jugular return cannula migration to SVC causes the oxygenated return to be immediately sucked into the drainage cannula (recirculation). Management: reposition return cannula tip back to RA-SVC junction under fluoroscopy/TEE guidance. Confirm position with echo before resuming full flow."
+    exp: "Femoro-jugular VV ECMO: if the femoral drainage tip migrates up toward the jugular return tip, oxygenated return blood is drained back into the circuit before reaching the RV — recirculation. Clues: falling SpO2 at unchanged flow, bright red drainage blood, high pre-oxygenator SO2. Fix: withdraw the drainage cannula so the tips are well separated (drainage in IVC/intrahepatic, return at SVC-RA junction), confirm with echo, then reassess SpO2 and pre-oxygenator saturation."
   },
 
   // ── SCENARIO 9: SEPSIS ON ECMO ───────────────────────────────────────────
@@ -3860,12 +3860,12 @@ const QUESTIONS = [
     q: "SCENARIO (continued): Bedside lung ultrasound shows absent lung sliding on the right. CXR confirms large right tension pneumothorax. What is the immediate management?",
     opts: [
       "Observe and repeat CXR in 2 hours",
-      "Immediate needle decompression (2nd intercostal space, midclavicular line) followed by chest tube insertion — this is a life-threatening emergency even on ECMO",
+      "Immediate needle decompression (4th–5th ICS anterior/mid-axillary line, or 2nd ICS MCL) followed by chest tube insertion — this is a life-threatening emergency even on ECMO",
       "Increase ECMO flow to compensate",
       "Stop ECMO temporarily"
     ],
     ans: 1,
-    exp: "Tension pneumothorax on ECMO: life-threatening emergency. Immediate needle decompression (14G needle, 2nd ICS MCL) to relieve tension → followed by chest tube insertion. Note: anticoagulation increases hemorrhagic risk with chest tube — use careful technique, have blood products ready. Do NOT delay decompression."
+    exp: "Tension pneumothorax on ECMO: life-threatening emergency. Immediate needle decompression (14G needle, 4th–5th ICS AAL/MAL or 2nd ICS MCL) to relieve tension → followed by chest tube insertion. Note: anticoagulation increases hemorrhagic risk with chest tube — use careful technique, have blood products ready. Do NOT delay decompression."
   },
 
   // ── SCENARIO 12: WEANING FAILURE ─────────────────────────────────────────
@@ -3885,7 +3885,7 @@ const QUESTIONS = [
   // ── SCENARIO 13: NEONATAL ECMO CRISIS ────────────────────────────────────
   {
     topic: "Clinical Scenarios", difficulty: "advanced",
-    q: "SCENARIO: A 2.8 kg neonate on VV ECMO (right IJV double-lumen cannula) for MAS. Day 3. ECMO flow suddenly drops from 280 mL/min to 150 mL/min. Pre-membrane pressure is -95 mmHg. The neonate is agitated and crying. What is the most likely cause?",
+    q: "SCENARIO: A 2.8 kg neonate on VV ECMO (right IJV double-lumen cannula) for MAS. Day 3. ECMO flow suddenly drops from 280 mL/min to 150 mL/min. Venous (pre-pump) pressure is -95 mmHg. The neonate is agitated and crying. What is the most likely cause?",
     opts: [
       "Oxygenator thrombosis",
       "Cannula sucked against vessel wall due to inadequate venous return, worsened by crying increasing intrathoracic pressure — reduce pump speed, give fluid bolus, sedate neonate",
@@ -4033,10 +4033,10 @@ const QUESTIONS = [
   },
   {
     topic: "Infection on ECMO", difficulty: "basic",
-    q: "The most common site of infection in ECMO patients is:",
-    opts: ["Oxygenator","Cannula insertion site and bloodstream (ECMO-associated bloodstream infection — EABSI)","Urinary tract","Sinuses"],
-    ans: 1,
-    exp: "Cannula sites are the most common infection source in ECMO. Large-bore cannulas breach skin integrity and provide a direct conduit to the bloodstream. EABSI occurs in 3–18% of ECMO runs, increasing with duration."
+    q: "The most common site of infection in ADULT ECMO patients is:",
+    opts: ["Lower respiratory tract (ventilator-associated pneumonia)","Cannula insertion site and bloodstream (ECMO-associated bloodstream infection — EABSI)","Urinary tract","Sinuses"],
+    ans: 0,
+    exp: "In adults, the lower respiratory tract (VAP) is the most frequent infection on ECMO, followed by bloodstream infection (EABSI, 3–18% of runs) and cannula-site infection. In neonates, bloodstream infection predominates. Risk rises with ECMO duration."
   },
   {
     topic: "Infection on ECMO", difficulty: "intermediate",
@@ -4351,12 +4351,12 @@ const QUESTIONS = [
     q: "COVID-19 ARDS differs from classic ARDS in which way that affects ECMO management?",
     opts: [
       "COVID-19 ARDS is less severe and rarely needs ECMO",
-      "COVID-19 ARDS often has preserved lung compliance early ('silent hypoxemia'), high thrombotic risk requiring higher anticoagulation targets, and may have a prolonged course requiring longer ECMO runs",
+      "COVID-19 ARDS often has preserved lung compliance early ('silent hypoxemia'), high thrombotic and circuit-clotting risk (standard anticoagulation targets, close monitoring), and may have a prolonged course requiring longer ECMO runs",
       "COVID-19 ARDS responds better to high PEEP than classic ARDS",
       "COVID-19 ARDS never requires prone positioning"
     ],
     ans: 1,
-    exp: "COVID-19 ARDS features affecting ECMO: (1) high thrombotic risk (COVID coagulopathy — higher anti-Xa targets needed), (2) prolonged ECMO runs (slow recovery), (3) high rates of circuit thrombosis, (4) frequent bacterial superinfection, (5) prone positioning still beneficial. ELSO published specific COVID-19 ECMO guidelines."
+    exp: "COVID-19 ARDS features affecting ECMO: (1) high thrombotic risk (COVID coagulopathy — ELSO recommends standard targets, not escalated ones), (2) prolonged ECMO runs (slow recovery), (3) high rates of circuit thrombosis, (4) frequent bacterial superinfection, (5) prone positioning still beneficial. ELSO published specific COVID-19 ECMO guidelines."
   },
   {
     topic: "ARDS Special Situations", difficulty: "intermediate",
@@ -4478,7 +4478,7 @@ const QUESTIONS = [
       "Only VF rhythm benefits from ECPR in OHCA"
     ],
     ans: 1,
-    exp: "Prague OHCA study: larger RCT testing comprehensive strategy (mechanical CPR, CT, CAG, ECPR if no ROSC) vs standard care. Primary endpoint not met but significant 180-day survival benefit (32% vs 22%) and good neurological outcome trend in ECPR-eligible group. Supported ECPR role in selected OHCA but questions remain about ideal selection criteria."
+    exp: "Prague OHCA (Belohlavek et al., JAMA 2022): 264 refractory OHCA patients randomized to an invasive strategy (mechanical CPR, prehospital intra-arrest transport, ECPR if no ROSC, immediate invasive assessment) vs standard ACLS. Primary endpoint (180-day survival with good neurological outcome) 31.5% vs 22.0% — NOT statistically significant (p=0.09). Secondary analyses favoured the invasive strategy, especially in refractory VF. Supportive but not definitive."
   },
   {
     topic: "OHCA ECPR", difficulty: "intermediate",
