@@ -1432,12 +1432,12 @@ const QUESTIONS = [
     q: "A CRRT circuit can be added to the ECMO circuit. The correct position for the CRRT return is:",
     opts: [
       "Into the pre-pump (venous drainage) segment",
-      "Into the post-pump/post-oxygenator (arterial) segment to return filtered blood",
-      "Into a separate central venous catheter only",
+      "Into the post-pump, pre-oxygenator segment, so the oxygenator filters any air or clots",
+      "Into the post-oxygenator (arterial) segment, directly to the patient",
       "Into the sweep gas inlet"
     ],
     ans: 1,
-    exp: "CRRT return should connect to the post-oxygenator (arterial) limb of the ECMO circuit, ensuring filtered blood is returned after the pump and oxygenator. Drainage from the pre-pump venous limb minimizes pump speed effects on CRRT."
+    exp: "CRRT return must enter the circuit BEFORE the oxygenator (post-pump/pre-oxygenator), so the membrane traps any air or clots from the CRRT circuit. Returning post-oxygenator sends emboli directly to the patient. The pre-pump segment is under negative pressure with centrifugal pumps, so connections there risk air entrainment and CRRT pressure alarms. CRRT access is taken from the positive-pressure post-pump segment."
   },
   {
     topic: "Adverse Effects", difficulty: "advanced",
@@ -4113,9 +4113,9 @@ const QUESTIONS = [
   {
     topic: "Renal Support on ECMO", difficulty: "basic",
     q: "Continuous renal replacement therapy (CRRT) is integrated into the ECMO circuit by connecting:",
-    opts: ["CRRT drainage from the post-oxygenator line","CRRT drainage from the pre-pump venous line and return to the post-oxygenator arterial line — minimizing pump interference","CRRT as a completely separate circuit","CRRT connected to a peripheral vein only"],
-    ans: 1,
-    exp: "CRRT integration: drainage from pre-pump venous limb (low pressure, stable), return to post-oxygenator arterial limb (prevents air from entering patient before oxygenator). This configuration provides stable CRRT flow independent of ECMO pump fluctuations and prevents air bypass."
+    opts: ["CRRT drainage from the post-oxygenator line with return to the pre-oxygenator segment — the oxygenator traps any air or clots","CRRT drainage from the pre-pump venous line and return to the post-oxygenator arterial line — minimizing pump interference","CRRT as a completely separate circuit","CRRT connected to a peripheral vein only"],
+    ans: 0,
+    exp: "CRRT access is taken from the positive-pressure segment after the pump (post-pump/pre-oxygenator or post-oxygenator), and the return must always go in BEFORE the oxygenator so the membrane acts as a bubble and clot trap. The pre-pump venous limb is under high negative pressure with a centrifugal pump: connections there risk air entrainment and cause CRRT access-pressure alarms. Returning post-oxygenator sends any air or clot from the CRRT circuit straight to the patient (systemic/cerebral embolism in V-A). Note: post-oxygenator access with pre-oxygenator return creates a small shunt around the patient, so measured ECMO flow slightly overestimates patient flow."
   },
   {
     topic: "Renal Support on ECMO", difficulty: "basic",
