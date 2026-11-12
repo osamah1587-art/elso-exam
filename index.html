@@ -12,32 +12,9 @@
 <meta name="apple-mobile-web-app-title" content="ECMO Exam">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="theme-color" content="#020817">
-<link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgMjAwIj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgcng9IjQwIiBmaWxsPSIjMDIwODE3Ii8+PGNpcmNsZSBjeD0iMTAwIiBjeT0iMTAwIiByPSI3NSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJ1cmwoI2cpIiBzdHJva2Utd2lkdGg9IjgiLz48dGV4dCB4PSI1MCUiIHk9IjQ4JSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXdlaWdodD0iOTAwIiBmb250LXNpemU9IjQ4IiBmaWxsPSIjMDZiNmQ0Ij5FQ01PPC90ZXh0Pjx0ZXh0IHg9IjUwJSIgeT0iNjglIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtd2VpZ2h0PSI3MDAiIGZvbnQtc2l6ZT0iMjAiIGZpbGw9IiNhNzhiZmEiPkVYQU08L3RleHQ+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJnIiB4MT0iMCUiIHkxPSIwJSIgeDI9IjEwMCUiIHkyPSIxMDAlIj48c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjMDZiNmQ0Ii8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjOGI1Y2Y2Ii8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PC9zdmc+">
-<script>
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    const manifest = {
-      name: 'ECMO Exam Simulator',
-      short_name: 'ECMO Exam',
-      start_url: '.',
-      display: 'standalone',
-      background_color: '#020817',
-      theme_color: '#020817',
-      icons: [{
-        src: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgMjAwIj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgcng9IjQwIiBmaWxsPSIjMDIwODE3Ii8+PGNpcmNsZSBjeD0iMTAwIiBjeT0iMTAwIiByPSI3NSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJ1cmwoI2cpIiBzdHJva2Utd2lkdGg9IjgiLz48dGV4dCB4PSI1MCUiIHk9IjQ4JSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXdlaWdodD0iOTAwIiBmb250LXNpemU9IjQ4IiBmaWxsPSIjMDZiNmQ0Ij5FQ01PPC90ZXh0Pjx0ZXh0IHg9IjUwJSIgeT0iNjglIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtd2VpZ2h0PSI3MDAiIGZvbnQtc2l6ZT0iMjAiIGZpbGw9IiNhNzhiZmEiPkVYQU08L3RleHQ+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJnIiB4MT0iMCUiIHkxPSIwJSIgeDI9IjEwMCUiIHkyPSIxMDAlIj48c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjMDZiNmQ0Ii8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjOGI1Y2Y2Ii8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PC9zdmc+",
-        sizes: "192x192",
-        type: "image/svg+xml"
-      }]
-    };
-    const blob = new Blob([JSON.stringify(manifest)], {type: 'application/json'});
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement('link');
-    link.rel = 'manifest';
-    link.href = url;
-    document.head.appendChild(link);
-  });
-}
-</script>
+<link rel="manifest" href="manifest.json">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
   /* ── THEME VARIABLES ── */
@@ -238,7 +215,8 @@ if ('serviceWorker' in navigator) {
   .pin-screen { display: none; min-height: 100vh; align-items: center; justify-content: center; flex-direction: column; padding: 24px; background: var(--bg); }
   .pin-screen.active { display: flex; }
   .pin-box { background: var(--card-bg); border: 1px solid var(--border); border-radius: 20px; padding: 32px 28px; max-width: 340px; width: 100%; text-align: center; }
-  .pin-logo { font-size: 44px; margin-bottom: 12px; }
+  .pin-logo { width: 128px; height: 128px; display: block; margin: 0 auto 14px; border-radius: 50%; box-shadow: 0 0 28px rgba(139,92,246,.45); }
+  .app-logo { width: 112px; height: 112px; display: block; margin: 0 auto 14px; border-radius: 50%; box-shadow: 0 0 24px rgba(6,182,212,.35); }
   .pin-title { font-size: 22px; font-weight: 800; background: linear-gradient(135deg,#06b6d4,#a78bfa); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 4px; }
   .pin-sub { font-size: 13px; color: var(--text3); margin-bottom: 24px; }
   .pin-dots { display: flex; justify-content: center; gap: 12px; margin-bottom: 24px; }
@@ -290,7 +268,7 @@ if ('serviceWorker' in navigator) {
 <!-- PIN SCREEN -->
 <div class="pin-screen active" id="pin-screen">
   <div class="pin-box">
-    <div class="pin-logo">🫀</div>
+    <img class="pin-logo" src="logo.png" alt="ELSO ECMO Practitioner Exam Simulation">
     <div class="pin-title">ECMO Exam</div>
     <div class="author-tag" style="margin-bottom:4px">ICU O.Dakka</div>
     <div class="pin-sub">ELSO Red Book · 6th Edition<br>Enter PIN to access</div>
@@ -330,6 +308,7 @@ if ('serviceWorker' in navigator) {
 <!-- SETUP SCREEN -->
 <div id="screen-setup" class="screen active">
   <div class="logo">
+    <img class="app-logo" src="logo.png" alt="ELSO ECMO Practitioner Exam Simulation">
     <div class="logo-badge">ELSO Red Book · 6th Edition</div>
     <div class="author-tag">ICU O.Dakka</div>
     <h1>ECMO Exam Simulator</h1>
