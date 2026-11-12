@@ -344,6 +344,14 @@ if ('serviceWorker' in navigator) {
 
   <!-- EXAM TAB -->
   <div id="tab-exam">
+  <div id="resume-card" class="card" style="display:none;border:2px solid #06b6d4">
+    <span class="label">Unfinished exam</span>
+    <div id="resume-info" style="margin:6px 0 12px;font-weight:600"></div>
+    <div style="display:flex;gap:10px">
+      <button class="btn-main" style="flex:2;margin:0" onclick="resumeExam()">Resume</button>
+      <button class="btn-prev" style="flex:1" onclick="discardSaved()">Discard</button>
+    </div>
+  </div>
 
   <div class="card">
     <span class="label">Topic</span>
@@ -4796,6 +4804,63 @@ function startExam() {
   renderQuestion();
 }
 
+// ─── RESUME: keep in-progress exam across app close ─────────────────────────
+const SESS_KEY = 'ecmo_exam_session';
+function saveSession() {
+  try {
+    if (!examQuestions.length || currentIdx >= examQuestions.length) return;
+    localStorage.setItem(SESS_KEY, JSON.stringify({
+      ids: examQuestions.map(q => QUESTIONS.indexOf(q)),
+      chk: examQuestions.map(q => q.q.slice(0, 50)),
+      sh: examQuestions.map(q => q._shuffled ? q._shuffled.map(o => o.original) : null),
+      idx: currentIdx, score, results, ts: Date.now()
+    }));
+  } catch (e) {}
+}
+function clearSession() { try { localStorage.removeItem(SESS_KEY); } catch (e) {} }
+function loadSession() {
+  try {
+    const o = JSON.parse(localStorage.getItem(SESS_KEY) || 'null');
+    if (!o || !Array.isArray(o.ids)) return null;
+    const qs = o.ids.map((i, k) => {
+      let q = QUESTIONS[i];
+      if (!q || q.q.slice(0, 50) !== o.chk[k]) q = QUESTIONS.find(x => x.q.slice(0, 50) === o.chk[k]);
+      return q;
+    });
+    if (!qs.length || qs.some(q => !q)) { clearSession(); return null; }
+    const res = (o.results || []).slice(0, qs.length);
+    while (res.length < qs.length) res.push(null);
+    return { qs, sh: o.sh || [], idx: Math.min(Math.max(0, o.idx | 0), qs.length - 1), score: o.score | 0, results: res };
+  } catch (e) { return null; }
+}
+function resumeExam() {
+  const s = loadSession();
+  if (!s) { refreshResumeCard(); return; }
+  examQuestions = s.qs;
+  examQuestions.forEach((q, k) => {
+    const ord = s.sh[k];
+    if (Array.isArray(ord) && ord.length === q.opts.length) q._shuffled = ord.map(i => ({ text: q.opts[i], original: i }));
+    else delete q._shuffled;
+  });
+  currentIdx = s.idx; score = s.score; results = s.results;
+  showTab('tab-exam');
+  showScreen('screen-exam');
+  renderQuestion();
+}
+function discardSaved() {
+  if (!confirm('Discard the unfinished exam?')) return;
+  clearSession(); refreshResumeCard();
+}
+function refreshResumeCard() {
+  const card = document.getElementById('resume-card');
+  if (!card) return;
+  const s = loadSession();
+  if (!s) { card.style.display = 'none'; return; }
+  const done = s.results.filter(r => r).length;
+  document.getElementById('resume-info').textContent = `At question ${s.idx + 1} of ${s.qs.length} · ${done} answered · score ${s.score}`;
+  card.style.display = 'block';
+}
+
 function renderQuestion() {
   const q = examQuestions[currentIdx];
   const total = examQuestions.length;
@@ -4835,6 +4900,7 @@ function renderQuestion() {
       container.appendChild(btn);
     });
   }
+  saveSession();
 }
 
 function renderAnsweredQuestion(q, r) {
@@ -4893,6 +4959,7 @@ function handleAnswer(selected, correctText, exp) {
   nextBtn.textContent = currentIdx + 1 >= examQuestions.length ? "Results →" : "Next →";
 
   document.getElementById("score-counter").textContent = `Score: ${score}`;
+  saveSession();
 }
 
 function nextQuestion() {
@@ -4920,6 +4987,7 @@ function showScore() {
   const color = pct >= 90 ? "#22c55e" : pct >= 75 ? "#06b6d4" : pct >= 60 ? "#f59e0b" : "#ef4444";
 
   // Save progress
+  clearSession();
   updateProgress(answered, answered.length);
 
   document.getElementById("score-emoji").textContent = pct >= 75 ? "🎯" : "📚";
@@ -4953,6 +5021,7 @@ function retryExam() {
 }
 
 function goSetup() {
+  refreshResumeCard();
   showScreen("screen-setup");
 }
 
@@ -5233,6 +5302,8 @@ function resetProgress() {
 // Initialize tab visibility
 document.getElementById('tab-exam').style.display = 'block';
 document.getElementById('tab-progress').style.display = 'none';
+// Reopen straight into an unfinished exam (shown after PIN unlock)
+if (loadSession()) resumeExam(); else refreshResumeCard();
 </script>
 
 </div><!-- end main-app -->
